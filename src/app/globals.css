@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --z-index-dropdown: 1000;
+  --z-index-header: 1020;
+  --z-index-modal: 1050;
+  --z-index-toast: 1060;
+  --z-index-tooltip: 1070;
+}
+
+/* Thin Theme Scrollbar for Modals and Drawers */
+.scrollbar-theme {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+.scrollbar-theme::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.scrollbar-theme::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-theme::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 9999px;
+}
+.scrollbar-theme::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ring);
+}
+
+:root {
+  --background: #faf8f6; /* stone-50 warm ivory */
+  --foreground: #1c1917; /* stone-900 */
+
+  --primary: #8c5a47; /* brand-500 bronze */
+  --primary-foreground: #faf8f6;
+
+  --secondary: #f2e6e1; /* brand-100 */
+  --secondary-foreground: #4a291e; /* brand-800 */
+
+  --muted: #f5f2ee; /* warm stone-surface */
+  --muted-foreground: #78716c;
+
+  --accent: #e4ccbe; /* brand-200 */
+  --accent-foreground: #381f16;
+
+  --destructive: #e11d48;
+  --destructive-foreground: #ffffff;
+
+  --success: #16a34a;
+  --success-foreground: #ffffff;
+
+  --warning: #ca8a04;
+  --warning-foreground: #ffffff;
+
+  --info: #0284c7;
+  --info-foreground: #ffffff;
+
+  --border: #eae6e2; /* warm light border */
+  --input: #eae6e2;
+  --ring: #8c5a47;
+
+  /* Premium Semantic Tokens */
+  --card: #ffffff;
+  --card-foreground: #1c1917;
+  --card-elevated: #ffffff;
+  --surface: #f5f2ee;
+  --hover: #ebdcd0;
+  --overlay: rgba(28, 25, 23, 0.4);
+}
+
+.dark {
+  --background: #141211; /* deep ebony dark warm */
+  --foreground: #fafaf9;
+
+  --primary: #be7e65; /* brand-400 */
+  --primary-foreground: #1d0f0a;
+
+  --secondary: #2c1c17;
+  --secondary-foreground: #f2e6e1;
+
+  --muted: #24201e; /* warm stone-800 */
+  --muted-foreground: #a8a29e;
+
+  --accent: #5c3426;
+  --accent-foreground: #fdf8f6;
+
+  --destructive: #f43f5e;
+  --destructive-foreground: #ffffff;
+
+  --success: #22c55e;
+  --success-foreground: #ffffff;
+
+  --warning: #eab308;
+  --warning-foreground: #1c1917;
+
+  --info: #0ea5e9;
+  --info-foreground: #ffffff;
+
+  --border: #2c2724; /* warm dark border */
+  --input: #2c2724;
+  --ring: #be7e65;
+
+  /* Premium Semantic Tokens */
+  --card: #1c1917;
+  --card-foreground: #fafaf9;
+  --card-elevated: #262220;
+  --surface: #24201e;
+  --hover: #302926;
+  --overlay: rgba(0, 0, 0, 0.6);
+}
+
+@theme {
+  --color-brand-50: #fdf8f6;
+  --color-brand-100: #f2e6e1;
+  --color-brand-200: #e4ccbe;
+  --color-brand-300: #d4a994;
+  --color-brand-400: #be7e65;
+  --color-brand-500: #8c5a47;
+  --color-brand-600: #734534;
+  --color-brand-700: #5c3426;
+  --color-brand-800: #4a291e;
+  --color-brand-900: #381f16;
+  --color-brand-950: #1d0f0a;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Semantic UI Colors mapped to CSS variables */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-card-elevated: var(--card-elevated);
+  --color-surface: var(--surface);
+  --color-hover: var(--hover);
+  --color-overlay: var(--overlay);
+
+  --font-sans: var(--font-inter), sans-serif;
+  --font-display: var(--font-outfit), sans-serif;
+
+  /* Z-Index Variables matching constants/design-tokens */
+  --z-dropdown: 1000;
+  --z-header: 1020;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-drawer: 1040;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-toast: 1060;
+  --z-tooltip: 1070;
+
+  /* Exact Border Radius Standards */
+  --radius-xs: 0.125rem; /* 2px */
+  --radius-sm: 0.25rem;  /* 4px */
+  --radius-md: 0.5rem;   /* 8px */
+  --radius-lg: 0.75rem;  /* 12px - Buttons and Inputs */
+  --radius-xl: 1rem;     /* 16px */
+  --radius-card: 1.25rem; /* 20px - Cards */
+  --radius-2xl: 1.5rem;  /* 24px - Modals and Drawers */
+
+  /* Semantic Shadow Registry */
+  --shadow-flat: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-soft: 0 4px 12px -2px rgba(28, 25, 23, 0.06), 0 2px 6px -1px rgba(28, 25, 23, 0.04);
+  --shadow-raised: 0 12px 24px -4px rgba(28, 25, 23, 0.12), 0 4px 12px -2px rgba(28, 25, 23, 0.08);
+  --shadow-overlay: 0 20px 32px -8px rgba(0, 0, 0, 0.15), 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+  --shadow-glass: 0 8px 32px 0 rgba(28, 25, 23, 0.04);
+}
+
+/* Custom utility for locking transitions on theme toggle */
+.disable-transitions * {
+  transition: none !important;
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  /* Custom focus ring styling for WCAG AA compliance */
+  *:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+  }
+}
+
+@layer utilities {
+  /* Navigation Hover Slide Animation classes */
+  .nav-link-underline {
+    position: relative;
+  }
+  
+  .nav-link-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .nav-link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  /* Glassmorphism utility with variable blur */
+  .glass-header {
+    background-color: rgba(250, 248, 246, 0.85);
+    backdrop-filter: blur(20px);
+  }
+
+  .dark .glass-header {
+    background-color: rgba(20, 18, 17, 0.85);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Infinite horizontal scroll marquee */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+  }
+}

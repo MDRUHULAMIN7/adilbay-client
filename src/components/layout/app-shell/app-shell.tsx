@@ -1,0 +1,81 @@
+'use client';
+
+import React, { useEffect } from 'react';
+import { Header } from '../header';
+import { Footer } from '../footer';
+import { SkipNav } from '../../system/skip-nav';
+import { ScrollProgress } from '../../system/scroll-progress';
+import { ScrollToTop } from '../../system/scroll-to-top';
+import { useLayout } from '@/providers/layout-provider';
+import dynamic from 'next/dynamic';
+
+const CommandPalette = dynamic(
+  () => import('../command-palette').then((mod) => mod.CommandPalette),
+  { ssr: false }
+);
+
+const MobileNav = dynamic(
+  () => import('../mobile-nav').then((mod) => mod.MobileNav),
+  { ssr: false }
+);
+
+export interface AppShellProps {
+  children: React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
+  showHeader?: boolean;
+  showFooter?: boolean;
+  showScrollProgress?: boolean;
+  showScrollToTop?: boolean;
+}
+
+export function AppShell({
+  children,
+  header,
+  footer,
+  showHeader = true,
+  showFooter = true,
+  showScrollProgress = true,
+  showScrollToTop = true,
+}: AppShellProps) {
+  const { isSearchOpen, setIsSearchOpen, isMobileNavOpen, setIsMobileNavOpen } = useLayout();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(!isSearchOpen);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isSearchOpen, setIsSearchOpen]);
+
+  const defaultHeader = <Header />;
+  const defaultFooter = <Footer />;
+
+  return (
+    <div className="relative min-h-screen flex flex-col bg-background text-foreground transition-colors duration-150">
+      <SkipNav />
+      {showScrollProgress && <ScrollProgress />}
+
+      {showHeader && (header || defaultHeader)}
+
+      <main id="main-content" className="flex-1 flex flex-col pt-[108px] md:pt-[112px] w-full focus:outline-none" tabIndex={-1}>
+        {children}
+      </main>
+
+      {showFooter && (footer || defaultFooter)}
+
+      {showScrollToTop && <ScrollToTop />}
+
+      {isSearchOpen && (
+        <CommandPalette isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      )}
+      {isMobileNavOpen && (
+        <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
+      )}
+    </div>
+  );
+}
+export default AppShell;
