@@ -8,14 +8,8 @@ export function useRecentSearches() {
   const [searches, setSearches] = useState<string[]>([]);
 
   useEffect(() => {
-    const raw = storage.get(RECENT_SEARCHES_KEY);
-    if (raw) {
-      try {
-        setSearches(JSON.parse(raw));
-      } catch (e) {
-        setSearches([]);
-      }
-    }
+    const list = storage.get<string[]>(RECENT_SEARCHES_KEY, []);
+    setSearches(list);
   }, []);
 
   const addSearch = (term: string) => {
@@ -25,7 +19,7 @@ export function useRecentSearches() {
     setSearches((prev) => {
       const filtered = prev.filter((item) => item.toLowerCase() !== trimmed.toLowerCase());
       const updated = [trimmed, ...filtered].slice(0, MAX_RECENT_ITEMS);
-      storage.set(RECENT_SEARCHES_KEY, JSON.stringify(updated));
+      storage.set<string[]>(RECENT_SEARCHES_KEY, updated);
       return updated;
     });
   };
@@ -33,7 +27,7 @@ export function useRecentSearches() {
   const removeSearch = (term: string) => {
     setSearches((prev) => {
       const updated = prev.filter((item) => item !== term);
-      storage.set(RECENT_SEARCHES_KEY, JSON.stringify(updated));
+      storage.set<string[]>(RECENT_SEARCHES_KEY, updated);
       return updated;
     });
   };

@@ -19,6 +19,11 @@ const MobileNav = dynamic(
   { ssr: false }
 );
 
+const CartDrawer = dynamic(
+  () => import('@/features/cart').then((mod) => mod.CartDrawer),
+  { ssr: false }
+);
+
 export interface AppShellProps {
   children: React.ReactNode;
   header?: React.ReactNode;
@@ -75,6 +80,7 @@ export function AppShell({
       {isMobileNavOpen && (
         <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
       )}
+      <CartDrawer />
     </div>
   );
 }

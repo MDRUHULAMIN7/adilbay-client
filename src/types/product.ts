@@ -37,7 +37,8 @@ export interface Product {
   rating: number;
   reviewsCount: number;
   images: string[];
-  stockStatus: 'in-stock' | 'low-stock' | 'out-of-stock';
+  stockStatus: 'in-stock' | 'low-stock' | 'pre-order' | 'back-order' | 'out-of-stock';
+  stock?: number;
   badge?: 'new' | 'sale' | 'hot' | 'featured';
   materials: string[];
   colors: ColorVariant[];

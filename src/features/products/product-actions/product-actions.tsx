@@ -10,27 +10,27 @@ import { useLayout } from '@/providers/layout-provider';
 import { analytics } from '@/lib/analytics';
 import { useRouter } from 'next/navigation';
 
+import { useCart } from '@/hooks/useCart';
+
 interface ProductActionsProps extends BaseComponentProps {
   slug: string;
   title: string;
-  stockStatus: 'in-stock' | 'low-stock' | 'out-of-stock';
+  stockStatus: 'in-stock' | 'low-stock' | 'pre-order' | 'back-order' | 'out-of-stock';
+  product?: any;
 }
 
-export function ProductActions({ slug, title, stockStatus, className }: ProductActionsProps) {
-  const { toast } = useToast();
-  const { setIsCartOpen } = useLayout();
+export function ProductActions({ slug, title, stockStatus, product, className }: ProductActionsProps) {
+  const { addItem } = useCart();
   const router = useRouter();
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     if (stockStatus === 'out-of-stock') return;
     analytics.trackCart('add', { slug, quantity: 1 });
-    setIsCartOpen(true);
-    toast({
-      type: 'success',
-      title: 'Added to Cart',
-      message: `${title} has been added to your shopping cart.`,
-    });
+
+    if (product) {
+      addItem(product, 1);
+    }
   };
 
   const handleQuickView = (e: React.MouseEvent) => {

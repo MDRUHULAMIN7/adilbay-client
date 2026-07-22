@@ -10,9 +10,12 @@ import { ROUTES } from '@/constants/routes';
 import { analytics } from '@/lib/analytics';
 import Link from 'next/link';
 
+import { useCart } from '@/hooks/useCart';
+
 export function HeaderActions() {
   const { theme, setTheme } = useTheme();
-  const { setIsSearchOpen, setIsCartOpen } = useLayout();
+  const { setIsSearchOpen } = useLayout();
+  const { openCart, itemCount } = useCart();
 
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -68,16 +71,18 @@ export function HeaderActions() {
         variant="ghost"
         size="sm"
         onClick={() => {
-          setIsCartOpen(true);
+          openCart();
           analytics.trackNavigation('Cart Trigger', 'Cart Sidebar');
         }}
         aria-label="Open shopping cart"
         className="relative h-10 w-10 text-stone-600 dark:text-stone-300 hover:text-primary transition-colors focus-visible:outline-none cursor-pointer"
       >
         <Icon name="cart" className="h-4 w-4" />
-        <span className="absolute top-1.5 right-1.5 h-4 w-4 rounded-full bg-primary text-[9px] font-bold text-stone-50 flex items-center justify-center border border-background select-none">
-          0
-        </span>
+        {itemCount > 0 && (
+          <span className="absolute top-1.5 right-1.5 h-4 w-4 rounded-full bg-primary text-[9px] font-bold text-stone-50 flex items-center justify-center border border-background select-none animate-pulse">
+            {itemCount > 99 ? '99+' : itemCount}
+          </span>
+        )}
       </Button>
 
       {/* Account Settings Page */}

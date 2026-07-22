@@ -1,39 +1,57 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { storage } from '@/lib/storage';
+import { useToast } from '@/components/ui/toast';
+
+const WISHLIST_KEY = 'furnixo_wishlist';
 
 export function useWishlist() {
   const [wishlist, setWishlist] = useState<string[]>([]);
+  const { addToast } = useToast();
 
   useEffect(() => {
-    const raw = storage.get('wishlist');
-    if (raw) {
-      try {
-        setWishlist(JSON.parse(raw));
-      } catch (e) {
-        setWishlist([]);
-      }
-    }
+    const stored = storage.get<string[]>(WISHLIST_KEY, []);
+    setWishlist(stored);
   }, []);
 
-  const toggleWishlist = (slug: string) => {
-    const next = wishlist.includes(slug)
-      ? wishlist.filter((item) => item !== slug)
-      : [...wishlist, slug];
-    setWishlist(next);
-    storage.set('wishlist', JSON.stringify(next));
-  };
+  const toggleWishlist = useCallback(
+    (slug: string, title?: string) => {
+      const exists = wishlist.includes(slug);
+      const next = exists ? wishlist.filter((item) => item !== slug) : [...wishlist, slug];
 
-  const isInWishlist = (slug: string) => {
-    return wishlist.includes(slug);
-  };
+      setWishlist(next);
+      storage.set(WISHLIST_KEY, next);
 
-  const clearWishlist = () => {
+      addToast({
+        title: exists ? 'Removed from Wishlist' : 'Saved to Wishlist',
+        description: title
+          ? `"${title}" has been ${exists ? 'removed from' : 'added to'} your saved wishlist.`
+          : `Item ${exists ? 'removed from' : 'added to'} wishlist.`,
+        variant: exists ? 'info' : 'success',
+      });
+    },
+    [wishlist, addToast]
+  );
+
+  const isInWishlist = useCallback(
+    (slug: string) => {
+      return wishlist.includes(slug);
+    },
+    [wishlist]
+  );
+
+  const clearWishlist = useCallback(() => {
     setWishlist([]);
-    storage.remove('wishlist');
-  };
+    storage.remove(WISHLIST_KEY);
+    addToast({
+      title: 'Wishlist Cleared',
+      description: 'All saved items have been cleared from your wishlist.',
+      variant: 'info',
+    });
+  }, [addToast]);
 
-  return { wishlist, toggleWishlist, isInWishlist, clearWishlist };
+  return { wishlist, toggleWishlist, isInWishlist, clearWishlist, wishlistCount: wishlist.length };
 }
+
 export default useWishlist;

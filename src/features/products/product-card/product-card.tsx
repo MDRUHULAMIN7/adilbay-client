@@ -88,7 +88,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
         </Link>
 
         {/* Hover action triggers */}
-        <ProductActions slug={product.slug} title={product.title} stockStatus={product.stockStatus} />
+        <ProductActions slug={product.slug} title={product.title} stockStatus={product.stockStatus} product={product} />
       </div>
 
       {/* Details content */}

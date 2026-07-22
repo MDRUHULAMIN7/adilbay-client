@@ -6,7 +6,7 @@ import { BaseComponentProps } from '@/types/component';
 
 interface ProductBadgesProps extends BaseComponentProps {
   badge?: 'new' | 'sale' | 'hot' | 'featured';
-  stockStatus?: 'in-stock' | 'low-stock' | 'out-of-stock';
+  stockStatus?: 'in-stock' | 'low-stock' | 'pre-order' | 'back-order' | 'out-of-stock';
   discountPercent?: number;
 }
 
@@ -16,6 +16,16 @@ export function ProductBadges({ badge, stockStatus, discountPercent, className }
       {stockStatus === 'out-of-stock' && (
         <span className="text-[10px] sm:text-xs font-bold bg-destructive text-white px-2.5 py-1 rounded-none uppercase tracking-wider shadow-xs">
           Sold Out
+        </span>
+      )}
+      {stockStatus === 'pre-order' && (
+        <span className="text-[10px] sm:text-xs font-bold bg-info text-white px-2.5 py-1 rounded-none uppercase tracking-wider shadow-xs">
+          Pre Order
+        </span>
+      )}
+      {stockStatus === 'back-order' && (
+        <span className="text-[10px] sm:text-xs font-bold bg-stone-600 text-white px-2.5 py-1 rounded-none uppercase tracking-wider shadow-xs">
+          Back Order
         </span>
       )}
       {stockStatus === 'low-stock' && (

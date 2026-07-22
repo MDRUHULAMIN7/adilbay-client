@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { ToastContext, ToastItem } from './use-toast';
+import { ToastContext, ToastItem, ToastType } from './use-toast';
 import { Toast } from './toast';
 import { generateId } from '@/lib/generate-id';
 
@@ -14,12 +14,38 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     setToasts((prev) => [...prev, { ...item, id }]);
   }, []);
 
+  const addToast = useCallback(
+    (options: {
+      title?: string;
+      description?: string;
+      message?: string;
+      variant?: string;
+      type?: ToastType;
+    }) => {
+      const typeMap: Record<string, ToastType> = {
+        success: 'success',
+        destructive: 'error',
+        error: 'error',
+        warning: 'warning',
+        info: 'info',
+      };
+      const resolvedType: ToastType = options.type || typeMap[options.variant || 'info'] || 'info';
+      const msg = options.message || options.description || options.title || '';
+      toast({
+        type: resolvedType,
+        title: options.title,
+        message: msg,
+      });
+    },
+    [toast]
+  );
+
   const dismiss = useCallback((id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
   return (
-    <ToastContext.Provider value={{ toasts, toast, dismiss }}>
+    <ToastContext.Provider value={{ toasts, toast, addToast, dismiss }}>
       {children}
       <div
         className="fixed bottom-0 right-0 z-toast p-4 md:p-6 flex flex-col gap-3 w-full max-w-sm pointer-events-none"

@@ -6,6 +6,7 @@ import { QueryProvider } from './query-provider';
 import { ToastProvider } from './toast-provider';
 import { MotionProvider } from './motion-provider';
 import { LayoutProvider } from './layout-provider';
+import { CartProvider } from './cart-provider';
 
 interface AppProvidersProps {
   children: React.ReactNode;
@@ -18,7 +19,9 @@ export function AppProviders({ children }: AppProvidersProps) {
         <LayoutProvider>
           <MotionProvider>
             <ToastProvider>
-              {children}
+              <CartProvider>
+                {children}
+              </CartProvider>
             </ToastProvider>
           </MotionProvider>
         </LayoutProvider>

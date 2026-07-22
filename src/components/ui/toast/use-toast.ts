@@ -15,6 +15,15 @@ export interface ToastItem {
 export interface ToastContextType {
   toasts: ToastItem[];
   toast: (item: Omit<ToastItem, 'id'>) => void;
+  addToast: (options: {
+    title?: string;
+    description?: string;
+    message?: string;
+    variant?: 'success' | 'destructive' | 'warning' | 'info' | string;
+    type?: ToastType;
+    actionLabel?: string;
+    onAction?: () => void;
+  }) => void;
   dismiss: (id: string) => void;
 }
 
