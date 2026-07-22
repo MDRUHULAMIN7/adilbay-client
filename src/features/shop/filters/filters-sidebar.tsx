@@ -35,7 +35,7 @@ export function FiltersSidebar({
 }: FiltersSidebarProps) {
   return (
     <div className="flex flex-col gap-6 w-full lg:w-64 bg-background pr-0 lg:pr-6 lg:border-r border-border/40 text-left shrink-0">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between py-4 border-b border-border/40 mb-0">
         <Heading level={3} className="font-display font-bold text-base text-foreground tracking-tight">
           Filters
         </Heading>
@@ -46,8 +46,6 @@ export function FiltersSidebar({
           Reset All
         </button>
       </div>
-
-      <div className="h-px bg-border/40 w-full" />
 
       {/* Categories */}
       <div className="flex flex-col gap-3">
@@ -66,7 +64,7 @@ export function FiltersSidebar({
                   type="checkbox"
                   checked={checked}
                   onChange={() => toggleCategory(cat.value)}
-                  className="rounded border-stone-300 text-primary focus:ring-primary h-3.5 w-3.5 cursor-pointer"
+                  className="rounded border-stone-300 text-primary accent-primary focus:ring-primary h-3.5 w-3.5 cursor-pointer"
                 />
                 <span>{cat.label}</span>
               </label>
@@ -94,7 +92,7 @@ export function FiltersSidebar({
                   type="checkbox"
                   checked={checked}
                   onChange={() => toggleMaterial(mat.value)}
-                  className="rounded border-stone-300 text-primary focus:ring-primary h-3.5 w-3.5 cursor-pointer"
+                  className="rounded border-stone-300 text-primary accent-primary focus:ring-primary h-3.5 w-3.5 cursor-pointer"
                 />
                 <span>{mat.label}</span>
               </label>
@@ -151,7 +149,7 @@ export function FiltersSidebar({
                   name="priceRange"
                   checked={checked}
                   onChange={() => setPriceRange({ min: range.min, max: range.max })}
-                  className="rounded-full border-stone-300 text-primary focus:ring-primary h-3.5 w-3.5 cursor-pointer"
+                  className="rounded-full border-stone-300 text-primary accent-primary focus:ring-primary h-3.5 w-3.5 cursor-pointer"
                 />
                 <span>{range.label}</span>
               </label>
@@ -179,7 +177,7 @@ export function FiltersSidebar({
                   type="checkbox"
                   checked={checked}
                   onChange={() => toggleAvailability(av.value)}
-                  className="rounded border-stone-300 text-primary focus:ring-primary h-3.5 w-3.5 cursor-pointer"
+                  className="rounded border-stone-300 text-primary accent-primary focus:ring-primary h-3.5 w-3.5 cursor-pointer"
                 />
                 <span>{av.label}</span>
               </label>

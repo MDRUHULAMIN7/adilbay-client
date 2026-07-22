@@ -50,7 +50,7 @@ export default async function HomePage() {
       <CategoriesSection categories={categories} />
 
       {/* Best Sellers Section */}
-      <section className="py-16 bg-background">
+      <section className="py-8 lg:py-10 bg-background">
         <Container variant="wide" className="flex flex-col gap-8">
           <div className="flex flex-col gap-1.5 max-w-xl text-left">
             <Heading level={2} className="font-display font-bold text-2xl sm:text-3xl tracking-tight text-foreground">
@@ -68,7 +68,7 @@ export default async function HomePage() {
       <CollectionsSection collections={collections} />
 
       {/* New Arrivals Section */}
-      <section className="py-16 bg-background">
+      <section className="py-8 lg:py-10 bg-background">
         <Container variant="wide" className="flex flex-col gap-8">
           <div className="flex flex-col gap-1.5 max-w-xl text-left">
             <Heading level={2} className="font-display font-bold text-2xl sm:text-3xl tracking-tight text-foreground">

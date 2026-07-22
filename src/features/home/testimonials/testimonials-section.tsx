@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import Image from 'next/image';
 import { Review } from '@/types/product';
 import { Heading } from '@/components/ui/heading';
@@ -14,7 +13,7 @@ interface TestimonialsSectionProps {
 
 export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) {
   return (
-    <section className="py-16 bg-stone-50 dark:bg-stone-950/10 border-y border-border/40">
+    <section className="py-8 lg:py-10 bg-stone-50 dark:bg-stone-950/10 border-y border-border/40">
       <Container variant="wide" className="flex flex-col gap-8">
         <div className="flex flex-col gap-1.5 max-w-xl text-left">
           <Heading level={2} className="font-display font-bold text-2xl sm:text-3xl tracking-tight text-foreground">
@@ -29,7 +28,7 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
           {testimonials.map((test) => (
             <div
               key={test.id}
-              className="flex flex-col gap-5 p-6 rounded-card border border-border/40 bg-background shadow-soft hover:shadow-raised transition-all"
+              className="flex flex-col gap-5 p-6 border border-border/40 bg-background shadow-soft hover:shadow-raised transition-all"
             >
               {/* Star Rating */}
               <div className="flex gap-1 text-primary">

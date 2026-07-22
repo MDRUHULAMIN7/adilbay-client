@@ -16,24 +16,24 @@ interface CollectionsSectionProps {
 
 export function CollectionsSection({ collections }: CollectionsSectionProps) {
   return (
-    <section className="py-16 bg-stone-50 dark:bg-stone-950/10 border-y border-border/40">
-      <Container variant="wide" className="flex flex-col gap-8">
+    <section className="py-8 lg:py-10 bg-stone-50 dark:bg-stone-950/10 border-y border-border/40">
+      <Container variant="wide" className="flex flex-col">
         <div className="flex flex-col gap-1.5 max-w-xl text-left">
           <Heading level={2} className="font-display font-bold text-2xl sm:text-3xl tracking-tight text-foreground">
-            Design Editorials
+            Curated Collections
           </Heading>
           <Text className="text-stone-500 text-xs sm:text-sm">
             Curated furniture collections inspired by worldwide interior layout styles.
           </Text>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-10">
           {collections.map((col) => (
             <div
               key={col.id}
-              className="flex flex-col gap-4 group bg-background border border-border/40 rounded-card p-4 shadow-soft hover:shadow-raised transition-all"
+              className="flex flex-col gap-4 group bg-background  transition-all"
             >
-              <div className="relative aspect-[3/2] w-full overflow-hidden rounded-lg bg-muted/20">
+              <div className="relative aspect-[3/2] w-full overflow-hidden bg-muted/20">
                 <Image
                   src={col.image}
                   alt={col.title}
@@ -53,9 +53,18 @@ export function CollectionsSection({ collections }: CollectionsSectionProps) {
                   </Text>
                 </div>
                 <Link href={col.href} className="inline-flex mt-2">
-                  <Button variant="ghost" size="sm" className="text-xs font-bold text-primary flex items-center gap-1.5 hover:bg-transparent -ml-3 cursor-pointer">
-                    <span>{col.ctaText}</span>
-                    <Icon name="arrowRight" className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    rightIcon={
+                      <Icon
+                        name="arrowRight"
+                        className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform"
+                      />
+                    }
+                    className="text-xs font-bold text-primary hover:bg-transparent -ml-3 cursor-pointer"
+                  >
+                    {col.ctaText}
                   </Button>
                 </Link>
               </div>

@@ -10,6 +10,7 @@ import { Button } from '../../ui/button';
 import { Icon } from '../../ui/icon';
 import { useLayout } from '@/providers/layout-provider';
 import { useHeaderState } from '@/hooks/useHeaderState';
+import { Container } from '../container';
 import { ErrorBoundary } from '../../system/error-boundary';
 import { FEATURE_FLAGS } from '@/config/features';
 
@@ -25,7 +26,7 @@ export function Header({ className, transparent = false, ...props }: HeaderProps
   return (
     <div
       className={cn(
-        'fixed top-0 left-0 right-0 z-header flex flex-col w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
+        'sticky top-0 z-header flex flex-col w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
         isHidden && '-translate-y-full'
       )}
     >
@@ -33,8 +34,8 @@ export function Header({ className, transparent = false, ...props }: HeaderProps
       {FEATURE_FLAGS.announcementBar && !isAnnouncementDismissed && (
         <div
           className={cn(
-            'bg-primary text-primary-foreground text-center text-xs font-semibold select-none w-full tracking-wide relative flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden',
-            isScrolled ? 'max-h-0 py-0 opacity-0 border-none' : 'max-h-10 py-2 px-8 opacity-100'
+            'bg-primary text-primary-foreground text-center text-xs font-semibold select-none w-full tracking-wide relative flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden',
+            isScrolled ? 'max-h-0 py-0 opacity-0 border-none pointer-events-none' : 'max-h-12 py-2 px-8 opacity-100'
           )}
         >
           <span>Enjoy Free Delivery countrywide on orders above Tk 50,000!</span>
@@ -59,7 +60,7 @@ export function Header({ className, transparent = false, ...props }: HeaderProps
         )}
         {...props}
       >
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
+        <Container variant="wide" className="w-full flex items-center justify-between">
           {/* Logo & Mobile Menu Trigger */}
           <div className="flex items-center gap-3">
             <Button
@@ -81,7 +82,7 @@ export function Header({ className, transparent = false, ...props }: HeaderProps
 
           {/* Header Action Utilities */}
           <HeaderActions />
-        </div>
+        </Container>
       </header>
     </div>
   );

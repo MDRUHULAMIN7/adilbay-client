@@ -10,7 +10,7 @@ interface BrandsSectionProps {
 
 export function BrandsSection({ brands }: BrandsSectionProps) {
   return (
-    <section className="py-10 bg-background border-b border-border/40 overflow-hidden">
+    <section className="py-5 sm:py-6 bg-background border-b border-border/40 overflow-hidden">
       <Container variant="wide">
         {/* Monochromatic Marquee logo cloud */}
         <div className="relative w-full flex items-center overflow-hidden py-2 select-none">

@@ -9,9 +9,9 @@ import { Container } from '@/components/layout/container';
 
 export function CtaBannerSection() {
   return (
-    <section className="py-16 bg-stone-900 text-stone-100 border-t border-stone-850">
+    <section className="py-8 lg:py-10 bg-stone-900 text-stone-100 border-t border-stone-850">
       <Container variant="wide">
-        <div className="bg-stone-850/40 rounded-card border border-stone-800 p-8 sm:p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8 text-left relative overflow-hidden">
+        <div className="bg-stone-850/40  border border-stone-800 p-8 sm:p-12 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8 text-left relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute inset-0 pointer-events-none select-none opacity-20">
             <div className="absolute -top-1/2 -right-1/4 w-[400px] h-[400px] rounded-full bg-primary/20 blur-3xl" />

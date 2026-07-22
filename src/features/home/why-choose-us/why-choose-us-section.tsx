@@ -35,7 +35,7 @@ export function WhyChooseUsSection() {
   ];
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-8 lg:py-10 bg-background">
       <Container variant="wide" className="flex flex-col gap-8">
         <div className="flex flex-col gap-1.5 max-w-xl text-left">
           <Heading level={2} className="font-display font-bold text-2xl sm:text-3xl tracking-tight text-foreground">
@@ -50,7 +50,7 @@ export function WhyChooseUsSection() {
           {cards.map((card) => (
             <div
               key={card.id}
-              className="flex flex-col gap-4 p-6 rounded-card border border-border/40 bg-surface/20 hover:border-border/80 transition-colors"
+              className="flex flex-col gap-4 p-6  border border-border/40 bg-surface/20 hover:border-border/80 transition-colors"
             >
               <div className="p-3 rounded-lg bg-primary/10 text-primary w-fit">
                 <Icon name={card.icon as any} className="h-6 w-6" />

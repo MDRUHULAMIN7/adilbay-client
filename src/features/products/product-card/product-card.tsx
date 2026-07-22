@@ -52,7 +52,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
       )}
     >
       {/* Product Image & badges container (No Radius - rounded-none) */}
-      <div className="relative aspect-square w-full bg-[#f2ede9]/60 overflow-hidden rounded-none border border-transparent shadow-none">
+      <div className="relative aspect-[4/5] w-full bg-[#f2ede9]/60 overflow-hidden rounded-none border border-transparent shadow-none">
         {/* Badges */}
         <ProductBadges
           badge={product.badge}

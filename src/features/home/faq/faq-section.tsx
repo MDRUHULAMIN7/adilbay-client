@@ -13,7 +13,7 @@ interface FaqSectionProps {
 
 export function FaqSection({ faqs }: FaqSectionProps) {
   return (
-    <section className="py-16 bg-background">
+    <section className="py-8 lg:py-10 bg-background">
       <Container variant="wide" className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         <div className="lg:col-span-5 flex flex-col gap-2.5 text-left">
           <Heading level={2} className="font-display font-bold text-2xl sm:text-3xl tracking-tight text-foreground">

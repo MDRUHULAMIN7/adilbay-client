@@ -18,7 +18,7 @@ export function InstagramGallerySection() {
   ];
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-8 lg:py-10 bg-background">
       <Container variant="wide" className="flex flex-col gap-8">
         <div className="flex flex-col gap-1.5 max-w-xl text-left">
           <Heading level={2} className="font-display font-bold text-2xl sm:text-3xl tracking-tight text-foreground">
@@ -34,7 +34,7 @@ export function InstagramGallerySection() {
           {images.map((item) => (
             <div
               key={item.id}
-              className="relative aspect-square w-full overflow-hidden rounded-card bg-muted/20 border border-border/40 shadow-soft group cursor-pointer"
+              className="relative aspect-square w-full overflow-hidden  bg-muted/20 border border-border/40 shadow-soft group cursor-pointer"
             >
               <Image
                 src={item.image}

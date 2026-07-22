@@ -47,7 +47,7 @@ export function ShopView({
   } = useProductFilters(initialCategory, initialBrand);
 
   return (
-    <Container variant="wide" className="py-10 flex flex-col gap-6 text-left">
+    <Container variant="wide" className="py-8 sm:py-10 flex flex-col  text-left">
       {/* Header Info */}
       <div className="flex flex-col gap-1.5 border-b border-border/40 pb-6">
         <Heading
@@ -78,8 +78,8 @@ export function ShopView({
           resetFilters={resetFilters}
         />
 
-        {/* Right Catalog View */}
-        <div className="flex-1 flex flex-col w-full">
+        {/* Right Catalog View with steady min-height to prevent twitching/layout shifts when filtering */}
+        <div className="flex-1 flex flex-col w-full min-h-[640px]">
           {/* Toolbar */}
           <ShopToolbar
             totalCount={totalCount}
@@ -93,7 +93,7 @@ export function ShopView({
             /* Loading Skeleton Grid */
             <div
               className={cn(
-                'grid gap-6 w-full grid-cols-1 sm:grid-cols-2',
+                'grid gap-8 w-full grid-cols-1 sm:grid-cols-2',
                 gridCols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-3 lg:grid-cols-4'
               )}
             >
@@ -105,11 +105,11 @@ export function ShopView({
             /* Empty State */
             <NoProducts onReset={resetFilters} />
           ) : (
-            /* Products Grid */
+            /* Products Grid with increased gap-8 */
             <div className="flex flex-col gap-10 w-full">
               <div
                 className={cn(
-                  'grid gap-6 w-full grid-cols-1 sm:grid-cols-2',
+                  'grid gap-8 w-full grid-cols-1 sm:grid-cols-2',
                   gridCols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-3 lg:grid-cols-4'
                 )}
               >
