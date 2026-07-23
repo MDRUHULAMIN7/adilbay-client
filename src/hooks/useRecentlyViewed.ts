@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { storage } from '@/lib/storage';
 
 const MAX_RECENT_ITEMS = 10;
@@ -13,22 +13,28 @@ export function useRecentlyViewed() {
     setRecent(list);
   }, []);
 
-  const addRecentlyViewed = (slug: string) => {
-    const filtered = recent.filter((item) => item !== slug);
-    const next = [...filtered, slug];
+  const addRecentlyViewed = useCallback((slug: string) => {
+    if (!slug) return;
+    setRecent((prev) => {
+      if (prev[prev.length - 1] === slug) {
+        return prev;
+      }
+      const filtered = prev.filter((item) => item !== slug);
+      const next = [...filtered, slug];
 
-    if (next.length > MAX_RECENT_ITEMS) {
-      next.shift();
-    }
+      if (next.length > MAX_RECENT_ITEMS) {
+        next.shift();
+      }
 
-    setRecent(next);
-    storage.set<string[]>('recently-viewed', next);
-  };
+      storage.set<string[]>('recently-viewed', next);
+      return next;
+    });
+  }, []);
 
-  const clearRecentlyViewed = () => {
+  const clearRecentlyViewed = useCallback(() => {
     setRecent([]);
     storage.remove('recently-viewed');
-  };
+  }, []);
 
   return { recent, addRecentlyViewed, clearRecentlyViewed };
 }

@@ -32,7 +32,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <Container variant="wide" className="py-8 sm:py-12 flex flex-col gap-6 text-left min-h-[75vh]">
+    <Container variant="wide" className="py-8 sm:py-12 flex flex-col gap-6 text-left min-h-[75vh] w-full">
       {/* Title */}
       <h1 className="text-3xl font-bold font-display text-foreground border-b border-border/40 pb-4 uppercase tracking-tight">
         Checkout

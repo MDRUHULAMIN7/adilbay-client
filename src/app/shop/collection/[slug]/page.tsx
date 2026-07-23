@@ -1,17 +1,17 @@
-import React from 'react';
 import { ShopView } from '@/features/shop';
 import { notFound } from 'next/navigation';
 import { ProductService } from '@/services/product.service';
 
 interface CollectionPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: CollectionPageProps) {
+  const { slug } = await params;
   const collections = await ProductService.getCollections();
-  const collection = collections.find((c) => c.href.includes(params.slug));
+  const collection = collections.find((c) => c.href.includes(slug));
   if (!collection) return {};
 
   return {
@@ -21,8 +21,9 @@ export async function generateMetadata({ params }: CollectionPageProps) {
 }
 
 export default async function CollectionPage({ params }: CollectionPageProps) {
+  const { slug } = await params;
   const collections = await ProductService.getCollections();
-  const collection = collections.find((c) => c.href.includes(params.slug));
+  const collection = collections.find((c) => c.href.includes(slug));
   if (!collection) {
     notFound();
   }

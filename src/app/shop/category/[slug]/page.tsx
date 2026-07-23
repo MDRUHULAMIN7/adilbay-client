@@ -4,13 +4,14 @@ import { notFound } from 'next/navigation';
 import { SHOP_FILTERS } from '@/config/shop-filters';
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: CategoryPageProps) {
-  const category = SHOP_FILTERS.categories.find((c) => c.value === params.slug);
+  const { slug } = await params;
+  const category = SHOP_FILTERS.categories.find((c) => c.value === slug);
   if (!category) return {};
 
   return {
@@ -19,15 +20,16 @@ export async function generateMetadata({ params }: CategoryPageProps) {
   };
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const category = SHOP_FILTERS.categories.find((c) => c.value === params.slug);
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = await params;
+  const category = SHOP_FILTERS.categories.find((c) => c.value === slug);
   if (!category) {
     notFound();
   }
 
   return (
     <ShopView
-      initialCategory={params.slug}
+      initialCategory={slug}
       title={`${category.label} Collection`}
       description={`Browse our premium handcrafted solid wood selections optimized for ${category.label.toLowerCase()} layouts.`}
     />

@@ -12,7 +12,7 @@ export default function CartPage() {
   const { items } = useCart();
 
   return (
-    <Container variant="wide" className="py-8 sm:py-12 flex flex-col gap-6 text-left min-h-[70vh]">
+    <Container variant="wide" className="py-8 sm:py-12 flex flex-col gap-6 text-left min-h-[70vh] w-full">
       {/* Title matching Screenshot 2 */}
       <h1 className="text-3xl font-bold font-display text-foreground border-b border-border/40 pb-4">
         Shopping Cart

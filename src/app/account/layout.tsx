@@ -22,7 +22,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
   const { profile } = useProfile();
 
   return (
-    <Container variant="wide" className="py-8 sm:py-12 flex flex-col gap-8 text-left min-h-[75vh]">
+    <Container variant="wide" className="py-8 sm:py-12 flex flex-col gap-8 text-left min-h-[75vh] w-full">
       {/* Account User Header Banner */}
       <div className="flex items-center gap-4 p-6 rounded-2xl bg-card border border-border/60 shadow-soft">
         <div className="h-14 w-14 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xl uppercase font-display border border-primary/20 shrink-0">

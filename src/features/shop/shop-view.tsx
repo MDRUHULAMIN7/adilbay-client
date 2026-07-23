@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useProductFilters } from '@/hooks/useProductFilters';
-import { FiltersSidebar } from './filters';
+import { FiltersSidebar, MobileFiltersDrawer } from './filters';
 import { ShopToolbar } from './toolbar';
 import { ProductCard, ProductCardSkeleton } from '@/features/products';
 import { NoProducts } from '@/features/empty-states';
@@ -27,6 +27,7 @@ export function ShopView({
   description = 'Browse seasoned woodcraft creations, engineered to fit contemporary home layouts.',
 }: ShopViewProps) {
   const [gridCols, setGridCols] = useState<3 | 4>(4);
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
   const {
     products,
@@ -47,7 +48,7 @@ export function ShopView({
   } = useProductFilters(initialCategory, initialBrand);
 
   return (
-    <Container variant="wide" className="py-8 sm:py-10 flex flex-col  text-left">
+    <Container variant="wide" className="py-6 sm:py-10 flex flex-col text-left w-full">
       {/* Header Info */}
       <div className="flex flex-col gap-1.5 border-b border-border/40 pb-6">
         <Heading
@@ -62,23 +63,45 @@ export function ShopView({
         </Text>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8 items-start pt-4 w-full">
-        {/* Left Filters Sidebar */}
-        <FiltersSidebar
-          categories={filters.categories}
-          materials={filters.materials}
-          colors={filters.colors}
-          availability={filters.availability}
-          priceRange={filters.priceRange}
-          toggleCategory={toggleCategory}
-          toggleMaterial={toggleMaterial}
-          toggleColor={toggleColor}
-          toggleAvailability={toggleAvailability}
-          setPriceRange={setPriceRange}
-          resetFilters={resetFilters}
-        />
+      {/* Mobile Filter Action Button */}
+      <div className="flex lg:hidden items-center justify-between pt-4 pb-2 border-b border-border/40">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setIsMobileFiltersOpen(true)}
+          className="flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-xl cursor-pointer"
+        >
+          <Icon name="filter" className="h-4 w-4 text-primary" />
+          <span>Filters</span>
+          {filters.categories.length + filters.materials.length + filters.colors.length > 0 && (
+            <span className="h-5 w-5 rounded-full bg-primary text-primary-foreground text-[10px] flex items-center justify-center font-bold ml-1">
+              {filters.categories.length + filters.materials.length + filters.colors.length}
+            </span>
+          )}
+        </Button>
 
-        {/* Right Catalog View with steady min-height to prevent twitching/layout shifts when filtering */}
+        <span className="text-xs text-stone-500 font-semibold">{totalCount} Pieces</span>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-8 items-start pt-4 w-full">
+        {/* Left Desktop Filters Sidebar (hidden on mobile) */}
+        <div className="hidden lg:block shrink-0">
+          <FiltersSidebar
+            categories={filters.categories}
+            materials={filters.materials}
+            colors={filters.colors}
+            availability={filters.availability}
+            priceRange={filters.priceRange}
+            toggleCategory={toggleCategory}
+            toggleMaterial={toggleMaterial}
+            toggleColor={toggleColor}
+            toggleAvailability={toggleAvailability}
+            setPriceRange={setPriceRange}
+            resetFilters={resetFilters}
+          />
+        </div>
+
+        {/* Right Catalog View */}
         <div className="flex-1 flex flex-col w-full min-h-[640px]">
           {/* Toolbar */}
           <ShopToolbar
@@ -90,11 +113,11 @@ export function ShopView({
           />
 
           {loading ? (
-            /* Loading Skeleton Grid */
+            /* Loading Skeleton Grid: grid-cols-2 on mobile devices */
             <div
               className={cn(
-                'grid gap-8 w-full grid-cols-1 sm:grid-cols-2',
-                gridCols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-3 lg:grid-cols-4'
+                'grid gap-4 sm:gap-6 lg:gap-8 w-full grid-cols-2 sm:grid-cols-2',
+                gridCols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4'
               )}
             >
               {Array.from({ length: 8 }).map((_, i) => (
@@ -105,12 +128,12 @@ export function ShopView({
             /* Empty State */
             <NoProducts onReset={resetFilters} />
           ) : (
-            /* Products Grid with increased gap-8 */
+            /* Products Grid: grid-cols-2 on mobile devices */
             <div className="flex flex-col gap-10 w-full">
               <div
                 className={cn(
-                  'grid gap-8 w-full grid-cols-1 sm:grid-cols-2',
-                  gridCols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-3 lg:grid-cols-4'
+                  'grid gap-4 sm:gap-6 lg:gap-8 w-full grid-cols-2 sm:grid-cols-2',
+                  gridCols === 3 ? 'md:grid-cols-3' : 'md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4'
                 )}
               >
                 {products.map((product) => (
@@ -167,6 +190,23 @@ export function ShopView({
           )}
         </div>
       </div>
+
+      {/* Slide-over Mobile Filters Drawer */}
+      <MobileFiltersDrawer
+        isOpen={isMobileFiltersOpen}
+        onClose={() => setIsMobileFiltersOpen(false)}
+        categories={filters.categories}
+        materials={filters.materials}
+        colors={filters.colors}
+        availability={filters.availability}
+        priceRange={filters.priceRange}
+        toggleCategory={toggleCategory}
+        toggleMaterial={toggleMaterial}
+        toggleColor={toggleColor}
+        toggleAvailability={toggleAvailability}
+        setPriceRange={setPriceRange}
+        resetFilters={resetFilters}
+      />
     </Container>
   );
 }

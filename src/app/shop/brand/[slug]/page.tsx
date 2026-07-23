@@ -2,14 +2,15 @@ import React from 'react';
 import { ShopView } from '@/features/shop';
 
 interface BrandPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: BrandPageProps) {
+  const { slug } = await params;
   // Convert slug to readable name e.g. cb2 -> CB2, west-elm -> West Elm
-  const brandName = params.slug
+  const brandName = slug
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
@@ -20,15 +21,16 @@ export async function generateMetadata({ params }: BrandPageProps) {
   };
 }
 
-export default function BrandPage({ params }: BrandPageProps) {
-  const brandName = params.slug
+export default async function BrandPage({ params }: BrandPageProps) {
+  const { slug } = await params;
+  const brandName = slug
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
   return (
     <ShopView
-      initialBrand={params.slug}
+      initialBrand={slug}
       title={`${brandName} Collection`}
       description={`Explore modern woodcraft masterpieces custom-tailored by ${brandName}.`}
     />

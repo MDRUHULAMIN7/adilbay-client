@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import { useOrders } from '@/hooks/useOrders';
 import { useAddresses } from '@/hooks/useAddresses';
@@ -8,7 +7,6 @@ import { useWishlist } from '@/hooks/useWishlist';
 import { formatPrice } from '@/lib/format-price';
 import { Heading } from '@/components/ui/heading';
 import { Button } from '@/components/ui/button';
-import { Icon } from '@/components/ui/icon';
 
 export default function AccountDashboardPage() {
   const { rawOrders } = useOrders();
