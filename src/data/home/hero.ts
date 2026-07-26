@@ -3,11 +3,10 @@ import { HeroSlide, TrustSignal } from '@/types/product';
 export const HERO_SLIDES: HeroSlide[] = [
   {
     id: 'slide-1',
-    title: 'Handcrafted Heritage Solid Wood Furniture',
-    subtitle:
-      'Elevate your living space with master-crafted teak and oak pieces built with artisanal precision to endure for generations.',
+    title: 'Sets you as a trend',
+    subtitle: 'aesthetically stylish setter',
     image: '/images/hero/hero-1.jpg',
-    ctaText: 'Explore New Collection',
+    ctaText: 'Explore Collection',
     ctaLink: '/shop',
     featuredTitle: 'Burmese Teak Living Suite',
     featuredPrice: 'Tk 85,000',
@@ -15,9 +14,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: 'slide-2',
-    title: 'Minimalist Oakwood Dining & Living',
-    subtitle:
-      'Refined contours and organic wood textures engineered for contemporary architectural homes and modern aesthetic spaces.',
+    title: 'Elegance in Every Contour',
+    subtitle: 'crafted for modern architectural living',
     image: '/images/hero/hero-2.jpg',
     ctaText: 'Shop Dining Sets',
     ctaLink: '/shop',
@@ -27,9 +25,8 @@ export const HERO_SLIDES: HeroSlide[] = [
   },
   {
     id: 'slide-3',
-    title: 'Luxury Sustainable Bedroom Sanctuaries',
-    subtitle:
-      'Discover serene sleeping environments styled with eco-certified timber, hand-carved finishes, and premium comfort ergonomics.',
+    title: 'Sanctuary of Refined Comfort',
+    subtitle: 'masterpiece handcrafted furniture',
     image: '/images/hero/hero-3.jpg',
     ctaText: 'View Bedroom Suite',
     ctaLink: '/shop',

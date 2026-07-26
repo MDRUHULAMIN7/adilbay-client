@@ -32,6 +32,10 @@ import {
   Leaf,
   Star,
   Eye,
+  Phone,
+  PhoneCall,
+  MessageCircle,
+  MessageSquare,
 } from 'lucide-react';
 
 export const ICONS = {
@@ -71,6 +75,11 @@ export const ICONS = {
   leaf: Leaf,
   star: Star,
   eye: Eye,
+  phone: Phone,
+  phoneCall: PhoneCall,
+  messageCircle: MessageCircle,
+  messageSquare: MessageSquare,
 } as const;
 
 export type IconName = keyof typeof ICONS;
+

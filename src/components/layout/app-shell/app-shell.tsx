@@ -9,13 +9,10 @@ import { ScrollToTop } from '../../system/scroll-to-top';
 import { useLayout } from '@/providers/layout-provider';
 import dynamic from 'next/dynamic';
 
+import { MobileNav } from '../mobile-nav';
+
 const CommandPalette = dynamic(
   () => import('../command-palette').then((mod) => mod.CommandPalette),
-  { ssr: false }
-);
-
-const MobileNav = dynamic(
-  () => import('../mobile-nav').then((mod) => mod.MobileNav),
   { ssr: false }
 );
 
@@ -41,7 +38,7 @@ export function AppShell({
   showHeader = true,
   showFooter = true,
   showScrollProgress = true,
-  showScrollToTop = true,
+  showScrollToTop = false,
 }: AppShellProps) {
   const { isSearchOpen, setIsSearchOpen, isMobileNavOpen, setIsMobileNavOpen } = useLayout();
 
@@ -77,9 +74,7 @@ export function AppShell({
       {isSearchOpen && (
         <CommandPalette isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
       )}
-      {isMobileNavOpen && (
-        <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
-      )}
+      <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
       <CartDrawer />
     </div>
   );

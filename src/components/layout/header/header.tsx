@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/cn';
 import { BaseComponentProps } from '@/types/component';
 import { Logo } from '../logo';
@@ -21,41 +22,38 @@ export interface HeaderProps extends BaseComponentProps {
 export function Header({ className, transparent = false, ...props }: HeaderProps) {
   const { isScrolled, isHidden } = useHeaderState();
   const { setIsMobileNavOpen } = useLayout();
-  const [isAnnouncementDismissed, setIsAnnouncementDismissed] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isHomePage = pathname === '/';
+  // On home page, maintain transparent navbar while inside the hero section (scrollY < 550px)
+  const isTransparentMode = isHomePage ? scrollY < 550 : (!isScrolled && transparent);
 
   return (
     <div
       className={cn(
-        'sticky top-0 z-header flex flex-col w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
+        'z-header flex flex-col w-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
+        isTransparentMode ? 'absolute top-0 inset-x-0' : 'sticky top-0 shadow-flat bg-background/95 backdrop-blur-xl text-foreground',
         isHidden && '-translate-y-full'
       )}
     >
-      {/* Smooth Collapsible Announcement Bar */}
-      {FEATURE_FLAGS.announcementBar && !isAnnouncementDismissed && (
-        <div
-          className={cn(
-            'bg-primary text-primary-foreground text-center text-xs font-semibold select-none w-full tracking-wide relative flex items-center justify-center transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden',
-            isScrolled ? 'max-h-0 py-0 opacity-0 border-none pointer-events-none' : 'max-h-12 py-2 px-8 opacity-100'
-          )}
-        >
-          <span>Enjoy Free Delivery countrywide on orders above Tk 50,000!</span>
-          <button
-            onClick={() => setIsAnnouncementDismissed(true)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 hover:opacity-80 transition-opacity cursor-pointer p-1 focus:outline-none"
-            aria-label="Dismiss announcement"
-          >
-            <Icon name="close" className="h-3.5 w-3.5 text-primary-foreground" />
-          </button>
-        </div>
-      )}
-
-      {/* Main Header Container with Stable 72px (h-18) Height */}
+      {/* Main Header Container with Transparent Unscrolled State & Glassmorphic Hover Blur Reveal */}
       <header
         role="banner"
         className={cn(
-          'flex items-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] w-full border-b bg-background/90 backdrop-blur-xl h-18 shadow-xs',
-          isScrolled ? 'border-border/80 shadow-flat' : 'border-border/40',
-          transparent && !isScrolled && 'bg-transparent border-transparent backdrop-blur-none shadow-none',
+          'group flex items-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] w-full h-20 select-none border-b-0',
+          isTransparentMode
+            ? 'bg-transparent hover:bg-black/20 hover:backdrop-blur-2xl text-white hover:text-white'
+            : 'bg-background/95 backdrop-blur-xl text-foreground',
           className
         )}
         {...props}
@@ -68,11 +66,11 @@ export function Header({ className, transparent = false, ...props }: HeaderProps
               size="sm"
               onClick={() => setIsMobileNavOpen(true)}
               aria-label="Open mobile navigation drawer"
-              className="lg:hidden h-10 w-10 -ml-2 text-stone-600 dark:text-stone-300 cursor-pointer"
+              className="lg:hidden h-11 w-11 -ml-2 text-inherit hover:text-primary transition-colors duration-500 cursor-pointer"
             >
-              <Icon name="menu" className="h-5 w-5" />
+              <Icon name="menu" className="h-6 w-6" />
             </Button>
-            <Logo variant="full" size="sm" />
+            <Logo variant="full" size="md" />
           </div>
 
           {/* Desktop Navigation wrapped in ErrorBoundary */}

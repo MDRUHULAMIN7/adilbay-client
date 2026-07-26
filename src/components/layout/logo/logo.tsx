@@ -30,7 +30,7 @@ export function Logo({
   };
 
   const themeClasses = {
-    system: 'text-foreground',
+    system: 'text-inherit',
     light: 'text-stone-900',
     dark: 'text-stone-50',
   };
@@ -42,7 +42,7 @@ export function Logo({
   };
 
   const textGradClasses = {
-    system: 'text-foreground',
+    system: 'text-inherit',
     light: 'text-stone-900',
     dark: 'text-stone-50',
   };

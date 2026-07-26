@@ -3,6 +3,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-outfit), system-ui, -apple-system, sans-serif;
   --z-index-dropdown: 1000;
   --z-index-header: 1020;
   --z-index-modal: 1050;
@@ -260,5 +262,13 @@
     display: flex;
     width: max-content;
     animation: marquee 25s linear infinite;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 }

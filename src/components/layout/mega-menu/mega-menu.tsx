@@ -41,7 +41,7 @@ export function MegaMenu({ className, item, ...props }: MegaMenuProps) {
         href={item.href}
         onClick={() => handleLinkClick(item.label, item.href)}
         className={cn(
-          'text-sm font-semibold text-stone-600 dark:text-stone-300 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded px-2 py-1 select-none nav-link-underline',
+          'text-[15px] sm:text-base font-semibold text-inherit hover:text-primary transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md px-3 py-1.5 select-none nav-link-underline',
           className
         )}
         {...props}
@@ -65,7 +65,7 @@ export function MegaMenu({ className, item, ...props }: MegaMenuProps) {
         aria-expanded={isOpen}
         aria-haspopup="true"
         className={cn(
-          'flex items-center gap-1 text-sm font-semibold text-stone-600 dark:text-stone-300 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded px-2 py-1 select-none cursor-pointer',
+          'flex items-center gap-1.5 text-[15px] sm:text-base font-semibold text-inherit hover:text-primary transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md px-3 py-1.5 select-none cursor-pointer',
           isOpen && 'text-primary'
         )}
         {...props}
@@ -73,7 +73,7 @@ export function MegaMenu({ className, item, ...props }: MegaMenuProps) {
         <span>{item.label}</span>
         <Icon
           name="chevronDown"
-          className={cn('h-3.5 w-3.5 transition-transform duration-200', isOpen && 'rotate-180')}
+          className={cn('h-4 w-4 transition-transform duration-300', isOpen && 'rotate-180')}
         />
       </button>
 
