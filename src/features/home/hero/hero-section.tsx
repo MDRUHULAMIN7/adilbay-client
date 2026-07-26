@@ -16,6 +16,8 @@ export function HeroSection({ slides }: HeroSectionProps) {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const handleNext = useCallback(() => {
     setDirection(1);
@@ -26,6 +28,27 @@ export function HeroSection({ slides }: HeroSectionProps) {
     setDirection(-1);
     setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
   }, [slides.length]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 40;
+    const isRightSwipe = distance < -40;
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrev();
+    }
+  };
 
   useEffect(() => {
     if (isHovered) return;
@@ -42,9 +65,12 @@ export function HeroSection({ slides }: HeroSectionProps) {
   return (
     <>
       <section
-        className="relative w-full h-[340px] min-[425px]:h-[380px] sm:h-[460px] md:h-screen lg:h-screen min-h-[340px] max-h-[1080px] overflow-hidden select-none bg-stone-950 text-white pt-16 sm:pt-20 lg:pt-24 flex flex-col justify-between"
+        className="relative w-full h-[340px] min-[425px]:h-[380px] sm:h-[460px] md:h-screen lg:h-screen min-h-[340px] max-h-[1080px] overflow-hidden select-none bg-stone-950 text-white pt-16 sm:pt-20 lg:pt-24 flex flex-col justify-between touch-pan-y"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
       >
         {/* 1. Background Slider Images with Seamless Cross-Dissolve (Zero Black Flash) */}
         <AnimatePresence initial={false}>

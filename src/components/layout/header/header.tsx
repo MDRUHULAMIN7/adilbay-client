@@ -10,19 +10,17 @@ import { HeaderActions } from './header-actions';
 import { Button } from '../../ui/button';
 import { Icon } from '../../ui/icon';
 import { useLayout } from '@/providers/layout-provider';
-import { useHeaderState } from '@/hooks/useHeaderState';
 import { Container } from '../container';
 import { ErrorBoundary } from '../../system/error-boundary';
-import { FEATURE_FLAGS } from '@/config/features';
 
 export interface HeaderProps extends BaseComponentProps {
   transparent?: boolean;
 }
 
 export function Header({ className, transparent = false, ...props }: HeaderProps) {
-  const { isScrolled, isHidden } = useHeaderState();
   const { setIsMobileNavOpen } = useLayout();
   const [scrollY, setScrollY] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -35,25 +33,38 @@ export function Header({ className, transparent = false, ...props }: HeaderProps
   }, []);
 
   const isHomePage = pathname === '/';
-  // On home page, maintain transparent navbar while inside the hero section (scrollY < 550px)
-  const isTransparentMode = isHomePage ? scrollY < 550 : (!isScrolled && transparent);
+  const isScrolled = scrollY > 20;
+
+  // Glass backdrop active state (activates on scroll down OR on hover for home page)
+  const isBgActive = isHomePage ? isScrolled || isHovered : true;
 
   return (
     <div
       className={cn(
-        'z-header flex flex-col w-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
-        isTransparentMode ? 'absolute top-0 inset-x-0' : 'sticky top-0 shadow-flat bg-background/95 backdrop-blur-xl text-foreground',
-        isHidden && '-translate-y-full'
+        'fixed top-0 inset-x-0 z-[100] w-full select-none transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]',
+        isHomePage ? 'text-white' : 'text-foreground'
       )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Main Header Container with Transparent Unscrolled State & Glassmorphic Hover Blur Reveal */}
+      {/* 1. Animated Glass Backdrop Curtain (Slides smoothly down from top & retracts back up) */}
+      <div
+        className={cn(
+          'absolute inset-0 z-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] transform origin-top pointer-events-none',
+          isBgActive
+            ? 'translate-y-0 opacity-100'
+            : '-translate-y-full opacity-0',
+          isHomePage
+            ? 'bg-black/35 backdrop-blur-md border-b border-white/10 shadow-lg shadow-black/10'
+            : 'bg-background/85 backdrop-blur-md border-b border-border/40 shadow-xs'
+        )}
+      />
+
+      {/* 2. Main Header Content Container */}
       <header
         role="banner"
         className={cn(
-          'group flex items-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] w-full h-20 select-none border-b-0',
-          isTransparentMode
-            ? 'bg-transparent hover:bg-black/20 hover:backdrop-blur-2xl text-white hover:text-white'
-            : 'bg-background/95 backdrop-blur-xl text-foreground',
+          'relative z-10 flex items-center w-full h-20 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]',
           className
         )}
         {...props}
@@ -85,4 +96,5 @@ export function Header({ className, transparent = false, ...props }: HeaderProps
     </div>
   );
 }
+
 export default Header;

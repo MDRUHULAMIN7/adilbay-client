@@ -36,8 +36,8 @@
   --background: #faf8f6; /* stone-50 warm ivory */
   --foreground: #1c1917; /* stone-900 */
 
-  --primary: #8c5a47; /* brand-500 bronze */
-  --primary-foreground: #faf8f6;
+  --primary: #be7e65; /* brand-400 rich warm terracotta #BE7E65 */
+  --primary-foreground: #ffffff;
 
   --secondary: #f2e6e1; /* brand-100 */
   --secondary-foreground: #4a291e; /* brand-800 */
@@ -252,16 +252,32 @@
     backdrop-filter: blur(20px);
   }
 
-  /* Infinite horizontal scroll marquee */
-  @keyframes marquee {
+  /* Infinite horizontal scroll marquee left & right */
+  @keyframes marquee-left {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-33.333%); }
+    100% { transform: translateX(-50%); }
   }
 
-  .animate-marquee {
+  @keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  .animate-marquee-left {
     display: flex;
     width: max-content;
-    animation: marquee 25s linear infinite;
+    animation: marquee-left 120s linear infinite;
+  }
+
+  .animate-marquee-right {
+    display: flex;
+    width: max-content;
+    animation: marquee-right 120s linear infinite;
+  }
+
+  .animate-marquee-left:hover,
+  .animate-marquee-right:hover {
+    animation-play-state: paused;
   }
 }
 

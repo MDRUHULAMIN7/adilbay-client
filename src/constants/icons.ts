@@ -36,6 +36,11 @@ import {
   PhoneCall,
   MessageCircle,
   MessageSquare,
+  MapPin,
+  Smartphone,
+  Mail,
+  Share2,
+  ExternalLink as LinkIcon,
 } from 'lucide-react';
 
 export const ICONS = {
@@ -68,6 +73,15 @@ export const ICONS = {
   facebook: Globe,
   instagram: Globe,
   twitter: Globe,
+  youtube: LinkIcon,
+  linkedin: LinkIcon,
+  share: Share2,
+  mapPin: MapPin,
+  smartphone: Smartphone,
+  mail: Mail,
+  apple: Laptop,
+  play: ArrowRight,
+  download: ArrowRight,
   creditCard: CreditCard,
   dollarSign: DollarSign,
   truck: Truck,

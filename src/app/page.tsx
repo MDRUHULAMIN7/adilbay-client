@@ -9,6 +9,8 @@ import { BrandsSection } from '@/features/home/brands';
 import { FaqSection } from '@/features/home/faq';
 import { CtaBannerSection } from '@/features/home/cta-banner';
 import { InstagramGallerySection } from '@/features/home/instagram-gallery';
+import { TrendingCollectionSection } from '@/features/home/trending-collection';
+import { NewArrivalsSection } from '@/features/home/new-arrivals';
 import { ProductCarousel } from '@/features/products';
 import { Container } from '@/components/layout/container';
 import { Heading } from '@/components/ui/heading';
@@ -26,6 +28,7 @@ export default async function HomePage() {
     faqs,
     bestSellers,
     newArrivals,
+    catalogProducts,
   ] = await Promise.all([
     ProductService.getHeroSlides(),
     ProductService.getTrustSignals(),
@@ -36,6 +39,7 @@ export default async function HomePage() {
     ProductService.getFaqs(),
     ProductService.getBestSellers(),
     ProductService.getNewArrivals(),
+    ProductService.getProducts(),
   ]);
 
   return (
@@ -49,8 +53,14 @@ export default async function HomePage() {
       {/* 3. Shop by Category rooms grid */}
       <CategoriesSection categories={categories} />
 
-      {/* Best Sellers Section */}
-      <section className="py-8 lg:py-10 bg-background">
+      {/* 4. Trending Collection 2-Row Marquee */}
+      <TrendingCollectionSection products={catalogProducts} />
+
+      {/* 5. Redesigned New Arrivals / Latest Furnixo Shorts (ABOVE Best Sellers) */}
+      <NewArrivalsSection />
+
+      {/* 6. Best Sellers Section */}
+      <section className="py-12 lg:py-16 bg-background select-none">
         <Container variant="wide" className="flex flex-col gap-8">
           <div className="flex flex-col gap-1.5 max-w-xl text-left">
             <Heading level={2} className="font-display font-bold text-2xl sm:text-3xl tracking-tight text-foreground">
@@ -64,23 +74,8 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* 4. Curated Editorials spotlight */}
+      {/* 7. Curated Editorials spotlight */}
       <CollectionsSection collections={collections} />
-
-      {/* New Arrivals Section */}
-      <section className="py-8 lg:py-10 bg-background">
-        <Container variant="wide" className="flex flex-col gap-8">
-          <div className="flex flex-col gap-1.5 max-w-xl text-left">
-            <Heading level={2} className="font-display font-bold text-2xl sm:text-3xl tracking-tight text-foreground">
-              New Arrivals
-            </Heading>
-            <Text className="text-stone-500 text-xs sm:text-sm">
-              Freshly seasoned, handcrafted designs fresh from our woodworking studios.
-            </Text>
-          </div>
-          <ProductCarousel products={newArrivals} />
-        </Container>
-      </section>
 
       {/* 5. Quality propositions */}
       <WhyChooseUsSection />

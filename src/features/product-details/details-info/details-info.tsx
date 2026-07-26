@@ -9,8 +9,10 @@ import { Text } from '@/components/ui/text';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { useWishlist } from '@/hooks/useWishlist';
+import { useCart } from '@/hooks/useCart';
 import { useToast } from '@/components/ui/toast';
-import { useLayout } from '@/providers/layout-provider';
+import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/constants/routes';
 import { analytics } from '@/lib/analytics';
 import { cn } from '@/lib/cn';
 
@@ -23,8 +25,9 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
   const [activeColor, setActiveColor] = useState(product.colors[0]?.name || '');
   const [selectedMaterial, setSelectedMaterial] = useState('Burmese Teak');
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { addItem, openCart } = useCart();
   const { toast } = useToast();
-  const { setIsCartOpen } = useLayout();
+  const router = useRouter();
 
   const activeWish = isInWishlist(product.slug);
   const isOutOfStock = product.stockStatus === 'out-of-stock';
@@ -52,13 +55,20 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
 
   const handleAddToCart = () => {
     if (isOutOfStock) return;
+    addItem(product, quantity, activeColor, selectedMaterial);
+    openCart();
     analytics.trackCart('add', { slug: product.slug, quantity });
-    setIsCartOpen(true);
     toast({
       type: 'success',
       title: 'Added to Cart',
       message: `${quantity}x ${product.title} has been added to your shopping cart.`,
     });
+  };
+
+  const handleBuyNow = () => {
+    if (isOutOfStock) return;
+    addItem(product, quantity, activeColor, selectedMaterial);
+    router.push(ROUTES.CHECKOUT);
   };
 
   const woodMaterials = ['Burmese Teak', 'American Walnut', 'White Ash Wood'];
@@ -173,7 +183,7 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
         </div>
 
         {/* Action Triggers */}
-        <div className="flex gap-3 flex-1 w-full">
+        <div className="flex flex-col sm:flex-row gap-3 flex-1 w-full">
           <Button
             id="main-add-to-cart"
             variant="brand"
@@ -186,10 +196,20 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
           </Button>
 
           <Button
+            variant="primary"
+            disabled={isOutOfStock}
+            onClick={handleBuyNow}
+            className="flex-1 rounded-xl font-bold text-sm h-11 cursor-pointer flex items-center justify-center gap-2 bg-stone-900 hover:bg-stone-800 text-white dark:bg-stone-100 dark:hover:bg-white dark:text-stone-900 shadow-md"
+          >
+            <Icon name="bag" className="h-4 w-4" />
+            <span>Buy Now</span>
+          </Button>
+
+          <Button
             variant="outline"
             onClick={handleWishlistClick}
             className={cn(
-              'h-11 w-11 p-0 rounded-xl cursor-pointer flex items-center justify-center border-border/80 bg-background hover:bg-muted',
+              'h-11 w-11 p-0 rounded-xl cursor-pointer flex items-center justify-center border-border/80 bg-background hover:bg-muted shrink-0',
               activeWish && 'text-red-500 border-red-200 bg-red-50/20 dark:bg-red-950/20'
             )}
             aria-label="Toggle wishlist"

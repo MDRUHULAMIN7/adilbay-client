@@ -36,9 +36,9 @@ export function Logo({
   };
 
   const badgeClasses = {
-    system: 'bg-primary text-primary-foreground',
-    light: 'bg-primary text-stone-50',
-    dark: 'bg-stone-800 text-stone-100 border border-stone-700/60',
+    system: 'bg-[#BE7E65] text-white shadow-xs',
+    light: 'bg-[#BE7E65] text-white shadow-xs',
+    dark: 'bg-[#BE7E65] text-white shadow-xs border border-white/20',
   };
 
   const textGradClasses = {
