@@ -11,8 +11,8 @@ interface TrendingProductsProps {
 
 export function TrendingProducts({ products, onItemClick }: TrendingProductsProps) {
   return (
-    <div className="w-[240px] flex flex-col gap-3 shrink-0 border-l border-border/60 pl-6">
-      <Heading level={5} className="font-display font-semibold text-xs text-foreground uppercase tracking-wider">
+    <div className="w-full flex flex-col gap-3">
+      <Heading level={5} className="font-display font-bold text-xs text-stone-900 dark:text-stone-100 uppercase tracking-widest">
         Trending Items
       </Heading>
       <ul className="flex flex-col gap-2">
@@ -21,20 +21,20 @@ export function TrendingProducts({ products, onItemClick }: TrendingProductsProp
             <Link
               href={prod.href}
               onClick={onItemClick}
-              className="group flex items-start justify-between gap-2 p-2 rounded-lg hover:bg-surface/30 transition-all focus-visible:outline-none"
+              className="group flex items-start justify-between gap-2 p-2.5 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-900 transition-all focus-visible:outline-none border border-transparent hover:border-stone-200/80 dark:hover:border-stone-800"
             >
               <div className="flex flex-col gap-0.5">
-                <span className="text-xs font-semibold text-stone-700 dark:text-stone-300 group-hover:text-primary transition-colors leading-tight">
+                <span className="text-xs font-semibold text-stone-800 dark:text-stone-200 group-hover:text-primary transition-colors leading-snug">
                   {prod.label}
                 </span>
                 {prod.price && (
-                  <Text className="text-[10px] text-muted-foreground font-medium">
+                  <Text className="text-[11px] text-stone-500 font-medium">
                     {prod.price}
                   </Text>
                 )}
               </div>
               {prod.isHot && (
-                <span className="text-[8px] font-bold bg-destructive/15 text-destructive px-1.5 py-0.5 rounded-full uppercase shrink-0 leading-none self-start mt-0.5">
+                <span className="text-[9px] font-bold bg-rose-500/10 text-rose-600 dark:text-rose-400 px-1.5 py-0.5 rounded-full uppercase shrink-0 leading-none self-start mt-0.5">
                   Hot
                 </span>
               )}

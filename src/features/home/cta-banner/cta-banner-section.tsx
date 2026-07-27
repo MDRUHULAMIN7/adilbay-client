@@ -20,12 +20,12 @@ export function CtaBannerSection() {
               src="/images/auth-bg.jpg"
               alt="Furnixo Luxury Woodcraft Studio"
               fill
-              className="object-cover object-center opacity-15 dark:opacity-35 scale-105 transition-transform duration-1000"
+              className="object-cover object-center opacity-45 dark:opacity-35 scale-105 transition-transform duration-1000"
               loading="lazy"
             />
             {/* Light Mode vs Dark Mode Gradients */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#FAF8F6] via-[#FAF8F6]/95 to-[#FAF8F6]/60 dark:from-stone-950 dark:via-stone-950/90 dark:to-stone-950/40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#FAF8F6] via-transparent to-[#FAF8F6]/80 dark:from-stone-950 dark:via-transparent dark:to-stone-950/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#FAF8F6]/95 via-[#FAF8F6]/80 to-[#FAF8F6]/30 dark:from-stone-950 dark:via-stone-950/90 dark:to-stone-950/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#FAF8F6]/90 via-transparent to-[#FAF8F6]/50 dark:from-stone-950 dark:via-transparent dark:to-stone-950/60" />
             
             {/* Primary Accent Ambient Warm Glow */}
             <div className="absolute -top-20 -left-20 w-96 h-96 bg-primary/15 dark:bg-primary/25 rounded-full blur-3xl pointer-events-none" />
@@ -60,10 +60,10 @@ export function CtaBannerSection() {
                   <Button
                     variant="brand"
                     size="lg"
-                    className="w-full sm:w-auto rounded-xl font-bold text-base px-8 py-4 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer"
+                    rightIcon={<Icon name="arrowRight" className="h-5 w-5 shrink-0" />}
+                    className="w-full sm:w-auto rounded-xl font-bold text-base px-8 py-4 bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer whitespace-nowrap"
                   >
-                    <span>Shop Furnixo Collection</span>
-                    <Icon name="arrowRight" className="h-5 w-5" />
+                    Shop Furnixo Collection
                   </Button>
                 </Link>
 
@@ -71,9 +71,9 @@ export function CtaBannerSection() {
                   <Button
                     variant="ghost"
                     size="lg"
-                    className="w-full sm:w-auto rounded-xl font-semibold text-base px-6 py-4 bg-stone-200/80 hover:bg-stone-300/90 text-stone-900 border border-stone-300/80 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white dark:border-white/20 backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full sm:w-auto rounded-xl font-semibold text-base px-6 py-4 bg-stone-200/80 hover:bg-stone-300/90 text-stone-900 border border-stone-300/80 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white dark:border-white/20 backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
                   >
-                    <span>Book Consultation</span>
+                    Book Consultation
                   </Button>
                 </Link>
               </div>

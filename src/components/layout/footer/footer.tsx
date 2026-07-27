@@ -42,12 +42,12 @@ export function Footer({ className, ...props }: FooterProps) {
   return (
     <footer
       role="contentinfo"
-      className={cn('w-full mt-auto select-none transition-colors', className)}
+      className={cn('w-full mt-auto select-none transition-colors pb-0 mb-0', className)}
       {...props}
     >
-      {/* 1. Main Footer Section (Light Mode #FAF8F6, Dark Mode Stone-900) */}
-      <div className="bg-[#FAF8F6] dark:bg-stone-900 text-stone-700 dark:text-stone-300 pt-10 pb-6 lg:pt-12 lg:pb-8 border-t border-stone-200/80 dark:border-stone-800">
-        <Container variant="wide" className="flex flex-col gap-8 lg:gap-10">
+      {/* Main Footer Section */}
+      <div className="bg-[#FAF8F6] dark:bg-stone-900 text-stone-700 dark:text-stone-300 pt-10 pb-4 lg:pt-12 lg:pb-5 border-t border-stone-200/80 dark:border-stone-800">
+        <Container variant="wide" className="flex flex-col gap-6 lg:gap-8">
           {/* 4-Column Header & Navigation Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-left">
             {/* Column 1: Brand Logo & Contact Details */}
@@ -136,7 +136,7 @@ export function Footer({ className, ...props }: FooterProps) {
           </div>
 
           {/* Horizontal Bar: Mobile App Store Badges & Original Colored Social Brand Logos */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-stone-200/80 dark:border-stone-800">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-5 border-t border-stone-200/80 dark:border-stone-800">
             {/* App Store & Play Store Badges with Real Official Multi-Color Logos */}
             <div className="flex items-center gap-3">
               {/* App Store Button */}
@@ -145,7 +145,6 @@ export function Footer({ className, ...props }: FooterProps) {
                 className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-950 text-white hover:bg-stone-800 border border-stone-800 transition-colors shadow-xs"
                 aria-label="Download on App Store"
               >
-                {/* Official White Apple Logo */}
                 <svg className="h-5 w-5 sm:h-6 sm:w-6 fill-white shrink-0" viewBox="0 0 24 24">
                   <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.32c.67-.82 1.12-1.95.99-3.09-1 .04-2.2.67-2.88 1.47-.61.71-1.14 1.87-.99 2.99 1.11.09 2.22-.55 2.88-1.37z" />
                 </svg>
@@ -155,18 +154,17 @@ export function Footer({ className, ...props }: FooterProps) {
                 </div>
               </a>
 
-              {/* Google Play Button */}
+              {/* Google Play Button with Official 4-Color Vector Logo */}
               <a
                 href="#"
                 className="flex items-center gap-2.5 px-4 py-2 rounded-xl bg-stone-900 dark:bg-stone-950 text-white hover:bg-stone-800 border border-stone-800 transition-colors shadow-xs"
                 aria-label="Get it on Google Play"
               >
-                {/* Official 4-Color Google Play Vector Logo */}
                 <svg className="h-5 w-5 sm:h-5.5 sm:w-5.5 shrink-0" viewBox="0 0 24 24">
-                  <path fill="#4285F4" d="M3.6 2.3A1.5 1.5 0 0 0 3 3.6v16.8a1.5 1.5 0 0 0 .6 1.3l9.4-9.4L3.6 2.3z" />
-                  <path fill="#34A853" d="M16.5 8.9L13 12.3l3.5 3.5 4.3-2.5c.8-.5.8-1.4 0-1.9l-4.3-2.5z" />
-                  <path fill="#EA4335" d="M3.6 21.7c.3.2.7.2 1-.1l8.4-8.4-3-3.2-6.4 11.7z" />
-                  <path fill="#FBBC04" d="M4.6 2.4c-.3-.2-.7-.2-1 .1L10 11.7l3-3.2L4.6 2.4z" />
+                  <path fill="#EA4335" d="M3.609 1.814L13.792 12 3.61 22.186a2.372 2.372 0 0 1-.61-1.642V3.456c0-.626.223-1.21.609-1.642z" />
+                  <path fill="#FBBC04" d="M17.556 8.236l-3.764 3.764 3.764 3.764 4.277-2.434c.828-.471.828-1.238 0-1.709l-4.277-2.385z" />
+                  <path fill="#4285F4" d="M13.792 12L3.609 1.814a2.296 2.296 0 0 1 1.264-.374c.451 0 .902.128 1.29.351l11.393 6.445-3.756 3.764z" />
+                  <path fill="#34A853" d="M13.792 12l3.756 3.764-11.393 6.445a2.443 2.443 0 0 1-1.29.351 2.296 2.296 0 0 1-1.264-.374L13.792 12z" />
                 </svg>
                 <div className="flex flex-col text-left">
                   <span className="text-[9px] uppercase tracking-wider text-stone-400 font-medium leading-none">GET IT ON</span>
@@ -175,9 +173,8 @@ export function Footer({ className, ...props }: FooterProps) {
               </a>
             </div>
 
-            {/* Social Network SVG Brand Logos in Original Official Brand Colors */}
+            {/* Social Network Brand Logos */}
             <div className="flex items-center gap-6">
-              {/* Facebook - Official Blue #1877F2 */}
               <a
                 href="https://facebook.com"
                 target="_blank"
@@ -190,7 +187,6 @@ export function Footer({ className, ...props }: FooterProps) {
                 </svg>
               </a>
 
-              {/* Instagram - Official Pink/Red #E4405F */}
               <a
                 href="https://instagram.com"
                 target="_blank"
@@ -205,7 +201,6 @@ export function Footer({ className, ...props }: FooterProps) {
                 </svg>
               </a>
 
-              {/* YouTube - Official Red #FF0000 */}
               <a
                 href="https://youtube.com"
                 target="_blank"
@@ -218,7 +213,6 @@ export function Footer({ className, ...props }: FooterProps) {
                 </svg>
               </a>
 
-              {/* Pinterest - Official Red #BD081C */}
               <a
                 href="https://pinterest.com"
                 target="_blank"
@@ -231,7 +225,6 @@ export function Footer({ className, ...props }: FooterProps) {
                 </svg>
               </a>
 
-              {/* LinkedIn - Official Blue #0077B5 */}
               <a
                 href="https://linkedin.com"
                 target="_blank"
@@ -243,22 +236,11 @@ export function Footer({ className, ...props }: FooterProps) {
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.239-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
               </a>
-
-              {/* Wikipedia / Web - Classic Serif W */}
-              <a
-                href="https://wikipedia.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Furnixo Wikipedia Page"
-                className="group cursor-pointer p-1 font-serif font-bold text-lg leading-none text-stone-900 dark:text-stone-100 transition-transform duration-300 group-hover:scale-115"
-              >
-                W
-              </a>
             </div>
           </div>
 
-          {/* Centered Copyright Section (Moved up into Main Footer, with former bottom bar removed) */}
-          <div className="pt-6 border-t border-stone-200/80 dark:border-stone-800 text-center text-xs text-stone-500 dark:text-stone-400 font-medium">
+          {/* Centered Copyright Section */}
+          <div className="pt-4 border-t border-stone-200/80 dark:border-stone-800 text-center text-xs text-stone-500 dark:text-stone-400 font-medium">
             <span>&copy; Copyright 2026 FURNIXO. All Rights Reserved. &bull; Powered by Furnixo Architecture</span>
           </div>
         </Container>

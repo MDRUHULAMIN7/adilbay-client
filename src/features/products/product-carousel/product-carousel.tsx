@@ -27,7 +27,7 @@ export function ProductCarousel({ products, autoplay = false }: ProductCarouselP
   const handleScroll = (direction: 'left' | 'right') => {
     const el = containerRef.current;
     if (!el) return;
-    const cardWidth = el.clientWidth / (window.innerWidth >= 1024 ? 4 : window.innerWidth >= 640 ? 2 : 1);
+    const cardWidth = el.clientWidth / (window.innerWidth >= 1024 ? 4 : 2);
     const scrollAmount = direction === 'left' ? -cardWidth : cardWidth;
     el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
   };
@@ -83,12 +83,12 @@ export function ProductCarousel({ products, autoplay = false }: ProductCarouselP
       {/* Scrollable Container */}
       <div
         ref={containerRef}
-        className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-none py-4 w-full snap-x snap-mandatory"
+        className="flex gap-3 sm:gap-6 overflow-x-auto scroll-smooth scrollbar-none py-4 w-full snap-x snap-mandatory"
       >
         {products.map((product) => (
           <div
             key={product.id}
-            className="w-[calc(100%-12px)] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 snap-start"
+            className="w-[calc(50%-6px)] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 snap-start"
           >
             <ProductCard product={product} />
           </div>

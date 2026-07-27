@@ -69,15 +69,15 @@ export function Header({ className, transparent = false, ...props }: HeaderProps
         )}
         {...props}
       >
-        <Container variant="wide" className="w-full flex items-center justify-between">
+        <Container variant="fluid" className="w-full flex items-center justify-between px-4 sm:px-6 lg:px-10 max-w-none">
           {/* Logo & Mobile Menu Trigger */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 shrink-0">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsMobileNavOpen(true)}
               aria-label="Open mobile navigation drawer"
-              className="lg:hidden h-11 w-11 -ml-2 text-inherit hover:text-primary transition-colors duration-500 cursor-pointer"
+              className="xl:hidden h-11 w-11 -ml-2 text-inherit hover:text-primary transition-colors duration-500 cursor-pointer"
             >
               <Icon name="menu" className="h-6 w-6" />
             </Button>

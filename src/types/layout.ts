@@ -46,7 +46,7 @@ export interface MegaMenuCategory {
 export interface MegaMenuConfig {
   categories: MegaMenuCategory[];
   featured: MegaMenuFeatured;
-  trending: MegaMenuProduct[];
+  trending?: MegaMenuProduct[];
   bottomLinks?: {
     label: string;
     href: string;

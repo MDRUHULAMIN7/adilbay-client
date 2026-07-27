@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Drawer } from '../../ui/drawer';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../../ui/accordion';
 import { MAIN_NAVIGATION } from '@/config/navigation';
+import { MEGA_MENUS } from '@/config/mega-menu';
 import { Logo } from '../logo';
 import { Button } from '../../ui/button';
 import { Icon } from '../../ui/icon';
@@ -19,7 +20,6 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Only close drawer when navigating to a new route
     if (isOpen) {
       onClose();
     }
@@ -48,7 +48,9 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
         <div className="flex-1 overflow-y-auto py-4 space-y-1 custom-scrollbar">
           <Accordion type="multiple" className="border-none space-y-1">
             {MAIN_NAVIGATION.map((item) => {
-              const hasChildren = item.children && item.children.length > 0;
+              const megaConfig = item.isMega && item.megaKey ? MEGA_MENUS[item.megaKey] : null;
+              const hasMega = Boolean(megaConfig);
+              const hasChildren = (item.children && item.children.length > 0) || hasMega;
 
               if (!hasChildren) {
                 return (
@@ -70,7 +72,29 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   <AccordionTrigger className="px-3 py-3 rounded-xl text-base font-semibold text-foreground hover:bg-primary/10 hover:text-primary hover:no-underline transition-all">
                     <span>{item.label}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="pb-2 pt-1 pl-4 space-y-1">
+                  <AccordionContent className="pb-2 pt-1 pl-4 space-y-3">
+                    {/* Mega Menu Categories */}
+                    {megaConfig?.categories.map((cat) => (
+                      <div key={cat.id} className="flex flex-col gap-1">
+                        <span className="font-bold text-xs uppercase tracking-wider text-primary">
+                          {cat.label}
+                        </span>
+                        <div className="flex flex-col gap-1 pl-2 border-l border-border/60">
+                          {cat.items.map((sub) => (
+                            <Link
+                              key={sub.id}
+                              href={sub.href}
+                              onClick={onClose}
+                              className="text-xs font-medium text-muted-foreground hover:text-primary py-1 block"
+                            >
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+
+                    {/* Standard Children */}
                     {item.children?.map((child) => (
                       <Link
                         key={child.id}

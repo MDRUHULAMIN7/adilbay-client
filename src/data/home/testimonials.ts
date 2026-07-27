@@ -8,7 +8,7 @@ export const HOMEPAGE_TESTIMONIALS: Review[] = [
     rating: 5,
     date: '2026-06-15',
     country: 'Dhaka, BD',
-    avatar: '/images/avatars/tanvir.jpg',
+    avatar: '/images/avatars/client-1.jpg',
   },
   {
     id: 'test-2',
@@ -17,7 +17,7 @@ export const HOMEPAGE_TESTIMONIALS: Review[] = [
     rating: 5,
     date: '2026-07-02',
     country: 'Chittagong, BD',
-    avatar: '/images/avatars/sabina.jpg',
+    avatar: '/images/avatars/client-2.jpg',
   },
   {
     id: 'test-3',
@@ -26,6 +26,6 @@ export const HOMEPAGE_TESTIMONIALS: Review[] = [
     rating: 5,
     date: '2026-07-10',
     country: 'Sylhet, BD',
-    avatar: '/images/avatars/kazi.jpg',
+    avatar: '/images/avatars/client-3.jpg',
   },
 ];
