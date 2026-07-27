@@ -9,7 +9,6 @@ import { MEGA_MENUS } from '@/config/mega-menu';
 import Link from 'next/link';
 import { Icon } from '../../ui/icon';
 import { CategoryColumn } from './category-column';
-import { FeaturedCollection } from './featured-collection';
 import { BottomLinks } from './bottom-links';
 import { DURATIONS, EASING } from '@/constants/motion';
 import { analytics } from '@/lib/analytics';
@@ -88,26 +87,16 @@ export function MegaMenu({ className, item, isFirst = false, ...props }: MegaMen
                 exit={{ opacity: 0, y: 8 }}
                 transition={{ duration: DURATIONS.hover, ease: EASING.standard }}
                 className={cn(
-                  'absolute top-full mt-2 w-[92vw] md:w-[720px] lg:w-[860px] xl:w-[940px] max-w-[calc(100vw-2rem)] bg-background/95 dark:bg-stone-950/95 backdrop-blur-2xl border border-stone-200/90 dark:border-stone-800/90 shadow-2xl rounded-2xl p-5 sm:p-6 lg:p-7 z-50 origin-top-left',
-                  isFirst ? 'left-0' : 'left-0 lg:left-1/2 lg:-translate-x-1/2'
+                  'absolute top-full mt-2 w-[92vw] md:w-[720px] lg:w-[860px] xl:w-[940px] max-w-[calc(100vw-2rem)] bg-background/95 dark:bg-stone-950/95 backdrop-blur-2xl border border-stone-200/90 dark:border-stone-800/90 shadow-2xl rounded-2xl p-5 sm:p-6 lg:p-7 z-50 origin-top left-1/2 -translate-x-1/2',
+                  className
                 )}
               >
-                <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
+                <div className="w-full">
                   {/* Category Columns */}
-                  <div className="w-full lg:flex-1 lg:border-r border-stone-200/80 dark:border-stone-800 lg:pr-8">
-                    <CategoryColumn
-                      categories={megaConfig.categories}
-                      onItemClick={() => setIsOpen(false)}
-                    />
-                  </div>
-
-                  {/* Featured Showcase Card */}
-                  <div className="w-full lg:w-[280px] shrink-0">
-                    <FeaturedCollection
-                      featured={megaConfig.featured}
-                      onItemClick={() => setIsOpen(false)}
-                    />
-                  </div>
+                  <CategoryColumn
+                    categories={megaConfig.categories}
+                    onItemClick={() => setIsOpen(false)}
+                  />
                 </div>
 
                 {/* Bottom Links Bar */}

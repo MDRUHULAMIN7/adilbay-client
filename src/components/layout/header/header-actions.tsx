@@ -29,16 +29,16 @@ export function HeaderActions() {
   };
 
   return (
-    <div className="flex items-center gap-1.5 sm:gap-2">
+    <div className="flex items-center gap-1 sm:gap-2">
       {/* Search Trigger */}
       <Button
         variant="ghost"
         size="sm"
         onClick={handleSearchClick}
         aria-label="Open search dialog"
-        className="h-11 w-11 rounded-xl text-inherit hover:text-primary hover:bg-stone-500/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none cursor-pointer"
+        className="h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 rounded-xl text-inherit hover:text-primary hover:bg-stone-500/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none cursor-pointer"
       >
-        <Icon name="search" className="h-5 w-5" />
+        <Icon name="search" className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
       </Button>
 
       {/* Theme Toggling */}
@@ -47,9 +47,9 @@ export function HeaderActions() {
         size="sm"
         onClick={toggleTheme}
         aria-label="Toggle system theme"
-        className="h-11 w-11 rounded-xl text-inherit hover:text-primary hover:bg-stone-500/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none cursor-pointer"
+        className="h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 rounded-xl text-inherit hover:text-primary hover:bg-stone-500/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none cursor-pointer"
       >
-        <Icon name={theme === 'dark' ? 'sun' : 'moon'} className="h-5 w-5" />
+        <Icon name={theme === 'dark' ? 'sun' : 'moon'} className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
       </Button>
 
       {/* Wishlist Link - Config Enabled */}
@@ -59,9 +59,9 @@ export function HeaderActions() {
             variant="ghost"
             size="sm"
             aria-label="View wishlist items"
-            className="hidden sm:inline-flex h-11 w-11 rounded-xl text-inherit hover:text-primary hover:bg-stone-500/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none cursor-pointer"
+            className="hidden sm:inline-flex h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 rounded-xl text-inherit hover:text-primary hover:bg-stone-500/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none cursor-pointer"
           >
-            <Icon name="heart" className="h-5 w-5" />
+            <Icon name="heart" className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
           </Button>
         </Link>
       )}
@@ -75,11 +75,11 @@ export function HeaderActions() {
           analytics.trackNavigation('Cart Trigger', 'Cart Sidebar');
         }}
         aria-label="Open shopping cart"
-        className="relative h-11 w-11 rounded-xl text-inherit hover:text-primary hover:bg-stone-500/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none cursor-pointer"
+        className="relative h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 rounded-xl text-inherit hover:text-primary hover:bg-stone-500/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none cursor-pointer"
       >
-        <Icon name="cart" className="h-5 w-5" />
+        <Icon name="cart" className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
         {itemCount > 0 && (
-          <span className="absolute top-1.5 right-1.5 h-4 w-4 rounded-full bg-primary text-[9px] font-bold text-primary-foreground flex items-center justify-center border border-background select-none animate-pulse">
+          <span className="absolute top-1 right-1 sm:top-1.5 sm:right-1.5 h-3.5 w-3.5 sm:h-4 sm:w-4 rounded-full bg-primary text-[8px] sm:text-[9px] font-bold text-primary-foreground flex items-center justify-center border border-background select-none animate-pulse">
             {itemCount > 99 ? '99+' : itemCount}
           </span>
         )}
@@ -91,9 +91,9 @@ export function HeaderActions() {
           variant="ghost"
           size="sm"
           aria-label="Account details"
-          className="hidden sm:inline-flex h-11 w-11 rounded-xl text-inherit hover:text-primary hover:bg-stone-500/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none cursor-pointer"
+          className="hidden sm:inline-flex h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 rounded-xl text-inherit hover:text-primary hover:bg-stone-500/10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] focus-visible:outline-none cursor-pointer"
         >
-          <Icon name="avatar" className="h-5 w-5" />
+          <Icon name="avatar" className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
         </Button>
       </Link>
     </div>

@@ -9,7 +9,7 @@ import { Logo } from '../logo';
 import { Icon } from '../../ui/icon';
 import { ROUTES } from '@/constants/routes';
 
-export interface FooterProps extends BaseComponentProps, React.HTMLAttributes<HTMLElement> {}
+export interface FooterProps extends BaseComponentProps, React.HTMLAttributes<HTMLElement> { }
 
 export function Footer({ className, ...props }: FooterProps) {
   const companyLinks = [
