@@ -10,7 +10,15 @@ export function FooterBottom() {
     <div className="border-t border-stone-850 pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
       <div className="flex flex-col items-center sm:items-start gap-2">
         <Text className="text-xs text-stone-500">
-          &copy; {new Date().getFullYear()} Furnixo Ltd. All rights reserved. Conforming to AA metrics.
+          &copy; {new Date().getFullYear()} Furnixo Ltd. All rights reserved. &bull; DEVELOPED BY{' '}
+          <a
+            href="https://codeclubitsolutions.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-stone-300 transition-colors font-semibold"
+          >
+            CodeClub IT Solutions
+          </a>
         </Text>
       </div>
 

@@ -241,7 +241,17 @@ export function Footer({ className, ...props }: FooterProps) {
 
           {/* Centered Copyright Section */}
           <div className="pt-4 border-t border-stone-200/80 dark:border-stone-800 text-center text-xs text-stone-500 dark:text-stone-400 font-medium">
-            <span>&copy; Copyright 2026 FURNIXO. All Rights Reserved. &bull; Powered by Furnixo Architecture</span>
+            <span>
+              &copy; Copyright {new Date().getFullYear()} FURNIXO. All Rights Reserved. &bull; DEVELOPED BY{' '}
+              <a
+                href="https://codeclubitsolutions.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-primary transition-colors font-semibold"
+              >
+                CodeClub IT Solutions
+              </a>
+            </span>
           </div>
         </Container>
       </div>
