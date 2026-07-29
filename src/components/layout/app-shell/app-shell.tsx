@@ -21,6 +21,11 @@ const CartDrawer = dynamic(
   { ssr: false }
 );
 
+const FloatingContactWidget = dynamic(
+  () => import('../floating-contact-widget').then((mod) => mod.FloatingContactWidget),
+  { ssr: false }
+);
+
 export interface AppShellProps {
   children: React.ReactNode;
   header?: React.ReactNode;
@@ -76,6 +81,7 @@ export function AppShell({
       )}
       <MobileNav isOpen={isMobileNavOpen} onClose={() => setIsMobileNavOpen(false)} />
       <CartDrawer />
+      <FloatingContactWidget />
     </div>
   );
 }

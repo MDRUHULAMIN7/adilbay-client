@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@/components/ui/icon';
+import { useCart } from '@/hooks/useCart';
+import { analytics } from '@/lib/analytics';
 
 export interface FloatingContactWidgetProps {
   phoneNumber?: string;
@@ -19,6 +21,7 @@ export function FloatingContactWidget({
 }: FloatingContactWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { openCart, itemCount } = useCart();
 
   // Close on outside click
   useEffect(() => {
@@ -91,9 +94,35 @@ export function FloatingContactWidget({
   return (
     <div
       ref={containerRef}
-      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3 ${className}`}
+      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3.5 ${className}`}
     >
-      {/* Expanded Action Buttons (Phone, WhatsApp, Messenger) */}
+      {/* 1. FLOATING CART BUTTON (Positioned Above Message Button) */}
+      <motion.button
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.92 }}
+        onClick={() => {
+          openCart();
+          analytics.trackNavigation('Cart Trigger', 'Floating Cart FAB');
+        }}
+        aria-label="Open Floating Cart Drawer"
+        className="relative group h-12 w-12 sm:h-13 sm:w-13 rounded-full bg-stone-900 dark:bg-stone-950 text-white flex items-center justify-center shadow-2xl border-2 border-stone-700/70 hover:border-primary transition-all duration-300 cursor-pointer focus-visible:outline-none"
+      >
+        <Icon name="cart" className="h-6 w-6 text-primary transition-transform group-hover:scale-110" />
+
+        {/* Live Cart Item Badge Counter */}
+        {itemCount > 0 && (
+          <span className="absolute -top-1 -right-1 h-5 w-5 sm:h-5.5 sm:w-5.5 rounded-full bg-primary text-[10px] font-extrabold text-primary-foreground flex items-center justify-center border-2 border-stone-900 shadow-md select-none animate-bounce">
+            {itemCount > 99 ? '99+' : itemCount}
+          </span>
+        )}
+
+        {/* Hover Tooltip */}
+        <span className="absolute right-full mr-3 px-3 py-1.5 rounded-full bg-stone-900/90 text-stone-100 text-xs font-semibold shadow-lg backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-stone-700/50">
+          View Shopping Cart ({itemCount})
+        </span>
+      </motion.button>
+
+      {/* 2. Expanded Contact Options (Phone, WhatsApp, Messenger) */}
       <AnimatePresence>
         {isOpen && (
           <div className="flex flex-col items-end gap-3 mb-1">
@@ -119,7 +148,7 @@ export function FloatingContactWidget({
                   {option.label}
                 </span>
 
-                {/* Circular Action Button */}
+                {/* Action Icon */}
                 <div
                   className={`h-11 w-11 sm:h-12 sm:w-12 rounded-full ${option.bgColor} flex items-center justify-center shadow-lg ${option.shadowColor} group-hover:scale-110 transition-all duration-300 border border-white/20`}
                 >
@@ -131,12 +160,12 @@ export function FloatingContactWidget({
         )}
       </AnimatePresence>
 
-      {/* Main Message Floating FAB Button (Toggles between Message & Cross icon) */}
+      {/* 3. MAIN MESSAGE FLOATING FAB BUTTON */}
       <motion.button
         onClick={() => setIsOpen((prev) => !prev)}
         whileTap={{ scale: 0.92 }}
         className="relative group h-12 w-12 sm:h-13 sm:w-13 rounded-full bg-primary hover:bg-primary/95 text-primary-foreground flex items-center justify-center shadow-2xl shadow-primary/40 transition-all duration-300 cursor-pointer focus-visible:outline-none border-2 border-white/20"
-        aria-label={isOpen ? 'Close Contact Menu' : 'Open Support Chat'}
+        aria-label={isOpen ? 'Close Support Chat' : 'Open Support Chat'}
       >
         <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (
@@ -165,7 +194,7 @@ export function FloatingContactWidget({
           )}
         </AnimatePresence>
 
-        {/* Pulse badge when menu is closed */}
+        {/* Pulse badge when chat menu is closed */}
         {!isOpen && (
           <span className="absolute top-0 right-0 h-3.5 w-3.5 rounded-full bg-emerald-400 border-2 border-stone-950 animate-pulse" />
         )}

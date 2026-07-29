@@ -3,10 +3,9 @@ import { MegaMenu } from '../mega-menu';
 
 export function DesktopNavigation() {
   const getItemVisibilityClass = (index: number) => {
-    if (index >= 4) return 'hidden 2xl:block'; // Items 5 & 6 (About Us, Contact) show on 2xl (1536px+)
-    if (index === 3) return 'hidden xl:block';  // Item 4 (Industrial Furniture) hidden on 1024px (lg), shows on xl (1280px+)
-    if (index === 2) return 'hidden lg:block';  // Item 3 (Corporate Furniture) shows on 1024px (lg+)
-    return 'block'; // Items 1 & 2 (Home, Education) show on md (768px+)
+    if (index === 3) return 'hidden xl:block'; // Item 4 (Industrial Furniture) shows on xl+
+    if (index === 2) return 'hidden lg:block'; // Item 3 (Corporate Furniture) shows on lg+
+    return 'block'; // Items 1 & 2 (Home, Education) show on md+
   };
 
   return (

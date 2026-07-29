@@ -18,7 +18,7 @@ export interface BreadcrumbProps extends BaseComponentProps, React.HTMLAttribute
 export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
   ({ className, items, separator, ...props }, ref) => {
     const defaultSeparator = (
-      <Icon name="ChevronRight" className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
+      <Icon name="chevronRight" className="h-3.5 w-3.5 text-stone-400 dark:text-stone-500 shrink-0" aria-hidden="true" />
     );
     const activeSeparator = separator || defaultSeparator;
 
@@ -26,7 +26,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       <nav
         ref={ref}
         aria-label="Breadcrumb"
-        className={cn('flex items-center text-sm font-medium', className)}
+        className={cn('flex items-center text-xs font-semibold select-none', className)}
         {...props}
       >
         <ol className="flex items-center gap-1.5 flex-wrap">
@@ -40,20 +40,20 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                 {item.href && !isLast ? (
                   <a
                     href={item.href}
-                    className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-amber-400 bg-stone-100/80 dark:bg-stone-900/80 hover:bg-primary/10 dark:hover:bg-amber-400/10 border border-stone-200/80 dark:border-stone-800 transition-all cursor-pointer font-bold"
                   >
                     {item.icon && (
-                      <Icon name={item.icon} className="h-3.5 w-3.5" aria-hidden="true" />
+                      <Icon name={item.icon} className="h-3.5 w-3.5 text-primary dark:text-amber-400" aria-hidden="true" />
                     )}
                     <span>{item.label}</span>
                   </a>
                 ) : (
                   <span
                     aria-current={isLast ? 'page' : undefined}
-                    className="flex items-center gap-1 text-foreground font-semibold"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary dark:text-amber-400 border border-primary/25 dark:border-primary/40 font-bold shadow-xs"
                   >
                     {item.icon && (
-                      <Icon name={item.icon} className="h-3.5 w-3.5" aria-hidden="true" />
+                      <Icon name={item.icon} className="h-3.5 w-3.5 text-primary dark:text-amber-400" aria-hidden="true" />
                     )}
                     <span>{item.label}</span>
                   </span>

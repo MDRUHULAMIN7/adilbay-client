@@ -50,20 +50,20 @@ export function PageHeader({
       />
 
       {/* 2. Cinematic Gradient Overlays for Readability & Luxury Aesthetics */}
-      <div className="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-950/80 to-stone-950/70 z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-stone-950/95 via-stone-950/85 to-stone-950/75 z-0 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-transparent to-black/40 z-0 pointer-events-none" />
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-amber-600/15 rounded-full blur-3xl pointer-events-none z-0" />
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/20 rounded-full blur-3xl pointer-events-none z-0" />
 
-      {/* 3. Header & Breadcrumb Container */}
+      {/* 3. Header & Branded Breadcrumb Container */}
       <Container variant="wide" className="relative z-10 flex flex-col gap-4 text-left">
-        {/* Breadcrumb Trail */}
+        {/* Project Branded Breadcrumb Trail */}
         {items.length > 0 && (
           <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-xs font-semibold">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-stone-300 hover:text-white transition-colors group cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/10 dark:bg-stone-900/90 hover:bg-primary/20 text-stone-200 hover:text-primary transition-all duration-300 group cursor-pointer font-bold shadow-sm"
             >
-              <Icon name="home" className="h-3.5 w-3.5 text-amber-400 group-hover:scale-110 transition-transform" />
+              <Icon name="home" className="h-3.5 w-3.5 text-primary group-hover:scale-110 transition-transform" />
               <span>Home</span>
             </Link>
 
@@ -74,13 +74,13 @@ export function PageHeader({
                 <React.Fragment key={idx}>
                   <Icon name="chevronRight" className="h-3.5 w-3.5 text-stone-500 shrink-0" />
                   {isLast || !item.href ? (
-                    <span className="text-amber-400 font-bold truncate max-w-[200px] sm:max-w-xs">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-primary/20 text-primary border border-primary/30 font-bold truncate max-w-[220px] sm:max-w-xs shadow-xs">
                       {item.label}
                     </span>
                   ) : (
                     <Link
                       href={item.href}
-                      className="text-stone-300 hover:text-white transition-colors truncate max-w-[150px] sm:max-w-xs"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/10 dark:bg-stone-900/90 hover:bg-primary/20 text-stone-200 hover:text-primary transition-all duration-300 truncate max-w-[170px] sm:max-w-xs font-bold"
                     >
                       {item.label}
                     </Link>
@@ -94,8 +94,8 @@ export function PageHeader({
         {/* Title & Badge Row */}
         <div className="flex flex-col gap-2 mt-1">
           {badge && (
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-bold text-stone-200 uppercase tracking-wider w-fit">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/15 backdrop-blur-md border border-primary/30 text-[11px] font-bold text-primary uppercase tracking-wider w-fit">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
               {badge}
             </div>
           )}

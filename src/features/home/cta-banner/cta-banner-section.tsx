@@ -67,13 +67,13 @@ export function CtaBannerSection() {
                   </Button>
                 </Link>
 
-                <Link href={ROUTES.CONTACT} className="w-full sm:w-auto">
+                <Link href={ROUTES.CUSTOM_DESIGN} className="w-full sm:w-auto">
                   <Button
                     variant="ghost"
                     size="lg"
-                    className="w-full sm:w-auto rounded-xl font-semibold text-base px-6 py-4 bg-stone-200/80 hover:bg-stone-300/90 text-stone-900 border border-stone-300/80 dark:bg-white/10 dark:hover:bg-white/20 dark:text-white dark:border-white/20 backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                    className="w-full sm:w-auto rounded-xl font-bold text-base px-6 py-4 bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30 backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
                   >
-                    Book Consultation
+                    <span>Make Your Own Design ✨</span>
                   </Button>
                 </Link>
               </div>

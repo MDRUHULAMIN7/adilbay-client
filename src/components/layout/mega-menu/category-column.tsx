@@ -12,28 +12,28 @@ export function CategoryColumn({ categories, onItemClick }: CategoryColumnProps)
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
       {categories.map((cat) => (
-        <div key={cat.id} className="flex flex-col gap-2.5">
+        <div key={cat.id} className="flex flex-col gap-2.5 text-left">
           <Link
             href={cat.href}
             onClick={onItemClick}
-            className="hover:text-primary transition-colors focus-visible:outline-none rounded inline-block"
+            className="group hover:text-primary transition-colors focus-visible:outline-none rounded inline-block"
           >
-            <Heading level={5} className="font-display font-bold text-xs sm:text-sm text-stone-900 dark:text-stone-100 tracking-tight hover:text-primary transition-colors uppercase">
+            <Heading level={5} className="font-display font-bold text-xs sm:text-sm text-stone-900 dark:text-stone-100 tracking-tight group-hover:text-primary dark:group-hover:text-amber-400 transition-colors uppercase">
               {cat.label}
             </Heading>
           </Link>
-          <ul className="flex flex-col gap-1.5 text-xs text-stone-600 dark:text-stone-400">
+          <ul className="flex flex-col gap-1 text-xs text-stone-600 dark:text-stone-300">
             {cat.items.map((sub) => (
               <li key={sub.id}>
                 <Link
                   href={sub.href}
                   onClick={onItemClick}
-                  className="hover:text-primary transition-colors block py-0.5 focus-visible:outline-none rounded whitespace-normal leading-relaxed"
+                  className="hover:text-primary dark:hover:text-amber-300 hover:bg-primary/10 dark:hover:bg-amber-400/10 px-2 py-1 -mx-2 rounded-lg transition-all block focus-visible:outline-none whitespace-normal leading-relaxed font-semibold text-stone-600 dark:text-stone-300"
                 >
                   <span className="inline-flex items-center gap-1.5">
-                    <span className="hover:underline">{sub.label}</span>
+                    <span>{sub.label}</span>
                     {sub.isNew && (
-                      <span className="text-[9px] font-bold bg-primary/10 text-primary px-1.5 py-0.2 rounded-full uppercase leading-none">
+                      <span className="text-[9px] font-bold bg-primary/10 dark:bg-amber-400/20 text-primary dark:text-amber-400 px-1.5 py-0.5 rounded-full uppercase leading-none">
                         New
                       </span>
                     )}

@@ -16,6 +16,7 @@ export const ROUTES = {
   REGISTER: '/account/register',
   ORDERS: '/account/orders',
   WISHLIST: '/account/wishlist',
+  CUSTOM_DESIGN: '/custom-design',
   PLAYGROUND: '/playground',
 } as const;
 

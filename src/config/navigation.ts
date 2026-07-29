@@ -34,16 +34,4 @@ export const MAIN_NAVIGATION: NavigationItem[] = [
     megaKey: 'industrial-furniture',
     roles: ['guest', 'user', 'admin'],
   },
-  {
-    id: 'about',
-    label: 'About Us',
-    href: ROUTES.ABOUT,
-    roles: ['guest', 'user', 'admin'],
-  },
-  {
-    id: 'contact',
-    label: 'Contact',
-    href: ROUTES.CONTACT,
-    roles: ['guest', 'user', 'admin'],
-  },
 ];
