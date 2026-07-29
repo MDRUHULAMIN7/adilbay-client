@@ -269,6 +269,13 @@
     animation: marquee-left 120s linear infinite;
   }
 
+  .animate-marquee-brand {
+    display: flex;
+    width: max-content;
+    animation: marquee-left 85s linear infinite;
+    will-change: transform;
+  }
+
   .animate-marquee-right {
     display: flex;
     width: max-content;
@@ -276,6 +283,7 @@
   }
 
   .animate-marquee-left:hover,
+  .animate-marquee-brand:hover,
   .animate-marquee-right:hover {
     animation-play-state: paused;
   }

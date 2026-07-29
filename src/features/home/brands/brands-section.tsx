@@ -9,20 +9,28 @@ interface BrandsSectionProps {
 }
 
 export function BrandsSection({ brands }: BrandsSectionProps) {
+  if (!brands || brands.length === 0) return null;
+
   return (
-    <section className="py-5 sm:py-6 bg-background border-b border-border/40 overflow-hidden">
-      <Container variant="wide">
-        {/* Monochromatic Marquee logo cloud */}
-        <div className="relative w-full flex items-center overflow-hidden py-2 select-none">
-          <div className="flex gap-20 animate-marquee whitespace-nowrap">
-            {/* Triple list to ensure continuous infinite horizontal scrolling */}
-            {[...brands, ...brands, ...brands].map((brand, idx) => (
+    <section className="py-5 sm:py-6.5 bg-stone-100/80 dark:bg-stone-900/60 border-y border-stone-200/80 dark:border-stone-800/80 overflow-hidden select-none">
+      <Container variant="wide" className="relative">
+        {/* Edge Gradient Fade Masks for Smooth Infinite Flow */}
+        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-stone-100/90 dark:from-stone-900/90 via-stone-100/50 dark:via-stone-900/50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-stone-100/90 dark:from-stone-900/90 via-stone-100/50 dark:via-stone-900/50 to-transparent z-10 pointer-events-none" />
+
+        {/* Continuous Smooth Infinite Marquee Slider */}
+        <div className="relative w-full flex items-center overflow-hidden py-1">
+          <div className="animate-marquee-brand flex items-center gap-10 sm:gap-16 whitespace-nowrap">
+            {[...brands, ...brands, ...brands, ...brands].map((brand, idx) => (
               <div
                 key={`${brand.id}-${idx}`}
-                className="flex items-center justify-center shrink-0 w-[120px] h-8 relative opacity-45 dark:opacity-35 hover:opacity-100 transition-opacity"
+                className="flex items-center gap-10 sm:gap-16 shrink-0 group cursor-pointer"
               >
-                <span className="font-display font-bold text-sm sm:text-base tracking-widest uppercase text-stone-500 hover:text-primary transition-colors">
+                <span className="font-display font-extrabold text-base sm:text-lg md:text-xl tracking-[0.2em] uppercase text-stone-800 dark:text-stone-200 group-hover:text-primary transition-all duration-300 transform group-hover:scale-105 drop-shadow-sm">
                   {brand.label}
+                </span>
+                <span className="text-stone-400 dark:text-stone-600 text-xs sm:text-sm select-none">
+                  ✦
                 </span>
               </div>
             ))}
@@ -32,4 +40,5 @@ export function BrandsSection({ brands }: BrandsSectionProps) {
     </section>
   );
 }
+
 export default BrandsSection;
