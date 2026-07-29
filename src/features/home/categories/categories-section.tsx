@@ -19,8 +19,8 @@ export function CategoriesSection({ categories }: CategoriesSectionProps) {
     <section className="py-12 lg:py-16 bg-background select-none">
       <Container variant="wide">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Heading, Subtitle & Explore Now Action */}
-          <div className="lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left gap-4 lg:gap-6">
+          {/* Left Column: Heading, Subtitle & Explore Now Action (Left Aligned) */}
+          <div className="lg:col-span-4 flex flex-col items-start text-left gap-4 lg:gap-6">
             <Heading
               level={2}
               className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl leading-tight tracking-tight text-primary"

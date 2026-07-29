@@ -8,6 +8,8 @@ import { useCheckout } from '@/hooks/useCheckout';
 import { formatPrice } from '@/lib/format-price';
 import { Container } from '@/components/layout/container';
 
+import { PageHeader } from '@/components/layout/page-header';
+
 export default function CheckoutPage() {
   const { items, summary } = useCart();
   const {
@@ -32,11 +34,20 @@ export default function CheckoutPage() {
   };
 
   return (
-    <Container variant="wide" className="py-8 sm:py-12 flex flex-col gap-6 text-left min-h-[75vh] w-full">
-      {/* Title */}
-      <h1 className="text-3xl font-bold font-display text-foreground border-b border-border/40 pb-4 uppercase tracking-tight">
-        Checkout
-      </h1>
+    <div className="flex flex-col w-full min-h-screen">
+      <PageHeader
+        title="Order Checkout"
+        badge="100% Encrypted & Secure"
+        description="Complete your shipping address and payment method to confirm your solid woodcraft order."
+        backgroundImage="/images/auth-bg.jpg"
+        items={[
+          { label: 'Shop Catalog', href: '/products' },
+          { label: 'Cart', href: '/cart' },
+          { label: 'Checkout' },
+        ]}
+      />
+
+      <Container variant="wide" className="py-10 sm:py-14 flex flex-col gap-6 text-left min-h-[75vh] w-full">
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start pt-2">
         {/* Left Form Column */}
@@ -350,5 +361,6 @@ export default function CheckoutPage() {
         </div>
       </div>
     </Container>
-  );
+  </div>
+);
 }

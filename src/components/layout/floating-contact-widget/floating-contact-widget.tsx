@@ -12,9 +12,9 @@ export interface FloatingContactWidgetProps {
 }
 
 export function FloatingContactWidget({
-  phoneNumber = '09678777777',
-  whatsappNumber = '8809678777777',
-  messengerUsername = 'furnixo',
+  phoneNumber = '+8801742643763',
+  whatsappNumber = '8801742643763',
+  messengerUsername = 'codeclubitsolutions',
   className = '',
 }: FloatingContactWidgetProps) {
   const [isOpen, setIsOpen] = useState(false);

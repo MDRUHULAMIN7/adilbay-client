@@ -22,7 +22,7 @@ export function CollectionsSection({ collections }: CollectionsSectionProps = {}
         {/* ========================================================================= */}
         <div className="flex flex-col gap-8">
           {/* Section Header: Clean Title Only */}
-          <div className="flex justify-center text-center">
+          <div className="flex justify-start text-left">
             <Heading
               level={2}
               className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-stone-900 dark:text-white tracking-tight"
@@ -135,7 +135,7 @@ export function CollectionsSection({ collections }: CollectionsSectionProps = {}
         {/* ========================================================================= */}
         <div className="flex flex-col gap-8">
           {/* Section Header: Clean Title Only */}
-          <div className="flex justify-center text-center">
+          <div className="flex justify-start text-left">
             <Heading
               level={2}
               className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-stone-900 dark:text-white tracking-tight"
@@ -244,7 +244,7 @@ export function CollectionsSection({ collections }: CollectionsSectionProps = {}
         {/* ========================================================================= */}
         <div className="flex flex-col gap-8">
           {/* Section Header: Clean Title Only */}
-          <div className="flex justify-center text-center">
+          <div className="flex justify-start text-left">
             <Heading
               level={2}
               className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl text-stone-900 dark:text-white tracking-tight"

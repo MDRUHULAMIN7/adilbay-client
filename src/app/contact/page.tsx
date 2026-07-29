@@ -7,6 +7,9 @@ import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
 import { useToast } from '@/components/ui/toast';
 
+import { PageHeader } from '@/components/layout/page-header';
+import { ExperienceCenterSection } from '@/components/sections/experience-center-section';
+
 export default function ContactPage() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -41,20 +44,15 @@ export default function ContactPage() {
 
   return (
     <div className="flex flex-col w-full min-h-screen bg-background text-foreground text-left">
-      <section className="py-12 sm:py-16 border-b border-border/40 bg-surface/5">
-        <Container variant="wide" className="flex flex-col gap-4 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold self-start">
-            <Icon name="mail" className="h-3.5 w-3.5" />
-            <span>We are here to assist you</span>
-          </div>
-          <Heading level={1} className="font-display font-extrabold text-3xl sm:text-4xl tracking-tight">
-            Contact Our Woodcraft Consultants
-          </Heading>
-          <Text className="text-stone-500 text-sm leading-relaxed">
-            Have questions regarding custom furniture sizing, wood seasoning, or showroom visits? Drop us a message or call our support line directly.
-          </Text>
-        </Container>
-      </section>
+      <PageHeader
+        title="Contact Our Woodcraft Consultants"
+        badge="24/7 Customer Support"
+        description="Have questions regarding custom furniture sizing, wood seasoning, or showroom visits? Drop us a message or call our support line directly."
+        backgroundImage="/images/auth-bg.jpg"
+        items={[
+          { label: 'Contact Support' },
+        ]}
+      />
 
       <section className="py-12">
         <Container variant="wide">
@@ -154,24 +152,26 @@ export default function ContactPage() {
                   <div className="flex items-start gap-3">
                     <Icon name="mapPin" className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                     <div className="flex flex-col">
-                      <span className="font-bold text-foreground">Dhaka Experience Center</span>
-                      <span>Level 4, Plot 12, Gulshan Avenue, Dhaka-1212, Bangladesh</span>
+                      <span className="font-bold text-foreground text-sm">Bangladesh Head Office</span>
+                      <span>Road -7, Block - A, Mirpur - 1, Dhaka, Bangladesh</span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
                     <Icon name="phone" className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <div className="flex flex-col">
-                      <span className="font-bold text-foreground">Phone Hotline</span>
-                      <span>+880 1800-FURNIXO (+880 1800-387649)</span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="font-bold text-foreground text-sm">Phone Hotlines</span>
+                      <a href="tel:+8801742643763" className="hover:text-primary font-mono transition-colors">+880 1742-643763</a>
+                      <a href="tel:+8809611330265" className="hover:text-primary font-mono transition-colors">+880 9611 330265</a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
                     <Icon name="mail" className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <div className="flex flex-col">
-                      <span className="font-bold text-foreground">Support Email</span>
-                      <span>support@furnixo.com</span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="font-bold text-foreground text-sm">Email Inquiries</span>
+                      <a href="mailto:contact@codeclubitsolutions.com" className="hover:text-primary transition-colors">contact@codeclubitsolutions.com</a>
+                      <a href="mailto:codeclubitsolutions@gmail.com" className="hover:text-primary transition-colors">codeclubitsolutions@gmail.com</a>
                     </div>
                   </div>
 
@@ -198,6 +198,9 @@ export default function ContactPage() {
           </div>
         </Container>
       </section>
+
+      {/* Visit Our Experience Center Section matching screenshot */}
+      <ExperienceCenterSection />
     </div>
   );
 }

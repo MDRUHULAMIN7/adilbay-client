@@ -40,6 +40,12 @@ import {
   Smartphone,
   Mail,
   Share2,
+  Package,
+  Settings,
+  Edit,
+  LayoutGrid,
+  Camera,
+  Home,
   ExternalLink as LinkIcon,
 } from 'lucide-react';
 
@@ -93,6 +99,12 @@ export const ICONS = {
   phoneCall: PhoneCall,
   messageCircle: MessageCircle,
   messageSquare: MessageSquare,
+  package: Package,
+  settings: Settings,
+  edit: Edit,
+  grid: LayoutGrid,
+  camera: Camera,
+  home: Home,
 } as const;
 
 export type IconName = keyof typeof ICONS;

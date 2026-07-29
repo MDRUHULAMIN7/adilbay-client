@@ -9,6 +9,8 @@ import { Icon } from '@/components/ui/icon';
 import { notFound } from 'next/navigation';
 import { RecentlyViewedTracker } from './tracker';
 
+import { PageHeader } from '@/components/layout/page-header';
+
 interface ProductDetailsPageProps {
   params: Promise<{
     slug: string;
@@ -36,20 +38,27 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
   // Fetch related recommendations concurrently
   const relatedProducts = await ProductService.getRelatedProducts(slug);
 
+  const breadcrumbItems = [
+    { label: 'Shop', href: '/shop' },
+    { label: product.category, href: '/shop' },
+    { label: product.title },
+  ];
+
   return (
     <div className="flex flex-col w-full min-h-screen">
       {/* Client-side recent viewed logger */}
       <RecentlyViewedTracker slug={product.slug} />
 
-      <Container variant="wide" className="py-8 sm:py-12 flex flex-col gap-12 w-full">
-        {/* Breadcrumb line */}
-        <div className="flex items-center gap-2 text-xs text-stone-500 font-semibold text-left">
-          <span>Home</span>
-          <Icon name="chevronRight" className="h-3 w-3" />
-          <span>Shop</span>
-          <Icon name="chevronRight" className="h-3 w-3" />
-          <span className="text-foreground truncate">{product.title}</span>
-        </div>
+      {/* Senior UI/UX PageHeader with Furniture Overlay Image & Breadcrumb Navigation */}
+      <PageHeader
+        title={product.title}
+        badge={`${product.category} Woodcraft`}
+        description={product.description || 'Handcrafted solid wood furniture built with precision seasoning and lifetime structural durability.'}
+        backgroundImage={product.images?.[0] || '/images/auth-bg.jpg'}
+        items={breadcrumbItems}
+      />
+
+      <Container variant="wide" className="py-10 sm:py-14 flex flex-col gap-12 w-full">
 
         {/* Gallery + Info grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">

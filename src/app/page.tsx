@@ -8,6 +8,7 @@ import { TestimonialsSection } from '@/features/home/testimonials';
 import { BrandsSection } from '@/features/home/brands';
 import { FaqSection } from '@/features/home/faq';
 import { CtaBannerSection } from '@/features/home/cta-banner';
+import { ExperienceCenterSection } from '@/components/sections/experience-center-section';
 import { InstagramGallerySection } from '@/features/home/instagram-gallery';
 import { TrendingCollectionSection } from '@/features/home/trending-collection';
 import { NewArrivalsSection } from '@/features/home/new-arrivals';
@@ -83,13 +84,16 @@ export default async function HomePage() {
       {/* 6. Clients feedbacks */}
       <TestimonialsSection testimonials={testimonials} />
 
-      {/* 7. Instagram social gallery feed */}
+      {/* 7. Experience Center Showcase Section */}
+      <ExperienceCenterSection />
+
+      {/* 8. Instagram social gallery feed */}
       <InstagramGallerySection />
 
-      {/* 8. Accordions FAQs sheet */}
+      {/* 9. Accordions FAQs sheet */}
       <FaqSection faqs={faqs} />
 
-      {/* 9. Design consulting CTA */}
+      {/* 10. Design consulting CTA */}
       <CtaBannerSection />
     </div>
   );

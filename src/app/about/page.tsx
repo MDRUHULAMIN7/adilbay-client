@@ -6,6 +6,8 @@ import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
 
+import { PageHeader } from '@/components/layout/page-header';
+
 export const metadata = {
   title: 'About Us - Furnixo Woodcraft Studio',
   description:
@@ -15,32 +17,16 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-background text-foreground">
-      {/* Hero Section */}
-      <section className="relative py-16 lg:py-24 bg-stone-900 text-stone-100 overflow-hidden border-b border-border/40">
-        <Image
-          src="/images/auth-bg.jpg"
-          alt="Furnixo Woodcraft Studio"
-          fill
-          priority
-          className="object-cover opacity-25"
-        />
-        <Container variant="wide" className="relative z-10 flex flex-col gap-6 text-left max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/20 border border-primary/30 text-primary-light text-xs font-semibold self-start">
-            <Icon name="award" className="h-3.5 w-3.5 text-primary" />
-            <span>Master Craftsmen Since 2012</span>
-          </div>
-          <Heading
-            level={1}
-            variant="display"
-            className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight leading-tight text-white"
-          >
-            Sculpting Pure Solid Timber for Contemporary Homes
-          </Heading>
-          <Text className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            At Furnixo, we believe furniture isn’t disposable. We season raw Burmese Teak, American Walnut, and Nordic Ash to create solid wood creations engineered to outlast generations.
-          </Text>
-        </Container>
-      </section>
+      {/* Senior UI/UX PageHeader with Furniture Overlay Image & Breadcrumb Navigation */}
+      <PageHeader
+        title="Sculpting Pure Solid Timber for Contemporary Homes"
+        badge="Master Craftsmen Since 2012"
+        description="At Furnixo, we believe furniture isn’t disposable. We season raw Burmese Teak, American Walnut, and Nordic Ash to create solid wood creations engineered to outlast generations."
+        backgroundImage="/images/auth-bg.jpg"
+        items={[
+          { label: 'About Us' },
+        ]}
+      />
 
       {/* Stats Counter Section */}
       <section className="py-10 bg-card border-b border-border/40">

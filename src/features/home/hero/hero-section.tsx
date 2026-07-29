@@ -116,9 +116,9 @@ export function HeroSection({ slides }: HeroSectionProps) {
               className="object-cover object-center"
               sizes="100vw"
             />
-            {/* Cinematic Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-r from-stone-950/90 via-stone-950/50 to-transparent z-10" />
-            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-black/30 z-10" />
+            {/* Cinematic Gradient Overlays - Balanced Contrast on Mobile & Desktop */}
+            <div className="absolute inset-0 bg-gradient-to-r from-stone-950/78 via-stone-950/40 to-transparent sm:from-stone-950/90 sm:via-stone-950/50 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-black/25 sm:from-stone-950/80 sm:to-black/30 z-10" />
           </motion.div>
         </AnimatePresence>
 

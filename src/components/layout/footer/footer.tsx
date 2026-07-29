@@ -57,31 +57,42 @@ export function Footer({ className, ...props }: FooterProps) {
               <div className="flex flex-col gap-3 mt-2">
                 <div className="flex items-start gap-3 text-xs sm:text-sm text-stone-600 dark:text-stone-400 leading-relaxed">
                   <Icon name="mapPin" className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                  <span>8 Shewrapara, Rokeya Sarani, Mirpur, Dhaka-1216, Bangladesh</span>
+                  <div className="flex flex-col">
+                    <span className="font-bold text-foreground">Bangladesh Head Office:</span>
+                    <span>Road -7, Block - A, Mirpur - 1, Dhaka, Bangladesh</span>
+                  </div>
                 </div>
 
                 <a
-                  href="tel:0258054370"
+                  href="tel:+8801742643763"
                   className="flex items-center gap-3 text-xs sm:text-sm text-stone-600 dark:text-stone-400 hover:text-primary transition-colors font-mono"
                 >
                   <Icon name="smartphone" className="h-4 w-4 text-primary shrink-0" />
-                  <span>+88 02 58054370</span>
+                  <span>+880 1742-643763</span>
                 </a>
 
                 <a
-                  href="tel:01713441000"
+                  href="tel:+8809611330265"
                   className="flex items-center gap-3 text-xs sm:text-sm text-stone-600 dark:text-stone-400 hover:text-primary transition-colors font-mono"
                 >
                   <Icon name="phone" className="h-4 w-4 text-primary shrink-0" />
-                  <span>+88 01713441000</span>
+                  <span>+880 9611 330265</span>
                 </a>
 
                 <a
-                  href="mailto:info@furnixo.com"
+                  href="mailto:contact@codeclubitsolutions.com"
                   className="flex items-center gap-3 text-xs sm:text-sm text-stone-600 dark:text-stone-400 hover:text-primary transition-colors"
                 >
                   <Icon name="mail" className="h-4 w-4 text-primary shrink-0" />
-                  <span>info@furnixo.com</span>
+                  <span>contact@codeclubitsolutions.com</span>
+                </a>
+
+                <a
+                  href="mailto:codeclubitsolutions@gmail.com"
+                  className="flex items-center gap-3 text-xs sm:text-sm text-stone-600 dark:text-stone-400 hover:text-primary transition-colors"
+                >
+                  <Icon name="mail" className="h-4 w-4 text-primary shrink-0" />
+                  <span>codeclubitsolutions@gmail.com</span>
                 </a>
               </div>
             </div>

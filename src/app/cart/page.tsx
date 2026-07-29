@@ -7,30 +7,39 @@ import { CartList } from '@/features/cart/cart-list/cart-list';
 import { CartSummary } from '@/features/cart/cart-summary/cart-summary';
 import { EmptyCart } from '@/features/cart/empty-cart/empty-cart';
 import { Container } from '@/components/layout/container';
+import { PageHeader } from '@/components/layout/page-header';
 
 export default function CartPage() {
-  const { items } = useCart();
+  const { items, itemCount } = useCart();
 
   return (
-    <Container variant="wide" className="py-8 sm:py-12 flex flex-col gap-6 text-left min-h-[70vh] w-full">
-      {/* Title matching Screenshot 2 */}
-      <h1 className="text-3xl font-bold font-display text-foreground border-b border-border/40 pb-4">
-        Shopping Cart
-      </h1>
+    <div className="flex flex-col w-full min-h-screen">
+      <PageHeader
+        title="Shopping Cart"
+        badge={`${itemCount || items.length} Items Selected`}
+        description="Review your chosen solid wood furniture pieces before proceeding to secure checkout."
+        backgroundImage="/images/auth-bg.jpg"
+        items={[
+          { label: 'Shop', href: '/shop' },
+          { label: 'Shopping Cart' },
+        ]}
+      />
 
-      {/* Main Cart Content */}
-      {items.length === 0 ? (
-        <EmptyCart />
-      ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-2">
-          <div className="lg:col-span-8">
-            <CartList />
+      <Container variant="wide" className="py-10 sm:py-14 flex flex-col gap-6 text-left min-h-[50vh] w-full">
+        {/* Main Cart Content */}
+        {items.length === 0 ? (
+          <EmptyCart />
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-8">
+              <CartList />
+            </div>
+            <div className="lg:col-span-4">
+              <CartSummary />
+            </div>
           </div>
-          <div className="lg:col-span-4">
-            <CartSummary />
-          </div>
-        </div>
-      )}
-    </Container>
+        )}
+      </Container>
+    </div>
   );
 }
