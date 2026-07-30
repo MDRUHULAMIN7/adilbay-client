@@ -148,44 +148,48 @@ export function DetailsTabs({ product, className }: DetailsTabsProps) {
           </div>
         </div>
 
-        {/* Tab Navigation Buttons */}
-        <div
-          role="tablist"
-          aria-label="Product Details Tabs"
-          className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-2 pb-1 border-t border-stone-200/40 dark:border-stone-800/60"
-        >
-          {tabs.map((tab) => {
-            const isActive = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                role="tab"
-                id={`tab-${tab.id}`}
-                aria-selected={isActive}
-                aria-controls={`panel-${tab.id}`}
-                onClick={() => setActiveTab(tab.id)}
-                className={cn(
-                  'flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
-                  isActive
-                    ? 'bg-primary text-primary-foreground shadow-md shadow-primary/20 scale-[1.02]'
-                    : 'bg-stone-100 dark:bg-stone-900/80 text-stone-700 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-800 hover:text-foreground'
-                )}
-              >
-                <Icon name={tab.icon} className={cn('h-4 w-4 shrink-0', isActive ? 'text-primary-foreground' : 'text-stone-600 dark:text-stone-300')} />
-                <span>{tab.label}</span>
-                {tab.badge !== undefined && (
-                  <span
-                    className={cn(
-                      'px-1.5 py-0.5 text-[10px] rounded-full font-bold ml-1',
-                      isActive ? 'bg-white/20 text-white' : 'bg-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200'
-                    )}
-                  >
-                    {tab.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+        {/* Tab Navigation Buttons with Mobile Scroll Affordance */}
+        <div className="relative w-full">
+          <div
+            role="tablist"
+            aria-label="Product Details Tabs"
+            className="flex items-center gap-2.5 overflow-x-auto snap-x snap-mandatory flex-nowrap pb-2 pt-2 scrollbar-thin border-t border-stone-200/40 dark:border-stone-800/60 touch-pan-x px-0.5"
+          >
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  role="tab"
+                  id={`tab-${tab.id}`}
+                  aria-selected={isActive}
+                  aria-controls={`panel-${tab.id}`}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={cn(
+                    'flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap snap-start shrink-0 min-h-[44px] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
+                    isActive
+                      ? 'bg-primary text-primary-foreground shadow-md shadow-primary/20 scale-[1.02]'
+                      : 'bg-stone-100 dark:bg-stone-900/80 text-stone-700 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-800 hover:text-foreground'
+                  )}
+                >
+                  <Icon name={tab.icon} className={cn('h-4 w-4 shrink-0', isActive ? 'text-primary-foreground' : 'text-stone-600 dark:text-stone-300')} />
+                  <span>{tab.label}</span>
+                  {tab.badge !== undefined && (
+                    <span
+                      className={cn(
+                        'px-1.5 py-0.5 text-[10px] rounded-full font-bold ml-1',
+                        isActive ? 'bg-white/20 text-white' : 'bg-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200'
+                      )}
+                    >
+                      {tab.badge}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+          {/* Scroll Affordance right fade gradient for mobile */}
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-card via-card/80 to-transparent sm:hidden" />
         </div>
       </div>
 
@@ -212,22 +216,24 @@ export function DetailsTabs({ product, className }: DetailsTabsProps) {
             </div>
 
             {/* Craftsmanship Pillars Grid */}
-            <div className="flex flex-col gap-4 text-left">
+            <div className="flex flex-col gap-4 text-left w-full">
               <Heading level={4} className="font-display font-semibold text-xs text-stone-900 dark:text-stone-100 uppercase tracking-wider">
                 Signature Craft Highlights
               </Heading>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch w-full">
                 {craftsmanshipPillars.map((pillar) => (
                   <div
                     key={pillar.title}
-                    className="flex items-start gap-3.5 p-4 rounded-2xl bg-stone-50 dark:bg-stone-900/60 border border-stone-200/80 dark:border-stone-800 hover:border-primary/40 transition-colors"
+                    className="flex flex-col justify-between p-4.5 p-4 rounded-2xl bg-stone-50 dark:bg-stone-900/60 border border-stone-200/80 dark:border-stone-800 hover:border-primary/40 transition-colors h-full"
                   >
-                    <div className="h-10 w-10 rounded-xl bg-primary/15 flex items-center justify-center text-primary shrink-0">
-                      <Icon name={pillar.icon} className="h-5 w-5 text-primary" />
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <span className="font-bold text-sm text-stone-900 dark:text-stone-100">{pillar.title}</span>
-                      <span className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">{pillar.description}</span>
+                    <div className="flex flex-col gap-3">
+                      <div className="h-10 w-10 rounded-xl bg-primary/15 flex items-center justify-center text-primary shrink-0">
+                        <Icon name={pillar.icon} className="h-5 w-5 text-primary" />
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <span className="font-bold text-sm text-stone-900 dark:text-stone-100">{pillar.title}</span>
+                        <span className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">{pillar.description}</span>
+                      </div>
                     </div>
                   </div>
                 ))}

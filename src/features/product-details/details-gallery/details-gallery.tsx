@@ -68,7 +68,7 @@ export function DetailsGallery({ images }: DetailsGalleryProps) {
               e.stopPropagation();
               setIsZoomOpen(true);
             }}
-            className="pointer-events-auto bg-stone-900/80 hover:bg-stone-950 text-white backdrop-blur-md border border-white/20 p-2 rounded-xl shadow-md transition-all cursor-pointer hover:scale-105"
+            className="pointer-events-auto bg-stone-900/80 hover:bg-stone-950 text-white backdrop-blur-md border border-white/20 h-10 w-10 flex items-center justify-center rounded-xl shadow-md transition-all cursor-pointer hover:scale-105"
             aria-label="Expand fullscreen zoom"
           >
             <Icon name="externalLink" className="h-4 w-4 text-primary" />

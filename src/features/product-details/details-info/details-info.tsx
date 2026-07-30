@@ -117,7 +117,7 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
               key={mat}
               onClick={() => setSelectedMaterial(mat)}
               className={cn(
-                'px-3.5 py-1.5 text-xs font-bold rounded-lg border transition-all cursor-pointer select-none',
+                'min-w-[105px] sm:min-w-[120px] flex-1 min-h-[40px] px-3.5 py-2 text-xs font-bold rounded-xl border transition-all cursor-pointer select-none flex items-center justify-center text-center',
                 selectedMaterial === mat
                   ? 'border-primary bg-primary/10 text-primary shadow-flat'
                   : 'border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-200 hover:border-stone-300 dark:hover:border-stone-600'
@@ -135,7 +135,7 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
           <span className="text-xs font-bold uppercase tracking-wider text-stone-900 dark:text-stone-100">
             Color Polish: <span className="text-primary font-semibold">{activeColor}</span>
           </span>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2.5">
             {product.colors.map((col) => {
               const isActive = col.name === activeColor;
               return (
@@ -144,12 +144,12 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
                   onClick={() => setActiveColor(col.name)}
                   title={col.name}
                   className={cn(
-                    'h-8 w-8 rounded-full border border-stone-200 dark:border-stone-700 cursor-pointer flex items-center justify-center focus-visible:outline-none transition-transform',
+                    'h-10 w-10 sm:h-9 sm:w-9 rounded-full border border-stone-200 dark:border-stone-700 cursor-pointer flex items-center justify-center focus-visible:outline-none transition-transform shrink-0',
                     isActive && 'ring-2 ring-primary ring-offset-2 scale-105'
                   )}
                   style={{ backgroundColor: col.hex }}
                 >
-                  {isActive && <Icon name="check" className="h-3.5 w-3.5 text-white dark:text-black stroke-[3px]" />}
+                  {isActive && <Icon name="check" className="h-4 w-4 text-white dark:text-black stroke-[3px]" />}
                 </button>
               );
             })}
@@ -158,58 +158,76 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
       )}
 
       {/* Quantity & Actions Bar with ID for StickyBuyBox observer */}
-      <div id="main-add-to-cart-container" className="flex flex-col sm:flex-row gap-4 items-center pt-2">
-        {/* Quantity control */}
-        <div className="flex items-center border border-stone-200 dark:border-stone-800 rounded-xl bg-stone-50 dark:bg-stone-900/60 w-full sm:w-auto">
+      <div id="main-add-to-cart-container" className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center pt-2 w-full">
+        <div className="flex items-center justify-between sm:justify-start gap-3 w-full sm:w-auto">
+          {/* Quantity control (Fixed-width stepper) */}
+          <div className="flex items-center border border-stone-200 dark:border-stone-800 rounded-xl bg-stone-50 dark:bg-stone-900/60 w-32 shrink-0 h-11">
+            <Button
+              variant="ghost"
+              size="sm"
+              disabled={quantity <= 1 || isOutOfStock}
+              onClick={() => setQuantity(quantity - 1)}
+              className="h-11 w-10 p-0 rounded-l-xl cursor-pointer text-stone-700 dark:text-stone-200 shrink-0"
+              aria-label="Decrease quantity"
+            >
+              <Icon name="minus" className="h-3.5 w-3.5 text-stone-700 dark:text-stone-200" />
+            </Button>
+            <span className="flex-1 text-center text-xs font-bold text-stone-900 dark:text-stone-100 select-none">{quantity}</span>
+            <Button
+              variant="ghost"
+              size="sm"
+              disabled={isOutOfStock}
+              onClick={() => setQuantity(quantity + 1)}
+              className="h-11 w-10 p-0 rounded-r-xl cursor-pointer text-stone-700 dark:text-stone-200 shrink-0"
+              aria-label="Increase quantity"
+            >
+              <Icon name="plus" className="h-3.5 w-3.5 text-stone-700 dark:text-stone-200" />
+            </Button>
+          </div>
+
+          {/* Wishlist Heart button on Mobile (< sm) */}
           <Button
-            variant="ghost"
-            size="sm"
-            disabled={quantity <= 1 || isOutOfStock}
-            onClick={() => setQuantity(quantity - 1)}
-            className="h-11 w-11 p-0 rounded-l-xl cursor-pointer text-stone-700 dark:text-stone-200"
+            variant="outline"
+            onClick={handleWishlistClick}
+            className={cn(
+              'h-11 w-11 p-0 rounded-xl cursor-pointer flex sm:hidden items-center justify-center border-stone-200 dark:border-stone-800 bg-background hover:bg-muted shrink-0 text-stone-700 dark:text-stone-200',
+              activeWish && 'text-red-500 border-red-200 bg-red-50/20 dark:bg-red-950/20'
+            )}
+            aria-label="Toggle wishlist"
           >
-            <Icon name="minus" className="h-3.5 w-3.5 text-stone-700 dark:text-stone-200" />
-          </Button>
-          <span className="w-12 text-center text-xs font-bold text-stone-900 dark:text-stone-100 select-none">{quantity}</span>
-          <Button
-            variant="ghost"
-            size="sm"
-            disabled={isOutOfStock}
-            onClick={() => setQuantity(quantity + 1)}
-            className="h-11 w-11 p-0 rounded-r-xl cursor-pointer text-stone-700 dark:text-stone-200"
-          >
-            <Icon name="plus" className="h-3.5 w-3.5 text-stone-700 dark:text-stone-200" />
+            <Icon name="heart" className={cn('h-4 w-4', activeWish && 'fill-current text-red-500')} />
           </Button>
         </div>
 
-        {/* Action Triggers */}
-        <div className="flex flex-col sm:flex-row gap-3 flex-1 w-full">
+        {/* Action Triggers (Equal Flex 50/50 CTAs) */}
+        <div className="flex items-center gap-3 flex-1 w-full">
           <Button
             id="main-add-to-cart"
             variant="brand"
             disabled={isOutOfStock}
             onClick={handleAddToCart}
-            className="flex-1 rounded-xl font-bold text-sm h-11 cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
+            className="flex-1 rounded-xl font-bold text-xs sm:text-sm h-11 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg shadow-primary/20 whitespace-nowrap min-w-0"
           >
-            <Icon name="cart" className="h-4 w-4" />
-            <span>{isOutOfStock ? 'Sold Out' : 'Add to Cart'}</span>
+            <Icon name="cart" className="h-4 w-4 shrink-0" />
+            <span className="truncate">{isOutOfStock ? 'Sold Out' : 'Add to Cart'}</span>
           </Button>
 
           <Button
             variant="primary"
             disabled={isOutOfStock}
             onClick={handleBuyNow}
-            className="flex-1 rounded-xl font-bold text-sm h-11 cursor-pointer flex items-center justify-center gap-2 bg-stone-900 hover:bg-stone-800 text-white dark:bg-stone-100 dark:hover:bg-white dark:text-stone-900 shadow-md"
+            className="flex-1 rounded-xl font-bold text-xs sm:text-sm h-11 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 bg-stone-900 hover:bg-stone-800 text-white dark:bg-stone-100 dark:hover:bg-white dark:text-stone-900 shadow-md whitespace-nowrap min-w-0"
           >
-            <Icon name="bag" className="h-4 w-4" />
-            <span>Buy Now</span>
+            <Icon name="bag" className="h-4 w-4 shrink-0" />
+            <span className="truncate">Buy Now</span>
           </Button>
 
+          {/* Wishlist Heart button on Desktop (>= sm) */}
           <Button
             variant="outline"
             onClick={handleWishlistClick}
             className={cn(
-              'h-11 w-11 p-0 rounded-xl cursor-pointer flex items-center justify-center border-stone-200 dark:border-stone-800 bg-background hover:bg-muted shrink-0 text-stone-700 dark:text-stone-200',
+              'h-11 w-11 p-0 rounded-xl cursor-pointer hidden sm:flex items-center justify-center border-stone-200 dark:border-stone-800 bg-background hover:bg-muted shrink-0 text-stone-700 dark:text-stone-200',
               activeWish && 'text-red-500 border-red-200 bg-red-50/20 dark:bg-red-950/20'
             )}
             aria-label="Toggle wishlist"

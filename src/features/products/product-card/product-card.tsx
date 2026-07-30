@@ -51,8 +51,8 @@ export function ProductCard({ product, className }: ProductCardProps) {
         className
       )}
     >
-      {/* Product Image & badges container (No Radius - rounded-none) */}
-      <div className="relative aspect-[4/5] w-full bg-[#f2ede9]/60 overflow-hidden rounded-none border border-transparent shadow-none">
+      {/* Product Image & badges container (aspect-[4/5] ratio container) */}
+      <div className="relative aspect-[4/5] w-full bg-stone-200/70 dark:bg-stone-800/70 overflow-hidden rounded-2xl border border-stone-200/60 dark:border-stone-800/60 shadow-xs">
         {/* Badges */}
         <ProductBadges
           badge={product.badge}
@@ -61,8 +61,8 @@ export function ProductCard({ product, className }: ProductCardProps) {
         />
 
         {/* Primary and secondary hover image with ultra-smooth 1200ms cubic-bezier transitions */}
-        <Link href={`/products/${product.slug}`} className="absolute inset-0 block">
-          {product.images[0] && (
+        <Link href={`/products/${product.slug}`} className="absolute inset-0 block bg-stone-200/70 dark:bg-stone-800/70">
+          {product.images && product.images[0] ? (
             <Image
               src={product.images[0]}
               alt={product.title}
@@ -74,8 +74,12 @@ export function ProductCard({ product, className }: ProductCardProps) {
               )}
               loading="lazy"
             />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-stone-400 dark:text-stone-600 bg-stone-100 dark:bg-stone-900">
+              <Icon name="image" className="h-8 w-8 opacity-40" />
+            </div>
           )}
-          {product.images[1] && (
+          {product.images && product.images[1] && (
             <Image
               src={product.images[1]}
               alt={product.title}

@@ -1,11 +1,10 @@
 import React from 'react';
 import { ProductService } from '@/services/product.service';
-import { DetailsGallery, DetailsInfo, DetailsTabs, DetailsReviews } from '@/features/product-details';
+import { DetailsGallery, DetailsInfo, DetailsTabs, DetailsReviews, TrustBadges } from '@/features/product-details';
 import { ProductCarousel } from '@/features/products';
 import { Container } from '@/components/layout/container';
 import { Heading } from '@/components/ui/heading';
 import { Text } from '@/components/ui/text';
-import { Icon } from '@/components/ui/icon';
 import { notFound } from 'next/navigation';
 import { RecentlyViewedTracker } from './tracker';
 
@@ -58,10 +57,10 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
         items={breadcrumbItems}
       />
 
-      <Container variant="wide" className="py-10 sm:py-14 flex flex-col gap-12 w-full">
+      <Container variant="wide" className="py-8 sm:py-12 lg:py-16 flex flex-col gap-12 sm:gap-16 lg:gap-20 w-full">
 
         {/* Gallery + Info grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-6">
             <DetailsGallery images={product.images} />
           </div>
@@ -71,29 +70,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
         </div>
 
         {/* Product Guarantee & Shipping Highlights */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-y border-stone-200/80 dark:border-stone-800 py-6 text-left">
-          <div className="flex items-center gap-3 p-4 rounded-xl bg-stone-50 dark:bg-stone-900/60 border border-stone-200/80 dark:border-stone-800">
-            <Icon name="truck" className="h-5 w-5 text-primary shrink-0" />
-            <div className="flex flex-col">
-              <span className="font-bold text-xs text-stone-900 dark:text-stone-100">Countrywide Delivery</span>
-              <span className="text-[11px] text-stone-600 dark:text-stone-300">Free delivery on orders above 50,000 Tk</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 p-4 rounded-xl bg-stone-50 dark:bg-stone-900/60 border border-stone-200/80 dark:border-stone-800">
-            <Icon name="shieldCheck" className="h-5 w-5 text-primary shrink-0" />
-            <div className="flex flex-col">
-              <span className="font-bold text-xs text-stone-900 dark:text-stone-100">10-Year Warranty</span>
-              <span className="text-[11px] text-stone-600 dark:text-stone-300">Covers structural seasoning defects</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-3 p-4 rounded-xl bg-stone-50 dark:bg-stone-900/60 border border-stone-200/80 dark:border-stone-800">
-            <Icon name="rotateCcw" className="h-5 w-5 text-primary shrink-0" />
-            <div className="flex flex-col">
-              <span className="font-bold text-xs text-stone-900 dark:text-stone-100">7-Day Easy Return</span>
-              <span className="text-[11px] text-stone-600 dark:text-stone-300">Hassle-free replacement policy</span>
-            </div>
-          </div>
-        </div>
+        <TrustBadges />
 
         {/* Extended Product Description & Technical Specifications Tabs */}
         <DetailsTabs product={product} />
@@ -103,7 +80,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
 
         {/* Related products recommendations section */}
         {relatedProducts.length > 0 && (
-          <section className="flex flex-col gap-6 border-t border-border/40 pt-10 w-full text-left">
+          <section className="flex flex-col gap-6 border-t border-border/40 pt-10 sm:pt-14 w-full text-left">
             <div className="flex flex-col gap-1.5">
               <Heading level={2} className="font-display font-bold text-xl sm:text-2xl tracking-tight text-foreground">
                 You May Also Like

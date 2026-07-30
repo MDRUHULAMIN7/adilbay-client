@@ -52,7 +52,7 @@ export function StickyBuyBox({ product, targetId = 'main-add-to-cart' }: StickyB
   };
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 bg-background/95 backdrop-blur-md border-t border-border/80 shadow-2xl py-3 px-4 sm:px-8 animate-in slide-in-from-bottom duration-300">
+    <div className="fixed bottom-0 inset-x-0 z-40 bg-background/95 backdrop-blur-md border-t border-border/80 shadow-2xl py-3 px-4 sm:px-8 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] animate-in slide-in-from-bottom duration-300">
       <div className="max-w-[1400px] xl:max-w-[1536px] 2xl:max-w-[1600px] mx-auto flex items-center justify-between gap-4">
         {/* Left Product Info */}
         <div className="flex items-center gap-3 min-w-0">

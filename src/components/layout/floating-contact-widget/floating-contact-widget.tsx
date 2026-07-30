@@ -94,7 +94,7 @@ export function FloatingContactWidget({
   return (
     <div
       ref={containerRef}
-      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end ${className}`}
+      className={`fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end pb-[env(safe-area-inset-bottom,0px)] ${className}`}
     >
       {/* 1. FLOATING CART BUTTON (Spring Y Transform for Smooth Open & Close) */}
       <motion.button
