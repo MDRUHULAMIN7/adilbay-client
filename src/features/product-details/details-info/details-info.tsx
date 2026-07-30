@@ -60,8 +60,8 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
     analytics.trackCart('add', { slug: product.slug, quantity });
     toast({
       type: 'success',
-      title: 'Added to Cart',
-      message: `${quantity}x ${product.title} has been added to your shopping cart.`,
+      title: 'Added to Cart!',
+      message: product.title,
     });
   };
 

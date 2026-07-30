@@ -1,8 +1,5 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { Container } from '@/components/layout/container';
 import { Icon } from '@/components/ui/icon';
 
@@ -15,59 +12,7 @@ export function ExperienceCenterSection({ className = '' }: ExperienceCenterSect
     <section className={`py-14 sm:py-20 bg-background text-foreground text-left ${className}`}>
       <Container variant="wide" className="flex flex-col gap-12">
         {/* About Furnixo Brand Story Card */}
-        <div className="relative rounded-3xl overflow-hidden bg-stone-900 dark:bg-stone-950 text-white p-8 sm:p-12 lg:p-16 border border-stone-800 shadow-2xl">
-          <div className="absolute top-0 right-0 -mr-24 -mt-24 w-96 h-96 bg-primary/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-7 flex flex-col gap-5 text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-primary/20 text-primary border border-primary/30 text-[11px] font-extrabold uppercase tracking-widest w-fit">
-                <Icon name="star" className="h-3.5 w-3.5 text-primary fill-primary" />
-                About Furnixo Heritage &amp; Craft
-              </div>
-
-              <h2 className="font-display font-extrabold text-2xl sm:text-4xl lg:text-5xl text-stone-100 tracking-tight leading-tight">
-                Crafting Timeless <span className="text-primary italic">Solid Teak Wood</span> For Modern Homes
-              </h2>
-
-              <p className="text-xs sm:text-sm text-stone-300 leading-relaxed font-light">
-                Furnixo is Bangladesh&apos;s premier timber woodcraft studio. We specialize in 100% seasoned Segun (Teak) wood furniture handcrafted by master artisans. Every piece is kiln-dried, termite-resistant, and built with precision to last generations.
-              </p>
-
-              {/* 3 Value Badges */}
-              <div className="grid grid-cols-3 gap-3 pt-2">
-                <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col gap-1 text-center">
-                  <span className="font-display font-extrabold text-lg sm:text-2xl text-primary">100%</span>
-                  <span className="text-[10px] sm:text-xs text-stone-400 font-medium uppercase tracking-wider">Seasoned Teak</span>
-                </div>
-                <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col gap-1 text-center">
-                  <span className="font-display font-extrabold text-lg sm:text-2xl text-primary">10 Yrs</span>
-                  <span className="text-[10px] sm:text-xs text-stone-400 font-medium uppercase tracking-wider">Timber Warranty</span>
-                </div>
-                <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/10 flex flex-col gap-1 text-center">
-                  <span className="font-display font-extrabold text-lg sm:text-2xl text-primary">15k+</span>
-                  <span className="text-[10px] sm:text-xs text-stone-400 font-medium uppercase tracking-wider">Happy Homes</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Artisan Showcase Image */}
-            <div className="lg:col-span-5 relative h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden border border-white/10 shadow-xl group">
-              <Image
-                src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&q=80&w=800"
-                alt="Furnixo Artisan Craftsmanship Studio"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80" />
-              <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-xl bg-stone-900/90 backdrop-blur-md border border-stone-700/60 text-xs text-stone-200">
-                <span className="font-bold text-primary block">Master Artisan Workshop &bull; Mirpur, Dhaka</span>
-                <span className="text-[10px] text-stone-400">Directly visit our flagship showroom to feel wood textures in person.</span>
-              </div>
-            </div>
-          </div>
-        </div>
+     
 
         {/* Experience Center Showcase Header */}
         <div className="flex flex-col items-start text-left gap-2 max-w-2xl">
@@ -85,9 +30,9 @@ export function ExperienceCenterSection({ className = '' }: ExperienceCenterSect
         {/* Experience Center Location & Map Card Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 rounded-3xl overflow-hidden shadow-2xl border border-stone-200/80 dark:border-stone-800 bg-card">
           {/* Left Info Column */}
-          <div className="lg:col-span-5 bg-stone-900 dark:bg-stone-950 text-white p-8 sm:p-11 flex flex-col justify-between gap-10 relative border-l-4 border-primary min-h-[480px] sm:min-h-[540px]">
+          <div className="lg:col-span-5 bg-white dark:bg-stone-950 text-stone-900 dark:text-white p-8 sm:p-11 flex flex-col justify-between gap-10 relative border-l-4 border-primary min-h-[480px] sm:min-h-[540px]">
             <div className="flex flex-col gap-8">
-              <h4 className="font-display font-extrabold text-xl sm:text-2xl text-white tracking-tight leading-snug">
+              <h4 className="font-display font-extrabold text-xl sm:text-2xl text-stone-900 dark:text-white tracking-tight leading-snug">
                 Serving Dhaka &amp; All of <span className="text-primary">Bangladesh</span>
               </h4>
 
@@ -101,7 +46,7 @@ export function ExperienceCenterSection({ className = '' }: ExperienceCenterSect
                     <span className="font-extrabold text-primary uppercase tracking-widest text-[10px]">
                       FLAGSHIP ADDRESS
                     </span>
-                    <span className="text-stone-200 font-semibold leading-relaxed">
+                    <span className="text-stone-700 dark:text-stone-200 font-semibold leading-relaxed">
                       Road -7, Block - A, Mirpur - 1, Dhaka, Bangladesh
                     </span>
                   </div>
@@ -116,7 +61,7 @@ export function ExperienceCenterSection({ className = '' }: ExperienceCenterSect
                     <span className="font-extrabold text-primary uppercase tracking-widest text-[10px]">
                       CONTACT HOTLINES
                     </span>
-                    <span className="text-stone-200 font-semibold font-mono">
+                    <span className="text-stone-700 dark:text-stone-200 font-semibold font-mono">
                       +880 1742-643763 / +880 9611 330265
                     </span>
                   </div>
@@ -131,7 +76,7 @@ export function ExperienceCenterSection({ className = '' }: ExperienceCenterSect
                     <span className="font-extrabold text-primary uppercase tracking-widest text-[10px]">
                       OPENING HOURS
                     </span>
-                    <span className="text-stone-200 font-semibold">
+                    <span className="text-stone-700 dark:text-stone-200 font-semibold">
                       Daily: 10:00 AM &ndash; 10:00 PM
                     </span>
                   </div>
@@ -140,7 +85,7 @@ export function ExperienceCenterSection({ className = '' }: ExperienceCenterSect
             </div>
 
             {/* Action Buttons Row */}
-            <div className="flex items-center gap-3.5 flex-wrap pt-4 border-t border-white/10">
+            <div className="flex items-center gap-3.5 flex-wrap pt-4 border-t border-stone-200 dark:border-white/10">
               <a
                 href="https://maps.google.com/maps?q=Road+-7,+Block+-+A,+Mirpur+-+1,+Dhaka,+Bangladesh"
                 target="_blank"

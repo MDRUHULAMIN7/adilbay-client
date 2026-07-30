@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HeroSlide, TrustSignal } from '@/types/product';
 import { Container } from '@/components/layout/container';
-import { FloatingContactWidget } from '@/components/layout/floating-contact-widget';
 
 interface HeroSectionProps {
   slides: HeroSlide[];
@@ -172,9 +171,6 @@ export function HeroSection({ slides }: HeroSectionProps) {
           </div>
         </Container>
       </section>
-
-      {/* 4. Interactive Floating Contact Widget */}
-      <FloatingContactWidget />
     </>
   );
 }

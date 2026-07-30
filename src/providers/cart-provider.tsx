@@ -118,8 +118,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       updateCartState(updatedItems);
 
       addToast({
-        title: 'Added to Cart',
-        description: `"${product.title}" has been added to your shopping cart.`,
+        title: 'Added to Cart!',
+        description: product.title,
         variant: 'success',
       });
 

@@ -94,24 +94,74 @@ export function FloatingContactWidget({
   return (
     <div
       ref={containerRef}
-      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3.5 ${className}`}
+      className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end ${className}`}
     >
-      {/* 1. FLOATING CART BUTTON (Positioned Above Message Button) */}
+      {/* 1. FLOATING CART BUTTON (Spring Y Transform for Smooth Open & Close) */}
       <motion.button
-        whileHover={{ scale: 1.08 }}
+        animate={{
+          y: isOpen ? -185 : 0,
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 280,
+          damping: 24,
+        }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.92 }}
         onClick={() => {
           openCart();
           analytics.trackNavigation('Cart Trigger', 'Floating Cart FAB');
         }}
         aria-label="Open Floating Cart Drawer"
-        className="relative group h-12 w-12 sm:h-13 sm:w-13 rounded-full bg-stone-900 dark:bg-stone-950 text-white flex items-center justify-center shadow-2xl border-2 border-stone-700/70 hover:border-primary transition-all duration-300 cursor-pointer focus-visible:outline-none"
+        className="relative group p-0 bg-transparent flex items-center justify-center cursor-pointer focus-visible:outline-none select-none z-20 mb-3"
       >
-        <Icon name="cart" className="h-6 w-6 text-primary transition-transform group-hover:scale-110" />
+        {/* Larger Shopping Bag Icon */}
+        <svg className="w-13 h-13 sm:w-14 sm:h-14 drop-shadow-xl transition-transform group-hover:scale-105" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="themeBagGradientExact" x1="32" y1="20" x2="32" y2="60" gradientUnits="userSpaceOnUse">
+              <stop stopColor="hsl(var(--primary))" />
+              <stop stopColor="#c77638ff" />
+            </linearGradient>
+          </defs>
+          
+          {/* Top Handle (Dark in Light Mode, White in Dark Mode) */}
+          <path
+            d="M23 23V16C23 11.0294 27.0294 7 32 7C36.9706 7 41 11.0294 41 16V23"
+            className="stroke-stone-900 dark:stroke-white"
+            strokeWidth="4.5"
+            strokeLinecap="round"
+          />
+          
+          {/* Bag Body (Theme Primary Gradient) */}
+          <path
+            d="M14 22H50C52.2091 22 53.9142 23.9213 53.6496 26.1158L50.2739 54.1158C50.0463 56.0028 48.4507 57.4286 46.5484 57.4286H17.4516C15.5493 57.4286 13.9537 56.0028 13.7261 54.1158L10.3504 26.1158C10.0858 23.9213 11.7909 22 14 22Z"
+            fill="url(#themeBagGradientExact)"
+          />
 
-        {/* Live Cart Item Badge Counter */}
+          {/* Screenshot Face Details: White Eye, Wink & Smile */}
+          {/* Left Eye */}
+          <circle cx="25" cy="37" r="2.5" fill="white" />
+
+          {/* Right Eye (Wink) */}
+          <path
+            d="M37 35.5C38.5 34 41 34 42.5 35.5"
+            stroke="white"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+
+          {/* Smile */}
+          <path
+            d="M26 43C26 43 29 47 34 47C39 47 42 43 42 43"
+            stroke="white"
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
+        </svg>
+
+        {/* Live Cart Item Badge Counter (No Border) */}
         {itemCount > 0 && (
-          <span className="absolute -top-1 -right-1 h-5 w-5 sm:h-5.5 sm:w-5.5 rounded-full bg-primary text-[10px] font-extrabold text-primary-foreground flex items-center justify-center border-2 border-stone-900 shadow-md select-none animate-bounce">
+          <span className="absolute -top-1 -right-1 h-5.5 w-5.5 rounded-full bg-primary text-primary-foreground font-extrabold text-xs flex items-center justify-center shadow-md select-none">
             {itemCount > 99 ? '99+' : itemCount}
           </span>
         )}
@@ -125,20 +175,31 @@ export function FloatingContactWidget({
       {/* 2. Expanded Contact Options (Phone, WhatsApp, Messenger) */}
       <AnimatePresence>
         {isOpen && (
-          <div className="flex flex-col items-end gap-3 mb-1">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            transition={{
+              type: 'spring',
+              stiffness: 220,
+              damping: 24,
+            }}
+            className="absolute bottom-16 right-0 flex flex-col items-end gap-3 z-10"
+          >
             {contactOptions.map((option, index) => (
               <motion.a
                 key={option.id}
                 href={option.href}
                 target={option.isExternal ? '_blank' : undefined}
                 rel={option.isExternal ? 'noopener noreferrer' : undefined}
-                initial={{ opacity: 0, y: 24, scale: 0.5 }}
+                initial={{ opacity: 0, y: 15, scale: 0.75 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 18, scale: 0.5 }}
+                exit={{ opacity: 0, y: 15, scale: 0.75 }}
                 transition={{
-                  duration: 0.45,
-                  delay: (contactOptions.length - 1 - index) * 0.08,
-                  ease: [0.16, 1, 0.3, 1],
+                  type: 'spring',
+                  stiffness: 240,
+                  damping: 23,
+                  delay: (contactOptions.length - 1 - index) * 0.065,
                 }}
                 className="flex items-center gap-2.5 group cursor-pointer"
                 aria-label={option.label}
@@ -156,7 +217,7 @@ export function FloatingContactWidget({
                 </div>
               </motion.a>
             ))}
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
@@ -164,7 +225,7 @@ export function FloatingContactWidget({
       <motion.button
         onClick={() => setIsOpen((prev) => !prev)}
         whileTap={{ scale: 0.92 }}
-        className="relative group h-12 w-12 sm:h-13 sm:w-13 rounded-full bg-primary hover:bg-primary/95 text-primary-foreground flex items-center justify-center shadow-2xl shadow-primary/40 transition-all duration-300 cursor-pointer focus-visible:outline-none border-2 border-white/20"
+        className="relative group h-12 w-12 sm:h-13 sm:w-13 rounded-full bg-primary hover:bg-primary/95 text-primary-foreground flex items-center justify-center shadow-2xl shadow-primary/40 transition-all duration-300 cursor-pointer focus-visible:outline-none border-2 border-white/20 z-20"
         aria-label={isOpen ? 'Close Support Chat' : 'Open Support Chat'}
       >
         <AnimatePresence mode="wait" initial={false}>

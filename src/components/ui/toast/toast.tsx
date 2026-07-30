@@ -27,7 +27,7 @@ const bgColors = {
 
 export function Toast({ className, item, ...props }: ToastProps) {
   const { dismiss } = useToast();
-  const { id, type, title, message, duration = 5000 } = item;
+  const { id, type, title, message, duration = 1800 } = item;
 
   useEffect(() => {
     if (duration === Infinity) return;
@@ -40,10 +40,10 @@ export function Toast({ className, item, ...props }: ToastProps) {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      initial={{ opacity: 0, y: -20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.15 } }}
-      transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+      exit={{ opacity: 0, scale: 0.9, y: -10, transition: { duration: 0.15 } }}
+      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
       role="alert"
       className={cn(
         'flex items-start gap-3 w-full max-w-sm rounded-lg border p-4 shadow-overlay bg-background text-foreground shrink-0 border-border',

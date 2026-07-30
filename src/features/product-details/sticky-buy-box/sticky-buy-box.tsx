@@ -46,8 +46,8 @@ export function StickyBuyBox({ product, targetId = 'main-add-to-cart' }: StickyB
     addItem(product, quantity);
     toast({
       type: 'success',
-      title: 'Added to Cart',
-      message: `${quantity}x ${product.title} added to your cart.`,
+      title: 'Added to Cart!',
+      message: product.title,
     });
   };
 
