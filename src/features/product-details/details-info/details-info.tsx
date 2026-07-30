@@ -76,7 +76,7 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
   return (
     <div className="flex flex-col gap-6 text-left w-full">
       {/* Brand, Category & Share line */}
-      <div className="flex items-center justify-between gap-3 text-xs uppercase font-bold tracking-wider text-stone-400">
+      <div className="flex items-center justify-between gap-3 text-xs uppercase font-bold tracking-wider text-stone-500 dark:text-stone-400">
         <div className="flex items-center gap-2">
           <span>{product.brand}</span>
           <span>&bull;</span>
@@ -84,17 +84,17 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
         </div>
         <button
           onClick={handleShareClick}
-          className="flex items-center gap-1.5 text-stone-500 hover:text-primary transition-colors cursor-pointer focus-visible:outline-none"
+          className="flex items-center gap-1.5 text-stone-600 dark:text-stone-300 hover:text-primary transition-colors cursor-pointer focus-visible:outline-none"
           aria-label="Share product"
         >
-          <Icon name="share" className="h-3.5 w-3.5" />
+          <Icon name="share" className="h-3.5 w-3.5 text-stone-500 dark:text-stone-300" />
           <span className="capitalize">Share</span>
         </button>
       </div>
 
       {/* Title & Rating */}
       <div className="flex flex-col gap-2">
-        <Heading level={1} className="font-display font-bold text-2xl sm:text-3xl text-foreground tracking-tight">
+        <Heading level={1} className="font-display font-bold text-2xl sm:text-3xl text-stone-900 dark:text-stone-100 tracking-tight">
           {product.title}
         </Heading>
         <ProductRating rating={product.rating} reviewsCount={product.reviewsCount} showText />
@@ -104,11 +104,11 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
       <ProductPrice price={product.price} oldPrice={product.oldPrice} className="text-xl" />
 
       {/* Description */}
-      <Text className="text-stone-550 text-xs sm:text-sm leading-relaxed">{product.description}</Text>
+      <Text className="text-stone-700 dark:text-stone-300 text-xs sm:text-sm leading-relaxed">{product.description}</Text>
 
       {/* Wood Material Variant Selection */}
       <div className="flex flex-col gap-2.5">
-        <span className="text-xs font-bold uppercase tracking-wider text-foreground">
+        <span className="text-xs font-bold uppercase tracking-wider text-stone-900 dark:text-stone-100">
           Wood Material: <span className="text-primary font-semibold">{selectedMaterial}</span>
         </span>
         <div className="flex flex-wrap gap-2">
@@ -120,7 +120,7 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
                 'px-3.5 py-1.5 text-xs font-bold rounded-lg border transition-all cursor-pointer select-none',
                 selectedMaterial === mat
                   ? 'border-primary bg-primary/10 text-primary shadow-flat'
-                  : 'border-border/80 text-stone-600 dark:text-stone-300 hover:border-border'
+                  : 'border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-200 hover:border-stone-300 dark:hover:border-stone-600'
               )}
             >
               {mat}
@@ -132,7 +132,7 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
       {/* Color selections */}
       {product.colors.length > 0 && (
         <div className="flex flex-col gap-2.5">
-          <span className="text-xs font-bold uppercase tracking-wider text-foreground">
+          <span className="text-xs font-bold uppercase tracking-wider text-stone-900 dark:text-stone-100">
             Color Polish: <span className="text-primary font-semibold">{activeColor}</span>
           </span>
           <div className="flex gap-2">
@@ -144,7 +144,7 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
                   onClick={() => setActiveColor(col.name)}
                   title={col.name}
                   className={cn(
-                    'h-8 w-8 rounded-full border border-border/80 cursor-pointer flex items-center justify-center focus-visible:outline-none transition-transform',
+                    'h-8 w-8 rounded-full border border-stone-200 dark:border-stone-700 cursor-pointer flex items-center justify-center focus-visible:outline-none transition-transform',
                     isActive && 'ring-2 ring-primary ring-offset-2 scale-105'
                   )}
                   style={{ backgroundColor: col.hex }}
@@ -160,25 +160,25 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
       {/* Quantity & Actions Bar with ID for StickyBuyBox observer */}
       <div id="main-add-to-cart-container" className="flex flex-col sm:flex-row gap-4 items-center pt-2">
         {/* Quantity control */}
-        <div className="flex items-center border border-border/80 rounded-xl bg-surface/5 w-full sm:w-auto">
+        <div className="flex items-center border border-stone-200 dark:border-stone-800 rounded-xl bg-stone-50 dark:bg-stone-900/60 w-full sm:w-auto">
           <Button
             variant="ghost"
             size="sm"
             disabled={quantity <= 1 || isOutOfStock}
             onClick={() => setQuantity(quantity - 1)}
-            className="h-11 w-11 p-0 rounded-l-xl cursor-pointer"
+            className="h-11 w-11 p-0 rounded-l-xl cursor-pointer text-stone-700 dark:text-stone-200"
           >
-            <Icon name="minus" className="h-3.5 w-3.5" />
+            <Icon name="minus" className="h-3.5 w-3.5 text-stone-700 dark:text-stone-200" />
           </Button>
-          <span className="w-12 text-center text-xs font-bold text-foreground select-none">{quantity}</span>
+          <span className="w-12 text-center text-xs font-bold text-stone-900 dark:text-stone-100 select-none">{quantity}</span>
           <Button
             variant="ghost"
             size="sm"
             disabled={isOutOfStock}
             onClick={() => setQuantity(quantity + 1)}
-            className="h-11 w-11 p-0 rounded-r-xl cursor-pointer"
+            className="h-11 w-11 p-0 rounded-r-xl cursor-pointer text-stone-700 dark:text-stone-200"
           >
-            <Icon name="plus" className="h-3.5 w-3.5" />
+            <Icon name="plus" className="h-3.5 w-3.5 text-stone-700 dark:text-stone-200" />
           </Button>
         </div>
 
@@ -209,7 +209,7 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
             variant="outline"
             onClick={handleWishlistClick}
             className={cn(
-              'h-11 w-11 p-0 rounded-xl cursor-pointer flex items-center justify-center border-border/80 bg-background hover:bg-muted shrink-0',
+              'h-11 w-11 p-0 rounded-xl cursor-pointer flex items-center justify-center border-stone-200 dark:border-stone-800 bg-background hover:bg-muted shrink-0 text-stone-700 dark:text-stone-200',
               activeWish && 'text-red-500 border-red-200 bg-red-50/20 dark:bg-red-950/20'
             )}
             aria-label="Toggle wishlist"
@@ -219,25 +219,25 @@ export function DetailsInfo({ product }: DetailsInfoProps) {
         </div>
       </div>
 
-      <div className="h-px bg-border/40 w-full my-2" />
+      <div className="h-px bg-stone-200 dark:bg-stone-800 w-full my-2" />
 
       {/* Specifications Table */}
       {product.specifications.length > 0 && (
         <div className="flex flex-col gap-3">
-          <Heading level={4} className="font-display font-semibold text-xs text-foreground uppercase tracking-wider">
+          <Heading level={4} className="font-display font-semibold text-xs text-stone-900 dark:text-stone-100 uppercase tracking-wider">
             Product Specifications
           </Heading>
-          <div className="flex flex-col border border-border/40 rounded-2xl overflow-hidden">
+          <div className="flex flex-col border border-stone-200/80 dark:border-stone-800 rounded-2xl overflow-hidden">
             {product.specifications.map((spec, idx) => (
               <div
                 key={spec.label}
                 className={cn(
-                  'flex items-center justify-between p-3.5 text-xs border-b border-border/40 last:border-b-0',
-                  idx % 2 === 0 ? 'bg-surface/5' : 'bg-background'
+                  'flex items-center justify-between p-3.5 text-xs border-b border-stone-200/80 dark:border-stone-800 last:border-b-0',
+                  idx % 2 === 0 ? 'bg-stone-50/70 dark:bg-stone-900/40' : 'bg-background dark:bg-stone-950/60'
                 )}
               >
-                <span className="font-semibold text-stone-500">{spec.label}</span>
-                <span className="font-bold text-foreground text-right">{spec.value}</span>
+                <span className="font-semibold text-stone-700 dark:text-stone-300">{spec.label}</span>
+                <span className="font-bold text-stone-900 dark:text-stone-100 text-right">{spec.value}</span>
               </div>
             ))}
           </div>

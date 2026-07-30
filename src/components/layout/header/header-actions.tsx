@@ -113,6 +113,21 @@ export function HeaderActions() {
                 <Icon name="chevronRight" className="h-3.5 w-3.5 text-stone-400 group-hover:translate-x-0.5 transition-transform" />
               </Link>
 
+              {/* Wishlist Link */}
+              <Link
+                href={ROUTES.WISHLIST}
+                onClick={() => setIsAccountOpen(false)}
+                className="flex items-center justify-between p-2 sm:p-2.5 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800/80 transition-colors text-stone-800 dark:text-stone-100 font-bold text-xs group"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-primary/15 text-primary flex items-center justify-center font-bold shrink-0">
+                    <Icon name="heart" className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
+                  </div>
+                  <span className="text-[11px] sm:text-xs">Wishlist</span>
+                </div>
+                <Icon name="chevronRight" className="h-3.5 w-3.5 text-stone-400 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+
               {/* Theme Toggle Switcher */}
               <div className="flex items-center justify-between p-2 sm:p-2.5 rounded-xl bg-stone-100 dark:bg-stone-900 border border-stone-200/60 dark:border-stone-800 text-[11px] sm:text-xs">
                 <div className="flex items-center gap-2 font-bold text-stone-700 dark:text-stone-200">

@@ -114,9 +114,9 @@ export function Drawer({
               <button
                 onClick={onClose}
                 aria-label="Close drawer"
-                className="rounded-sm opacity-70 hover:opacity-100 transition-opacity focus:outline-none focus:ring-2 focus:ring-ring"
+                className="p-1.5 rounded-xl opacity-70 hover:opacity-100 hover:bg-stone-100 dark:hover:bg-stone-800 transition-all focus:outline-none focus:ring-2 focus:ring-ring cursor-pointer text-stone-600 dark:text-stone-300"
               >
-                <Icon name="Close" className="h-4 w-4" />
+                <Icon name="Close" className="h-5.5 w-5.5 sm:h-6 sm:w-6 stroke-[2.5px]" />
               </button>
             </div>
 

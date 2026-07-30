@@ -1,6 +1,13 @@
 export interface Specification {
   label: string;
   value: string;
+  category?: string;
+}
+
+export interface ProductFeature {
+  title: string;
+  description: string;
+  icon?: string;
 }
 
 export interface Review {
@@ -30,6 +37,9 @@ export interface Product {
   slug: string;
   title: string;
   description: string;
+  longDescription?: string;
+  features?: ProductFeature[];
+  careInstructions?: string[];
   category: string;
   brand: string;
   price: number;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProductService } from '@/services/product.service';
-import { DetailsGallery, DetailsInfo, DetailsReviews, } from '@/features/product-details';
+import { DetailsGallery, DetailsInfo, DetailsTabs, DetailsReviews } from '@/features/product-details';
 import { ProductCarousel } from '@/features/products';
 import { Container } from '@/components/layout/container';
 import { Heading } from '@/components/ui/heading';
@@ -71,29 +71,32 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
         </div>
 
         {/* Product Guarantee & Shipping Highlights */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-y border-border/40 py-6 text-left">
-          <div className="flex items-center gap-3 p-4 rounded-xl bg-surface/5 border border-border/40">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-y border-stone-200/80 dark:border-stone-800 py-6 text-left">
+          <div className="flex items-center gap-3 p-4 rounded-xl bg-stone-50 dark:bg-stone-900/60 border border-stone-200/80 dark:border-stone-800">
             <Icon name="truck" className="h-5 w-5 text-primary shrink-0" />
             <div className="flex flex-col">
-              <span className="font-bold text-xs text-foreground">Countrywide Delivery</span>
-              <span className="text-[11px] text-stone-500">Free delivery on orders above 50,000 Tk</span>
+              <span className="font-bold text-xs text-stone-900 dark:text-stone-100">Countrywide Delivery</span>
+              <span className="text-[11px] text-stone-600 dark:text-stone-300">Free delivery on orders above 50,000 Tk</span>
             </div>
           </div>
-          <div className="flex items-center gap-3 p-4 rounded-xl bg-surface/5 border border-border/40">
+          <div className="flex items-center gap-3 p-4 rounded-xl bg-stone-50 dark:bg-stone-900/60 border border-stone-200/80 dark:border-stone-800">
             <Icon name="shieldCheck" className="h-5 w-5 text-primary shrink-0" />
             <div className="flex flex-col">
-              <span className="font-bold text-xs text-foreground">10-Year Warranty</span>
-              <span className="text-[11px] text-stone-500">Covers structural seasoning defects</span>
+              <span className="font-bold text-xs text-stone-900 dark:text-stone-100">10-Year Warranty</span>
+              <span className="text-[11px] text-stone-600 dark:text-stone-300">Covers structural seasoning defects</span>
             </div>
           </div>
-          <div className="flex items-center gap-3 p-4 rounded-xl bg-surface/5 border border-border/40">
+          <div className="flex items-center gap-3 p-4 rounded-xl bg-stone-50 dark:bg-stone-900/60 border border-stone-200/80 dark:border-stone-800">
             <Icon name="rotateCcw" className="h-5 w-5 text-primary shrink-0" />
             <div className="flex flex-col">
-              <span className="font-bold text-xs text-foreground">7-Day Easy Return</span>
-              <span className="text-[11px] text-stone-500">Hassle-free replacement policy</span>
+              <span className="font-bold text-xs text-stone-900 dark:text-stone-100">7-Day Easy Return</span>
+              <span className="text-[11px] text-stone-600 dark:text-stone-300">Hassle-free replacement policy</span>
             </div>
           </div>
         </div>
+
+        {/* Extended Product Description & Technical Specifications Tabs */}
+        <DetailsTabs product={product} />
 
         {/* Reviews panel */}
         <DetailsReviews initialReviews={product.reviews} rating={product.rating} />
