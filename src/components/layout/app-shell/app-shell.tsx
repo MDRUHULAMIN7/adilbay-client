@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Header } from '../header';
 import { Footer } from '../footer';
 import { SkipNav } from '../../system/skip-nav';
@@ -46,6 +47,8 @@ export function AppShell({
   showScrollToTop = false,
 }: AppShellProps) {
   const { isSearchOpen, setIsSearchOpen, isMobileNavOpen, setIsMobileNavOpen } = useLayout();
+  const pathname = usePathname();
+  const isDashboard = pathname?.startsWith('/dashboard');
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -57,6 +60,17 @@ export function AppShell({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isSearchOpen, setIsSearchOpen]);
+
+  if (isDashboard) {
+    return (
+      <div className="relative min-h-screen flex flex-col bg-background text-foreground transition-colors duration-150">
+        <SkipNav />
+        <main id="main-content" className="flex-1 flex flex-col w-full focus:outline-none" tabIndex={-1}>
+          {children}
+        </main>
+      </div>
+    );
+  }
 
   const defaultHeader = <Header />;
   const defaultFooter = <Footer />;
