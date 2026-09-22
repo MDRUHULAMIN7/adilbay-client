@@ -33,20 +33,20 @@
 }
 
 :root {
-  --background: #faf8f6; /* stone-50 warm ivory */
-  --foreground: #1c1917; /* stone-900 */
+  --background: #f8fafc; /* clean light slate-50 background */
+  --foreground: #0f172a; /* high-contrast crisp text */
 
-  --primary: #be7e65; /* brand-400 rich warm terracotta #BE7E65 */
+  --primary: #2262b3; /* Clean medium blue for buttons & interactive elements (calm, easy on eyes) */
   --primary-foreground: #ffffff;
 
-  --secondary: #f2e6e1; /* brand-100 */
-  --secondary-foreground: #4a291e; /* brand-800 */
+  --secondary: #eef4fc; /* soft calm blue surface */
+  --secondary-foreground: #092555; /* brand navy blue */
 
-  --muted: #f5f2ee; /* warm stone-surface */
-  --muted-foreground: #78716c;
+  --muted: #f1f5f9; /* slate-100 */
+  --muted-foreground: #64748b; /* slate-500 */
 
-  --accent: #e4ccbe; /* brand-200 */
-  --accent-foreground: #381f16;
+  --accent: #e0ecfc; /* light calm blue accent */
+  --accent-foreground: #092555;
 
   --destructive: #e11d48;
   --destructive-foreground: #ffffff;
@@ -60,34 +60,34 @@
   --info: #0284c7;
   --info-foreground: #ffffff;
 
-  --border: #eae6e2; /* warm light border */
-  --input: #eae6e2;
-  --ring: #8c5a47;
+  --border: #e2e8f0; /* clean light border */
+  --input: #e2e8f0;
+  --ring: #2262b3;
 
   /* Premium Semantic Tokens */
   --card: #ffffff;
-  --card-foreground: #1c1917;
+  --card-foreground: #0f172a;
   --card-elevated: #ffffff;
-  --surface: #f5f2ee;
-  --hover: #ebdcd0;
-  --overlay: rgba(28, 25, 23, 0.4);
+  --surface: #f8fafc;
+  --hover: #e8f0fc; /* subtle calm blue hover */
+  --overlay: rgba(9, 37, 85, 0.4);
 }
 
 .dark {
-  --background: #141211; /* deep ebony dark warm */
-  --foreground: #fafaf9;
+  --background: #0a0f1d; /* deep dark navy background */
+  --foreground: #f8fafc;
 
-  --primary: #be7e65; /* brand-400 */
-  --primary-foreground: #1d0f0a;
+  --primary: #3b82f6; /* clean accessible medium blue on dark */
+  --primary-foreground: #ffffff;
 
-  --secondary: #2c1c17;
-  --secondary-foreground: #f2e6e1;
+  --secondary: #132238;
+  --secondary-foreground: #dbeafe;
 
-  --muted: #24201e; /* warm stone-800 */
-  --muted-foreground: #a8a29e;
+  --muted: #111b2b; /* dark slate-navy surface */
+  --muted-foreground: #94a3b8;
 
-  --accent: #5c3426;
-  --accent-foreground: #fdf8f6;
+  --accent: #172a45;
+  --accent-foreground: #f0f5fc;
 
   --destructive: #f43f5e;
   --destructive-foreground: #ffffff;
@@ -96,36 +96,36 @@
   --success-foreground: #ffffff;
 
   --warning: #eab308;
-  --warning-foreground: #1c1917;
+  --warning-foreground: #0f172a;
 
-  --info: #0ea5e9;
+  --info: #38bdf8;
   --info-foreground: #ffffff;
 
-  --border: #2c2724; /* warm dark border */
-  --input: #2c2724;
-  --ring: #be7e65;
+  --border: #1e293b; /* clean dark slate border */
+  --input: #1e293b;
+  --ring: #3b82f6;
 
   /* Premium Semantic Tokens */
-  --card: #1c1917;
-  --card-foreground: #fafaf9;
-  --card-elevated: #262220;
-  --surface: #24201e;
-  --hover: #302926;
-  --overlay: rgba(0, 0, 0, 0.6);
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --card-elevated: #162238;
+  --surface: #111b2b;
+  --hover: #172a45;
+  --overlay: rgba(0, 0, 0, 0.7);
 }
 
 @theme {
-  --color-brand-50: #fdf8f6;
-  --color-brand-100: #f2e6e1;
-  --color-brand-200: #e4ccbe;
-  --color-brand-300: #d4a994;
-  --color-brand-400: #be7e65;
-  --color-brand-500: #8c5a47;
-  --color-brand-600: #734534;
-  --color-brand-700: #5c3426;
-  --color-brand-800: #4a291e;
-  --color-brand-900: #381f16;
-  --color-brand-950: #1d0f0a;
+  --color-brand-50: #f0f5fc;
+  --color-brand-100: #dde8f8;
+  --color-brand-200: #bad4f2;
+  --color-brand-300: #86b3e2;
+  --color-brand-400: #4a88cc;
+  --color-brand-500: #174d94; /* slightly darker blue hover state for buttons */
+  --color-brand-600: #2262b3; /* medium blue primary */
+  --color-brand-700: #133e75;
+  --color-brand-800: #103768;
+  --color-brand-900: #092555; /* primary brand navy blue */
+  --color-brand-950: #051532;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -183,10 +183,10 @@
 
   /* Semantic Shadow Registry */
   --shadow-flat: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-soft: 0 4px 12px -2px rgba(28, 25, 23, 0.06), 0 2px 6px -1px rgba(28, 25, 23, 0.04);
-  --shadow-raised: 0 12px 24px -4px rgba(28, 25, 23, 0.12), 0 4px 12px -2px rgba(28, 25, 23, 0.08);
+  --shadow-soft: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-raised: 0 12px 24px -4px rgba(15, 23, 42, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.08);
   --shadow-overlay: 0 20px 32px -8px rgba(0, 0, 0, 0.15), 0 8px 16px -4px rgba(0, 0, 0, 0.1);
-  --shadow-glass: 0 8px 32px 0 rgba(28, 25, 23, 0.04);
+  --shadow-glass: 0 8px 32px 0 rgba(15, 23, 42, 0.04);
 }
 
 /* Custom utility for locking transitions on theme toggle */
@@ -243,12 +243,12 @@
 
   /* Glassmorphism utility with variable blur */
   .glass-header {
-    background-color: rgba(250, 248, 246, 0.85);
+    background-color: rgba(248, 250, 252, 0.85);
     backdrop-filter: blur(20px);
   }
 
   .dark .glass-header {
-    background-color: rgba(20, 18, 17, 0.85);
+    background-color: rgba(10, 15, 29, 0.85);
     backdrop-filter: blur(20px);
   }
 

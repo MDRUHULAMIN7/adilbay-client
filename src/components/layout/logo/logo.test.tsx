@@ -6,6 +6,6 @@ import { Logo } from './logo';
 describe('Logo Component', () => {
   it('renders and contains site name text', () => {
     render(<Logo />);
-    expect(screen.getByText('Furnixo')).toBeInTheDocument();
+    expect(screen.getByText('AdilBay')).toBeInTheDocument();
   });
 });

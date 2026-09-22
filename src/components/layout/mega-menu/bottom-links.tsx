@@ -16,9 +16,9 @@ export function BottomLinks({ links, onItemClick }: BottomLinksProps) {
             key={link.label}
             href={link.href}
             onClick={onItemClick}
-            className="hover:text-primary dark:hover:text-amber-300 hover:bg-primary/10 dark:hover:bg-amber-400/10 px-2 py-1 rounded-lg transition-all flex items-center gap-1.5 focus-visible:outline-none"
+            className="hover:text-primary hover:bg-primary/10 px-2 py-1 rounded-lg transition-all flex items-center gap-1.5 focus-visible:outline-none"
           >
-            <Icon name="check" className="h-3.5 w-3.5 text-primary dark:text-amber-400" />
+            <Icon name="check" className="h-3.5 w-3.5 text-primary" />
             <span>{link.label}</span>
           </Link>
         ))}

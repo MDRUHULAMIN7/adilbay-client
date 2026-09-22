@@ -81,7 +81,7 @@ export function Header({ className, transparent = false, ...props }: HeaderProps
             >
               <Icon name="menu" className="h-5 w-5 sm:h-6 sm:w-6" />
             </Button>
-            <Logo variant="full" size="md" />
+            <Logo variant="full" size="md" themeMode={isHomePage && !isBgActive ? 'dark' : 'system'} />
           </div>
 
           {/* Desktop Navigation wrapped in ErrorBoundary */}

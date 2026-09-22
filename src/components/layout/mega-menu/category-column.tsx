@@ -18,7 +18,7 @@ export function CategoryColumn({ categories, onItemClick }: CategoryColumnProps)
             onClick={onItemClick}
             className="group hover:text-primary transition-colors focus-visible:outline-none rounded inline-block"
           >
-            <Heading level={5} className="font-display font-bold text-xs sm:text-sm text-stone-900 dark:text-stone-100 tracking-tight group-hover:text-primary dark:group-hover:text-amber-400 transition-colors uppercase">
+            <Heading level={5} className="font-display font-bold text-xs sm:text-sm text-stone-900 dark:text-stone-100 tracking-tight group-hover:text-primary transition-colors uppercase">
               {cat.label}
             </Heading>
           </Link>
@@ -28,12 +28,12 @@ export function CategoryColumn({ categories, onItemClick }: CategoryColumnProps)
                 <Link
                   href={sub.href}
                   onClick={onItemClick}
-                  className="hover:text-primary dark:hover:text-amber-300 hover:bg-primary/10 dark:hover:bg-amber-400/10 px-2 py-1 -mx-2 rounded-lg transition-all block focus-visible:outline-none whitespace-normal leading-relaxed font-semibold text-stone-600 dark:text-stone-300"
+                  className="hover:text-primary hover:bg-primary/10 px-2 py-1 -mx-2 rounded-lg transition-all block focus-visible:outline-none whitespace-normal leading-relaxed font-semibold text-stone-600 dark:text-stone-300"
                 >
                   <span className="inline-flex items-center gap-1.5">
                     <span>{sub.label}</span>
                     {sub.isNew && (
-                      <span className="text-[9px] font-bold bg-primary/10 dark:bg-amber-400/20 text-primary dark:text-amber-400 px-1.5 py-0.5 rounded-full uppercase leading-none">
+                      <span className="text-[9px] font-bold bg-primary/10 text-primary px-1.5 py-0.5 rounded-full uppercase leading-none">
                         New
                       </span>
                     )}

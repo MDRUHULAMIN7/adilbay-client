@@ -119,8 +119,8 @@ export function FloatingContactWidget({
         <svg className="w-13 h-13 sm:w-14 sm:h-14 drop-shadow-xl transition-transform group-hover:scale-105" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="themeBagGradientExact" x1="32" y1="20" x2="32" y2="60" gradientUnits="userSpaceOnUse">
-              <stop stopColor="hsl(var(--primary))" />
-              <stop stopColor="#c77638ff" />
+              <stop stopColor="var(--primary)" />
+              <stop stopColor="#092555" />
             </linearGradient>
           </defs>
           

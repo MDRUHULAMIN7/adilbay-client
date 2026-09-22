@@ -21,10 +21,10 @@ export function TrendingProducts({ products, onItemClick }: TrendingProductsProp
             <Link
               href={prod.href}
               onClick={onItemClick}
-              className="group flex items-start justify-between gap-2 p-2.5 rounded-xl hover:bg-primary/10 dark:hover:bg-amber-400/10 transition-all focus-visible:outline-none border border-transparent hover:border-primary/20 dark:hover:border-amber-400/30"
+              className="group flex items-start justify-between gap-2 p-2.5 rounded-xl hover:bg-primary/10 transition-all focus-visible:outline-none border border-transparent hover:border-primary/20"
             >
               <div className="flex flex-col gap-0.5">
-                <span className="text-xs font-semibold text-stone-800 dark:text-stone-200 group-hover:text-primary dark:group-hover:text-amber-300 transition-colors leading-snug">
+                <span className="text-xs font-semibold text-stone-800 dark:text-stone-200 group-hover:text-primary transition-colors leading-snug">
                   {prod.label}
                 </span>
                 {prod.price && (

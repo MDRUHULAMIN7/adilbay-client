@@ -31,15 +31,15 @@ export function buttonVariants({
     'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-150 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] whitespace-nowrap';
 
   const variants = {
-    primary: 'bg-primary text-primary-foreground hover:bg-primary/95 shadow-flat',
-    secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/90',
+    primary: 'bg-primary text-primary-foreground hover:bg-brand-500 shadow-flat',
+    secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
     outline: 'border border-border bg-background hover:bg-muted text-foreground',
     ghost: 'hover:bg-muted text-foreground',
     danger: 'bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-flat',
     success: 'bg-success text-success-foreground hover:bg-success/90 shadow-flat',
     warning: 'bg-warning text-warning-foreground hover:bg-warning/90 shadow-flat',
-    brand: 'bg-brand-600 text-brand-50 hover:bg-brand-700 shadow-flat',
-    soft: 'bg-accent/20 text-accent-foreground hover:bg-accent/30',
+    brand: 'bg-brand-900 text-white hover:bg-brand-800 shadow-flat',
+    soft: 'bg-accent text-accent-foreground hover:bg-accent/80',
     icon: 'rounded-full p-2 border border-border bg-background hover:bg-muted text-foreground',
     link: 'text-primary underline-offset-4 hover:underline p-0 bg-transparent active:scale-100',
   };

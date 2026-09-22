@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { cn } from '@/lib/cn';
 import { BaseComponentProps } from '@/types/component';
 import { ROUTES } from '@/constants/routes';
@@ -17,63 +18,80 @@ export function Logo({
   size = 'md',
   ...props
 }: LogoProps) {
-  const sizeClasses = {
-    sm: 'text-base',
-    md: 'text-lg',
-    lg: 'text-xl',
-  };
-
   const iconSizes = {
-    sm: 'h-7 w-7 text-xs',
-    md: 'h-8 w-8 text-sm',
-    lg: 'h-9 w-9 text-base',
+    sm: 'h-7 w-7',
+    md: 'h-8 w-8',
+    lg: 'h-9 w-9',
   };
 
-  const themeClasses = {
-    system: 'text-inherit',
-    light: 'text-stone-900',
-    dark: 'text-stone-50',
+  const fullSizes = {
+    sm: 'h-7 w-auto max-h-7',
+    md: 'h-8 w-auto max-h-8',
+    lg: 'h-9 w-auto max-h-9',
   };
 
-  const badgeClasses = {
-    system: 'bg-[#BE7E65] text-white shadow-xs',
-    light: 'bg-[#BE7E65] text-white shadow-xs',
-    dark: 'bg-[#BE7E65] text-white shadow-xs border border-white/20',
-  };
-
-  const textGradClasses = {
-    system: 'text-inherit',
-    light: 'text-stone-900',
-    dark: 'text-stone-50',
-  };
+  const isCompact = variant === 'compact';
 
   return (
     <Link
       href={ROUTES.HOME}
       className={cn(
-        'inline-flex items-center gap-2 font-display font-bold select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md',
-        themeClasses[themeMode],
-        sizeClasses[size],
+        'inline-flex items-center select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md transition-opacity hover:opacity-90',
         className
       )}
-      aria-label="Furnixo home page"
+      aria-label="AdilBay home page"
       {...props}
     >
-      <div
-        className={cn(
-          'rounded-md flex items-center justify-center font-semibold shrink-0 shadow-flat transition-all',
-          badgeClasses[themeMode],
-          iconSizes[size]
-        )}
-      >
-        F
-      </div>
-      {variant === 'full' && (
-        <span className={cn('tracking-tight font-semibold leading-none', textGradClasses[themeMode])}>
-          Furnixo
-        </span>
+      {isCompact ? (
+        <Image
+          src="/images/logo-icon.png"
+          alt="AdilBay"
+          width={36}
+          height={36}
+          className={cn('object-contain shrink-0', iconSizes[size])}
+          priority
+        />
+      ) : themeMode === 'dark' ? (
+        <Image
+          src="/images/logo-white.png"
+          alt="AdilBay"
+          width={120}
+          height={45}
+          className={cn('object-contain shrink-0', fullSizes[size])}
+          priority
+        />
+      ) : themeMode === 'light' ? (
+        <Image
+          src="/images/logo.png"
+          alt="AdilBay"
+          width={120}
+          height={45}
+          className={cn('object-contain shrink-0', fullSizes[size])}
+          priority
+        />
+      ) : (
+        <>
+          <Image
+            src="/images/logo.png"
+            alt="AdilBay"
+            width={120}
+            height={45}
+            className={cn('object-contain shrink-0 dark:hidden', fullSizes[size])}
+            priority
+          />
+          <Image
+            src="/images/logo-white.png"
+            alt="AdilBay"
+            width={120}
+            height={45}
+            className={cn('object-contain shrink-0 hidden dark:block', fullSizes[size])}
+            priority
+          />
+        </>
       )}
+      <span className="sr-only">AdilBay</span>
     </Link>
   );
 }
+
 export default Logo;

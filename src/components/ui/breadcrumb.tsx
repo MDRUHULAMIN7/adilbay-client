@@ -40,20 +40,20 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                 {item.href && !isLast ? (
                   <a
                     href={item.href}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-stone-600 dark:text-stone-300 hover:text-primary dark:hover:text-amber-400 bg-stone-100/80 dark:bg-stone-900/80 hover:bg-primary/10 dark:hover:bg-amber-400/10 border border-stone-200/80 dark:border-stone-800 transition-all cursor-pointer font-bold"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-stone-600 dark:text-stone-300 hover:text-primary bg-stone-100/80 dark:bg-stone-900/80 hover:bg-primary/10 border border-stone-200/80 dark:border-stone-800 transition-all cursor-pointer font-bold"
                   >
                     {item.icon && (
-                      <Icon name={item.icon} className="h-3.5 w-3.5 text-primary dark:text-amber-400" aria-hidden="true" />
+                      <Icon name={item.icon} className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                     )}
                     <span>{item.label}</span>
                   </a>
                 ) : (
                   <span
                     aria-current={isLast ? 'page' : undefined}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary dark:text-amber-400 border border-primary/25 dark:border-primary/40 font-bold shadow-xs"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary border border-primary/25 dark:border-primary/40 font-bold shadow-xs"
                   >
                     {item.icon && (
-                      <Icon name={item.icon} className="h-3.5 w-3.5 text-primary dark:text-amber-400" aria-hidden="true" />
+                      <Icon name={item.icon} className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
                     )}
                     <span>{item.label}</span>
                   </span>

@@ -48,7 +48,7 @@ export default function LoginPage() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40 z-0 pointer-events-none" />
 
       {/* Ambient Glowing Orbs */}
-      <div className="absolute top-1/4 left-10 w-80 h-80 bg-amber-600/15 rounded-full blur-[100px] pointer-events-none z-0" />
+      <div className="absolute top-1/4 left-10 w-80 h-80 bg-brand-500/15 rounded-full blur-[100px] pointer-events-none z-0" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none z-0" />
 
       {/* Floating Card Container */}
@@ -117,7 +117,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-[#1c1917] hover:bg-black dark:bg-white dark:text-stone-900 text-white font-bold text-xs uppercase tracking-wider py-3.5 transition-colors cursor-pointer mt-2"
+            className="w-full bg-primary hover:bg-brand-500 text-primary-foreground font-bold text-xs uppercase tracking-wider py-3.5 transition-colors cursor-pointer mt-2"
           >
             {isSubmitting ? 'Signing In...' : 'Sign In'}
           </button>

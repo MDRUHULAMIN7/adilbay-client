@@ -13,7 +13,7 @@ export function CtaBannerSection() {
   return (
     <section className="py-12 lg:py-20 bg-background select-none overflow-hidden">
       <Container variant="wide">
-        <div className="relative rounded-3xl overflow-hidden bg-[#FAF8F6] dark:bg-stone-950 text-stone-900 dark:text-white border border-stone-200/90 dark:border-stone-800 shadow-xl dark:shadow-2xl transition-colors duration-300">
+        <div className="relative rounded-3xl overflow-hidden bg-[#f8fafc] dark:bg-stone-950 text-stone-900 dark:text-white border border-stone-200/90 dark:border-stone-800 shadow-xl dark:shadow-2xl transition-colors duration-300">
           {/* Background High-Res Image with Adaptive Light/Dark Gradient Vignette */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -24,8 +24,8 @@ export function CtaBannerSection() {
               loading="lazy"
             />
             {/* Light Mode vs Dark Mode Gradients */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#FAF8F6]/95 via-[#FAF8F6]/80 to-[#FAF8F6]/30 dark:from-stone-950 dark:via-stone-950/90 dark:to-stone-950/40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#FAF8F6]/90 via-transparent to-[#FAF8F6]/50 dark:from-stone-950 dark:via-transparent dark:to-stone-950/60" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#f8fafc]/95 via-[#f8fafc]/80 to-[#f8fafc]/30 dark:from-stone-950 dark:via-stone-950/90 dark:to-stone-950/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#f8fafc]/90 via-transparent to-[#f8fafc]/50 dark:from-stone-950 dark:via-transparent dark:to-stone-950/60" />
             
             {/* Primary Accent Ambient Warm Glow */}
             <div className="absolute -top-20 -left-20 w-96 h-96 bg-primary/15 dark:bg-primary/25 rounded-full blur-3xl pointer-events-none" />
