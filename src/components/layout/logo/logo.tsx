@@ -8,7 +8,7 @@ import { ROUTES } from '@/constants/routes';
 export interface LogoProps extends BaseComponentProps {
   variant?: 'full' | 'compact';
   themeMode?: 'light' | 'dark' | 'system';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
 export function Logo({
@@ -19,15 +19,17 @@ export function Logo({
   ...props
 }: LogoProps) {
   const iconSizes = {
-    sm: 'h-7 w-7',
-    md: 'h-8 w-8',
-    lg: 'h-9 w-9',
+    sm: 'h-8 w-8',
+    md: 'h-10 w-10 sm:h-11 sm:w-11',
+    lg: 'h-12 w-12 sm:h-14 sm:w-14',
+    xl: 'h-16 w-16',
   };
 
   const fullSizes = {
-    sm: 'h-7 w-auto max-h-7',
-    md: 'h-8 w-auto max-h-8',
-    lg: 'h-9 w-auto max-h-9',
+    sm: 'h-8 sm:h-9 w-auto max-h-9',
+    md: 'h-10 sm:h-11 md:h-13 w-auto max-h-13',
+    lg: 'h-12 sm:h-14 md:h-16 w-auto max-h-16',
+    xl: 'h-16 sm:h-20 w-auto max-h-20',
   };
 
   const isCompact = variant === 'compact';
@@ -46,48 +48,20 @@ export function Logo({
         <Image
           src="/images/logo-icon.png"
           alt="AdilBay"
-          width={36}
-          height={36}
+          width={48}
+          height={48}
           className={cn('object-contain shrink-0', iconSizes[size])}
           priority
         />
-      ) : themeMode === 'dark' ? (
-        <Image
-          src="/images/logo-white.png"
-          alt="AdilBay"
-          width={120}
-          height={45}
-          className={cn('object-contain shrink-0', fullSizes[size])}
-          priority
-        />
-      ) : themeMode === 'light' ? (
+      ) : (
         <Image
           src="/images/logo.png"
           alt="AdilBay"
-          width={120}
-          height={45}
+          width={180}
+          height={68}
           className={cn('object-contain shrink-0', fullSizes[size])}
           priority
         />
-      ) : (
-        <>
-          <Image
-            src="/images/logo.png"
-            alt="AdilBay"
-            width={120}
-            height={45}
-            className={cn('object-contain shrink-0 dark:hidden', fullSizes[size])}
-            priority
-          />
-          <Image
-            src="/images/logo-white.png"
-            alt="AdilBay"
-            width={120}
-            height={45}
-            className={cn('object-contain shrink-0 hidden dark:block', fullSizes[size])}
-            priority
-          />
-        </>
       )}
       <span className="sr-only">AdilBay</span>
     </Link>
